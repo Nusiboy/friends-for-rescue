@@ -1,16 +1,15 @@
-import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import Homepage from './compoments/homepage/Homepage';
+import Login from './compoments/login/Login';
 import Layout from './compoments/layout/Layout';
-
+import Map from './compoments/map/Map';
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route index element={<Homepage />} />
+          <Route index element={<Login />} />
+          <Route path='/Map' element={<Map />} />
         </Route>
       </Routes>
     </>

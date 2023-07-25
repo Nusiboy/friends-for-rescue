@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Admin = require('../models/adminModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 exports.users = (req, res) => {
@@ -24,9 +25,10 @@ exports.login = async (req, res) => {
     const { userName, email, password, phone } = req.body;
     const userExists = await User.findOne({ userName, email, phone });
     if (!userExists) {
+      const adminExists = await Admin.findOne({ userName, email, phone });
+      if (!adminExists) {
       return res.status(401).json("No user");
-    }
-    console.log(password, userExists.password);
+    }}
     const passwordIsValid = bcrypt.compare(password, userExists.password);
     if (!passwordIsValid) return res.status(401).json("password incorrect");
     const {

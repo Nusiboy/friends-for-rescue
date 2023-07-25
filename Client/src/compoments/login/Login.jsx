@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from "axios";
 import '../login/Login.css'
 import { useNavigate } from "react-router-dom";
+import { RefreshContext } from '../../context/RefreshContext';
   
 function Login() {
   const [userNameValue, setUserNameValue] = useState("");
@@ -9,6 +10,7 @@ function Login() {
   const [passwordValue, setPasswordValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [refresh, setRefresh] = useState();
+  const {ref, setRef} = useContext(RefreshContext)
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
@@ -28,6 +30,8 @@ function Login() {
     })
     .then((user) => {
       localStorage.setItem("user-token", user.data.token);
+      localStorage.setItem("LoginName", userNameValue);
+      setRef(!ref)
       navigate("/");
     })
     .catch((err) => {

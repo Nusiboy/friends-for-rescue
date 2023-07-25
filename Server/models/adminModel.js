@@ -13,5 +13,30 @@ const adminSchema = new mongoose.Schema({
   },
   phone: { type: Number, unique: true, required: true },
   password: { type: String, required: true },
+  marks: [
+    {
+      longitude: { type: Number, unique: true },
+      latitude: { type: Number, unique: true },
+      markType: {
+        type: String,
+        enum: [
+          "Police Station",
+          "Beit Chabad",
+          "Hospital",
+          "Israeli Embassy",
+          "Camping Site",
+          "Hiking Trail",
+        ],
+      },
+      description: { type: String },
+      default: [],
+    },
+  ],
+  polygon: [
+{
+  
+  default: [],
+}
+  ],
 });
 module.exports = mongoose.model("Admin", adminSchema);

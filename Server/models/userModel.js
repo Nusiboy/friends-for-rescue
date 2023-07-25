@@ -17,17 +17,17 @@ const userSchema = new mongoose.Schema({
     origin: {
       type: String,
       enum: ["Local", "Israeli", null],
-      default: null,
+      default: null
     },
     mobility: {
       type: String,
       enum: ["Pedestrian", "Mobile", null],
-      default: null,
+      default: null
     },
     medical: {
       type: String,
       enum: ["none", "Medic", "Paramedic", "Doctor", null],
-      default: null,
+      default: null
     },
   },
 });

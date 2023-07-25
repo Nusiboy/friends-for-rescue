@@ -23,7 +23,7 @@ mongoose
     res.send("Hello World!");
   });
   app.use("/users", userRoutes);
-//   app.use("/admins", adminRoutes);
+  app.use("/admins", adminRoutes);
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });

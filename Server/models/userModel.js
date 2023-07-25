@@ -29,6 +29,12 @@ const userSchema = new mongoose.Schema({
       default: null
     },
   },
+//   marks: [ {
+//     longitude:{type: Number, unique: true},
+//     latitude: {type: Number, unique: true},
+//     markType: {type: String, enum: ["Police Station", "Beit Chabad", "Hospital", "Israeli Embassy", "Camping Site", "Hiking Trail"]},
+//     description: {type: String},
+// },],
 });
 module.exports = mongoose.model("User", userSchema);
   

@@ -13,11 +13,14 @@ function Layout() {
             <MobileButton isMenu={isMenuOpen} setMenu={setIsMenuOpen} />
           </div>
           <div id="layoutLinks">
-            <Link className="headerLink" to={"/"}>
-              page 1
+            <Link className="headerLink" to={"/Login"}>
+              Login
+            </Link>
+            <Link className="headerLink" to={"/Register"}>
+              Register
             </Link>
             <Link className="headerLink" to={"/"}>
-              page 2
+              Map
             </Link>
           </div>
         </div>
@@ -25,13 +28,18 @@ function Layout() {
           <div id="divLinks">
             <Link className="headerLink" onClick={() => {
                 setIsMenuOpen(false);
-              }} to={"/"}>
-              page 1
+              }} to={"/Login"}>
+              Login
+            </Link>
+            <Link className="headerLink" onClick={() => {
+                setIsMenuOpen(false);
+              }}to={"/Register"}>
+              Register
             </Link>
             <Link className="headerLink" onClick={() => {
                 setIsMenuOpen(false);
               }}to={"/"}>
-              page 2
+              Map
             </Link>
           </div>
         )}

@@ -18,7 +18,7 @@ function Login() {
       .then(({ data }) => setUser(data))
       .catch((err) => console.log(err.message));
   }, [refresh]);
-  function login() {
+  function loginUser() {
     axios
     .post("http://localhost:3001/users/login", {
       userName: userNameValue,
@@ -28,7 +28,7 @@ function Login() {
     })
     .then((user) => {
       localStorage.setItem("user-token", user.data.token);
-      navigate("/Map");
+      navigate("/");
     })
     .catch((err) => {
       if (err) {
@@ -69,7 +69,7 @@ function Login() {
         />
         <br />
         <input
-          type="number"
+          type="text"
           name="phone"
           placeholder='Phone number'
           onChange={(event) => {
@@ -77,7 +77,7 @@ function Login() {
           }}
         />
         <br />
-        <button id="login-btn" type="sumbit" onClick={login}>
+        <button id="login-btn" type="sumbit" onClick={loginUser}>
           login
         </button>
       </div>

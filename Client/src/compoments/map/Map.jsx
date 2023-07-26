@@ -1,8 +1,11 @@
 import React from 'react'
-
+import Sidebar from '../sidebar/Sidebar'
 function Map() {
   return (
-    <div>Map</div>
+    <div>
+<div>map</div>
+<Sidebar/>
+    </div>
   )
 }
 

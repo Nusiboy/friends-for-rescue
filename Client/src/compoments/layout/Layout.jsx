@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import "../layout/Layout.css"
+import "../layout/Layout.css";
 import { Outlet, Link } from "react-router-dom";
-import MobileButton from "../mobileButton/MobileButton"
+import MobileButton from "../mobileButton/MobileButton";
 import { ContextUser } from "../../context/ContextUser";
 import { RefreshContext } from "../../context/RefreshContext";
-
+import Sidebar from "../sidebar/Sidebar";
 function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {ref, setRef} = useContext(RefreshContext)
-  const {currentUser, setCurrentUser} = useContext(ContextUser)
+  const { ref, setRef } = useContext(RefreshContext);
+  const { currentUser, setCurrentUser } = useContext(ContextUser);
   function signOut() {
     localStorage.removeItem("user-token");
     localStorage.removeItem("LoginName");
@@ -29,9 +29,7 @@ function Layout() {
     );
   }
   function renderSignOutButton() {
-    return (
-      <button onClick={() => setRef(signOut)}>Sign out</button>
-    );
+    return <button id="sign-out-btn" onClick={() => setRef(signOut)}>Sign out</button>;
   }
   return (
     <div>
@@ -57,17 +55,26 @@ function Layout() {
               localStorage.getItem("LoginName") &&
               renderSignOutButton()}
           </div>
+          <h1 id="main-header">Friends for Rescue</h1>
         </div>
         {isMenuOpen && (
           <div id="divLinks">
-            <Link className="headerLink" onClick={() => {
+            <Link
+              className="headerLink"
+              onClick={() => {
                 setIsMenuOpen(false);
-              }}to={"/"}>
+              }}
+              to={"/"}
+            >
               Map
             </Link>
-            <Link className="headerLink" onClick={() => {
+            <Link
+              className="headerLink"
+              onClick={() => {
                 setIsMenuOpen(false);
-              }}to={"/Register"}>
+              }}
+              to={"/Register"}
+            >
               Register
             </Link>
             {!localStorage.getItem("user-token") &&
@@ -82,26 +89,7 @@ function Layout() {
           </div>
         )}
         <div id="layoutContent">
-            <Outlet />
-        <div id="layoutFooter">
-            <div id="footerLinks">
-              <div className="footerColumnLink">
-                <div className="dummyLink">FAQ</div>
-                <div className="dummyLink">Privacy Policy</div>
-                <div className="dummyLink">Terms and Conditions</div>
-              </div>
-              <div className="footerColumnLink">
-                <div className="dummyLink">Blog</div>
-                <div className="dummyLink">Testimonials</div>
-                <div className="dummyLink">Our Team</div>
-              </div>
-              <div className="footerColumnLink">
-                <div className="dummyLink">Support</div>
-                <div className="dummyLink">Gallery</div>
-                <div className="dummyLink">Newsletter</div>
-              </div>
-            </div>
-          </div>
+          <Outlet />
         </div>
       </div>
     </div>

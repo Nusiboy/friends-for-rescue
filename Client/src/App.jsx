@@ -4,8 +4,8 @@ import Layout from './compoments/layout/Layout';
 import Map from  './compoments/maps/map';
 import Login from './compoments/login/Login';
 import Register from './compoments/register/Register';
-import Map from './compoments/map/Map';
 import Sidebar from './compoments/sidebar/Sidebar';
+import Homepage from './compoments/homepage/Homepage';
 import { ContextUser } from './context/ContextUser';
 import { RefreshContext } from './context/RefreshContext';
 function App() {
@@ -22,7 +22,7 @@ function App() {
           <Route path='/Login' element={<Login />} />
           <Route path='/Register' element={<Register />} />
           <Route path='/Sidebar' element={<Sidebar />} />
-          <Route path='map' element={<Map/>} />
+          <Route path='/map' element={<Map/>} />
         </Route>
       </Routes>
       </RefreshContext.Provider>

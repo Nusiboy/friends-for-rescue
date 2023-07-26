@@ -1,12 +1,49 @@
 #sidebar-container {
-    width: 15vw; 
-    position:absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #f2f2f2; 
-    padding: 1vw;
-  }
-#user-sidebar{
+  width: 10vw; 
+  position:absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color:rgb(113, 233, 149);
+  padding: 1vw;
+}
+#sidebar-user-name{
+  width: 9vw;
+  font-size: 0.6em;
+  margin-top: 7vh;
+  position:relative;
+border-style: none;
+background-color:rgb(113, 233, 149);
 
+
+}
+#sidebar-layers-container{
+  display: flex;
+  flex-direction: column;
+  gap: 12vh;
+  margin-top: 8vh;
+}
+#update-user-container{
+  display: flex;
+}
+#update-origin-select{
+border-radius: 20%;
+height: 3vh;
+border-style: none;
+  font-size: 0.6em;
+
+}
+#update-mobility-select{
+  border-radius: 20%;
+height: 3vh;
+border-style: none;
+}
+#update-medical-select{
+  border-radius: 20%;
+  height: 3vh;
+  border-style: none;
+}
+#update-btn{
+  border-radius: 20%;
+  border-style: none;
 }

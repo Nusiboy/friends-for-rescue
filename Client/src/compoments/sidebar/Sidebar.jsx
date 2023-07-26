@@ -9,7 +9,7 @@ function Sidebar() {
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   function renderWelcomeButton() {
     return <div id="user-sidebar">{currentUser || "User"}</div>;
@@ -24,10 +24,10 @@ function Sidebar() {
   async function updateUser() {
     try {
       const user = await axios.patch(`http://localhost:3001/users/updateUser`, {
-          origin: updateOrigin,
-          mobility: updateMobility,
-          medical: updateMedical,
-          token: localStorage.getItem("user-token")
+        origin: updateOrigin,
+        mobility: updateMobility,
+        medical: updateMedical,
+        token: localStorage.getItem("user-token"),
       });
       alert("User has been updated!");
     } catch (err) {
@@ -37,7 +37,7 @@ function Sidebar() {
   function EditUser() {
     return (
       <div id="update-user-container">
-        <select
+        <select id="update-origin-select"
           name="updateOrigin"
           onChange={(event) => {
             setUpdateOrigin(event.target.value);
@@ -48,7 +48,7 @@ function Sidebar() {
           <option value="Israeli">Israeli</option>
         </select>
         <br />
-        <select
+        <select id="update-mobility-select"
           name="updateMobility"
           onChange={(event) => {
             setUpdateMobility(event.target.value);
@@ -59,7 +59,7 @@ function Sidebar() {
           <option value="Mobile">Mobile</option>
         </select>
         <br />
-        <select
+        <select id="update-medical-select"
           name="updateMedical"
           onChange={(event) => {
             setUpdateMedical(event.target.value);
@@ -72,7 +72,7 @@ function Sidebar() {
           <option value="Doctor">Doctor</option>
         </select>
         <br />
-        <button id="login-btn" type="submit" onClick={updateUser}>
+        <button id="update-btn" type="submit" onClick={updateUser}>
           Update User
         </button>
       </div>
@@ -81,17 +81,19 @@ function Sidebar() {
   console.log(currentUser);
   return (
     <div id="sidebar-container">
-      <div id="sidebar-user-name">
-        <button onClick={() => setShow((prev) => !prev)}>
+      <div id="sidebar-layers-container">
+        <div>layer1</div>
+        <div>layer2</div>
+        <div>layer3</div>
+      </div>
+      <div>
+        <button  id="sidebar-user-name" onClick={() => setShow((prev) => !prev)}>
           {localStorage.getItem("user-token") &&
             localStorage.getItem("LoginName") &&
             renderWelcomeButton()}
         </button>
         {show && <EditUser />}
       </div>
-      <div>layer1</div>
-      <div>layer2</div>
-      <div>layer3</div>
     </div>
   );
 }

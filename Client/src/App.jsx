@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Layout from './compoments/layout/Layout';
+import Map from  './compoments/maps/map';
 import Login from './compoments/login/Login';
 import Register from './compoments/register/Register';
 import Map from './compoments/map/Map';
@@ -17,10 +18,11 @@ function App() {
     <RefreshContext.Provider value={ {ref:refresh ,  setRef: setRefresh}}>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route index element={<Map />} />
+           <Route index element={<Homepage />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/Register' element={<Register />} />
           <Route path='/Sidebar' element={<Sidebar />} />
+          <Route path='map' element={<Map/>} />
         </Route>
       </Routes>
       </RefreshContext.Provider>

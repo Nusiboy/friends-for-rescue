@@ -10,7 +10,7 @@ exports.users = (req, res) => {
 exports.register = async (req, res) => {
   try {
     const { userName, email, password, phone, info } = req.body;
-    const userExists = await User.findOne({ userName, email, phone });
+    const userExists = await User.findOne({userName, email, phone });
     if (userExists) {
       return res.status(401).send("User already exists");
     }
@@ -51,26 +51,23 @@ exports.login = async (req, res) => {
 };
 exports.updateUser = async (req, res) => {
   try {
-    const { origin, mobility, medical } = req.body.info;
+    const { origin, mobility, medical } = req.body;
     if (!origin && !mobility && !medical) {
-        return res
-        .status(400)
-        .send(
-            "Please provide either origin or mobility or medical for update."
-            );
-        }
-        const user = await User.findOne({ _id: req.params.id });
+      return res.status(400).send("Please provide either origin or mobility or medical for update.");
+    }
+    const {_id} = jwt.verify(req.body.token, process.env.JWT_SECRET)
+    const user = await User.findOne({_id});
     if (!user) {
       return res.status(404).send("User not found.");
     }
     if (origin) {
-      user.origin = origin;
+      user.info.origin = origin
     }
     if (mobility) {
-      user.mobility = mobility;
+      user.info.mobility = mobility
     }
     if (medical) {
-      user.medical = medical;
+      user.info.medical = medical
     }
     await user.save();
     res.status(202).send("User has been updated");

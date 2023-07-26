@@ -8,9 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 app.use(express.json())
 mongoose
-.connect(
-  "mongodb+srv://shaharnus:1234@clusterfriendsforrescue.k6kpyda.mongodb.net/?retryWrites=true&w=majority")
-  
+.connect(process.env.MONGO_CONNECTOR , {})
   .then(() => {
     console.log("Successfully connected to MongoDB Atlas");
   })

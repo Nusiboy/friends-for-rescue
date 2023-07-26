@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from "axios";
 import '../login/Login.css'
 import { useNavigate } from "react-router-dom";
+import { RefreshContext } from '../../context/RefreshContext';
   
 function Login() {
   const [userNameValue, setUserNameValue] = useState("");
@@ -9,6 +10,7 @@ function Login() {
   const [passwordValue, setPasswordValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [refresh, setRefresh] = useState();
+  const {ref, setRef} = useContext(RefreshContext)
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ function Login() {
       .then(({ data }) => setUser(data))
       .catch((err) => console.log(err.message));
   }, [refresh]);
-  function login() {
+  function loginUser() {
     axios
     .post("http://localhost:3001/users/login", {
       userName: userNameValue,
@@ -28,7 +30,9 @@ function Login() {
     })
     .then((user) => {
       localStorage.setItem("user-token", user.data.token);
-      navigate("/Map");
+      localStorage.setItem("LoginName", userNameValue);
+      setRef(!ref)
+      navigate("/");
     })
     .catch((err) => {
       if (err) {
@@ -69,7 +73,7 @@ function Login() {
         />
         <br />
         <input
-          type="number"
+          type="text"
           name="phone"
           placeholder='Phone number'
           onChange={(event) => {
@@ -77,7 +81,7 @@ function Login() {
           }}
         />
         <br />
-        <button id="login-btn" type="sumbit" onClick={login}>
+        <button id="login-btn" type="sumbit" onClick={loginUser}>
           login
         </button>
       </div>

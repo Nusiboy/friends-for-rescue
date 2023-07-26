@@ -16,19 +16,37 @@ const userSchema = new mongoose.Schema({
     origin: {
       type: String,
       enum: ["Local", "Israeli", null],
-      default: null
+      default: null,
     },
     mobility: {
       type: String,
       enum: ["Pedestrian", "Mobile", null],
-      default: null
+      default: null,
     },
     medical: {
       type: String,
       enum: ["none", "Medic", "Paramedic", "Doctor", null],
-      default: null
+      default: null,
     },
   },
+  marks: [
+    {
+      longitude: { type: Number, unique: true },
+      latitude: { type: Number, unique: true },
+      markType: {
+        type: String,
+        enum: [
+          "Police Station",
+          "Beit Chabad",
+          "Hospital",
+          "Israeli Embassy",
+          "Camping Site",
+          "Hiking Trail",
+        ],
+      },
+      description: { type: String },
+      default: [],
+    },
+  ],
 });
 module.exports = mongoose.model("User", userSchema);
-  

@@ -1,0 +1,12 @@
+#sidebar-container {
+    width: 15vw; 
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f2f2f2; 
+    padding: 1vw;
+  }
+#user-sidebar{
+
+}

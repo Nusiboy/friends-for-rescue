@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
       message: "Email must contain @",
     },
   },
-  phone: { type: Number, unique: true, required: true },
+  phone: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   info: {
     origin: {

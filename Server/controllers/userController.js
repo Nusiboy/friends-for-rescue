@@ -22,10 +22,10 @@ exports.register = async (req, res) => {
 };
 exports.login = async (req, res) => {
   try {
-    const { userName, email, password, phone } = req.body;
-    const userExists = await User.findOne({ userName, email, phone });
+    const { userName, password} = req.body;
+    const userExists = await User.findOne({ userName, password });
     if (!userExists) {
-      const adminExists = await Admin.findOne({ userName, email, phone });
+      const adminExists = await Admin.findOne({ userName, password });
       if (!adminExists) {
       return res.status(401).json("No user");
     }}
@@ -34,11 +34,9 @@ exports.login = async (req, res) => {
     const {
       userName: tokenUsername,
       _id,
-      email: tokenEmail,
-      phone: tokenPhone,
     } = userExists;
     const token = jwt.sign(
-      { userName: tokenUsername, _id, email: tokenEmail, phone: tokenPhone },
+      { userName: tokenUsername, _id },
       process.env.JWT_SECRET,
       {
         expiresIn: "1d",

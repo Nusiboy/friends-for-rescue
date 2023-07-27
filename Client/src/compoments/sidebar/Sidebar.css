@@ -16,10 +16,11 @@
 }
 #sidebar-user-name{
   width: 9vw;
+  height: 6vh;
   font-size: 0.6em;
   margin-top: 7vh;
-  margin-left: -0.5vw;
-  border-radius: 2vw;
+  margin-left: -0.8vw;
+  border-radius: 100%;
   position:relative;
 border-style: none;
 background-color:rgb(113, 233, 149);

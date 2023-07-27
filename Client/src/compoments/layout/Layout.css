@@ -21,7 +21,7 @@
     font-family: 'Hind Siliguri', sans-serif;
 }
 #hello-user{
-color: #114e9e;
+    color:#0f5344;
 font-family: 'Hind Siliguri', sans-serif;
 }
 #layoutHeader {
@@ -57,7 +57,7 @@ font-family: 'Hind Siliguri', sans-serif;
     position: relative;
     transition: 0.5s;
     text-decoration: none; 
-    color:#114e9e;
+    color:#0f5344;
     font-family: 'Hind Siliguri', sans-serif;
 }
 .headerLink::after,
@@ -100,7 +100,7 @@ font-family: 'Hind Siliguri', sans-serif;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgb(95, 184, 92);
+    background: rgb(16, 184, 60);
     z-index: 2;
     padding: 10vh 10vh 30vh 10vh;
 }

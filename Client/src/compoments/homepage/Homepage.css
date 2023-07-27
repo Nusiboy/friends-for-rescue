@@ -2,3 +2,13 @@ body{
     width: 100vw;
     height: 100vh;
 }
+#chat-btn{
+    position: absolute;
+    margin-top: 78vh;
+    margin-left: 80vw;
+    z-index: 1;
+    border-radius: 20px;
+    border-style: none;
+    background: mediumseagreen;
+    box-shadow: rgba(0, 0, 0, 0.25) 10px 24px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}

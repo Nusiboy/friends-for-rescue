@@ -33,9 +33,10 @@ function Register() {
             mobility: registerMobility,
             medical: registerMedical
         }
-          })
-          .then((user) => {
-            navigate("/");
+      })
+      .then((user) => {
+        navigate("/");
+        console.log("sup");
           })
           alert("User have been created!")
         } catch (err) {

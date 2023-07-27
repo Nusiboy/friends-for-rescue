@@ -45,6 +45,8 @@ import "./homePage.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl";
 import Sidebar from "../sidebar/Sidebar";
+import Chat from "../Chat/Chat";
+import Sharelocaition from "../sharelocation/Sharelocaition";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYXZzaGEiLCJhIjoiY2xraTIzdnJ1MDRscjNxbWd6M3Vzdm1zeCJ9.clUun8yz9QaQrKAkL2y-sA";
@@ -57,6 +59,7 @@ function Homepage() {
     height: "100vh",
     zoom: 10,
   });
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -83,8 +86,17 @@ function Homepage() {
 
   const mapContainerRef = React.useRef();
 
+  function ChatOpener(){
+    return(
+  <div id="comunication-container">
+  <Chat />
+  <Sharelocaition />
+  </div>
+    )
+  }
   return (
     <>
+
       <div
         ref={mapContainerRef}
         style={{
@@ -99,9 +111,12 @@ function Homepage() {
         <p>Click the map to draw a polygon.</p>
         <div id="calculated-area"></div>
       </div>
-      <Sidebar/>
+        <button id="chat-btn" onClick={() => setShowChat((prev) => !prev)}>
+          Chat
+        </button>
+        {showChat && <ChatOpener />}
+      <Sidebar />
     </>
   );
 }
-
 export default Homepage;

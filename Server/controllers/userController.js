@@ -23,9 +23,9 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { userName, password} = req.body;
-    const userExists = await User.findOne({ userName, password });
+    const userExists = await User.findOne({ userName });
     if (!userExists) {
-      const adminExists = await Admin.findOne({ userName, password });
+      const adminExists = await Admin.findOne({ userName });
       if (!adminExists) {
       return res.status(401).json("No user");
     }}

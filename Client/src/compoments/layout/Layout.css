@@ -100,7 +100,8 @@ font-family: 'Hind Siliguri', sans-serif;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background: rgb(16, 184, 60);
+    background: rgb(9,121,39);
+    background: linear-gradient(90deg, rgb(20, 180, 47) 0%, rgba(43,172,40,1) 20%, rgb(73, 209, 71) 65%);
     z-index: 2;
     padding: 10vh 10vh 30vh 10vh;
 }

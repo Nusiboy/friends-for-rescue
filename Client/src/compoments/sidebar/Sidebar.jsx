@@ -82,9 +82,9 @@ function Sidebar() {
   return (
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
-        <div>layer1</div>
-        <div>layer2</div>
-        <div>layer3</div>
+        <button className="layer-btn">layer</button>
+        <button className="layer-btn">layer</button>
+        <button className="layer-btn">layer</button>
       </div>
       <div>
         <button  id="sidebar-user-name" onClick={() => setShow((prev) => !prev)}>

@@ -1,21 +1,28 @@
 #sidebar-container {
-  width: 10vw; 
+  width: 9vw; 
   position:absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  background-color:rgb(113, 233, 149);
+  background: rgb(9,121,39);
+  background: linear-gradient(180deg, rgb(20, 180, 47) 0%, rgba(43,172,40,1) 20%, rgb(73, 209, 71) 65%);
   padding: 1vw;
+}
+.layer-btn{
+  position:relative;
+  border-radius: 1vw;
+  border-style: none;
+  background-color:rgb(113, 233, 149);
 }
 #sidebar-user-name{
   width: 9vw;
   font-size: 0.6em;
   margin-top: 7vh;
+  margin-left: -0.5vw;
+  border-radius: 2vw;
   position:relative;
 border-style: none;
 background-color:rgb(113, 233, 149);
-
-
 }
 #sidebar-layers-container{
   display: flex;

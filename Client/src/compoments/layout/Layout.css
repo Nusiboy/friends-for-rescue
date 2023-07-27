@@ -33,7 +33,8 @@ font-family: 'Hind Siliguri', sans-serif;
     align-items: center;
     justify-content: space-between;
     z-index: 2;
-    background-color:rgb(113, 233, 149);
+    background: rgb(9,121,39);
+    background: linear-gradient(90deg, rgb(20, 180, 47) 0%, rgba(43,172,40,1) 20%, rgb(73, 209, 71) 65%);
 }
 #layoutContent {
     position: absolute;

@@ -8,12 +8,16 @@ exports.users = (req, res) => {
   });
 };
 exports.register = async (req, res) => {
+  console.log("dsfdsfa");
   try {
     const { userName, email, password, phone, info } = req.body;
-    const userExists = await User.findOne({userName, email, phone });
+    const userExists = await User.findOne({userName});
+    console.log(userExists);
     if (userExists) {
+      console.log("false");
       return res.status(401).send("User already exists");
     }
+    console.log("fine");
     const newUser = await User.create({ userName, email, password, phone, info });
     res.status(200).send("Created successfully");
   } catch (err) {

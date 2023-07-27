@@ -29,6 +29,7 @@ function Login() {
     .then((user) => {
       localStorage.setItem("user-token", user.data.token);
       localStorage.setItem("LoginName", userNameValue);
+      localStorage.setItem("usernum", phoneValue);
       setRef(!ref)
       navigate("/");
     })

@@ -8,6 +8,7 @@ import Sidebar from './compoments/sidebar/Sidebar';
 import Homepage from './compoments/homepage/Homepage';
 import { ContextUser } from './context/ContextUser';
 import { RefreshContext } from './context/RefreshContext';
+import "./App.css"
 function App() {
   const [currentUser, setCurrentUser] = useState(localStorage.getItem("LoginName"))
   const [refresh, setRefresh] = useState(false)

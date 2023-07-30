@@ -1,3 +1,6 @@
 /* .map-conteiner{
-    overflow-y: scroll;
+  height: 50vh;
+}
+.mapboxgl-canvas{
+    height: 60vh;
 } */

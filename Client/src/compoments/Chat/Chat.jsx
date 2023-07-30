@@ -31,6 +31,7 @@ function Chat() {
         })
     })
 
+    
     const handleSendMessage=(e)=>{
         e.preventDefault()
         if(message.trim() && localStorage.getItem("LoginName")){
@@ -44,7 +45,7 @@ function Chat() {
     }
   return (
     <>
-    <div>
+    <div id='chat-container'>
         {/* <h1>welcome to the socket.io chat</h1>
         <div>
             <h1>what is your name</h1>
@@ -60,14 +61,14 @@ function Chat() {
             }}
             >apply</button>
         </div> */}
-        <div>
+        <div id='secondery-chat-container'>
             <h1>write a message</h1>
-            <input
+            <input id='message-input-container'
              type="text"
              onChange={(e)=>setMessage(e.target.value)}
              placeholder='message'
              />
-             <button onClick={(e)=>handleSendMessage(e)}>send!</button>
+             <button id='send-message-btn' onClick={(e)=>handleSendMessage(e)}>send</button>
         </div>
         <div>
             <h1>Messages:</h1>

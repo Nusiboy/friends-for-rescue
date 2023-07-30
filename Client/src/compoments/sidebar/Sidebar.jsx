@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { ContextUser } from "../../context/ContextUser";
 import "./Sidebar.css";
 import axios from "axios";
+// import Chat from "../Chat/Chat";
+// import Sharelocaition from "../sharelocation/Sharelocaition";
 
 function Sidebar() {
   const { currentUser, setCurrentUser } = useContext(ContextUser);
@@ -10,6 +12,7 @@ function Sidebar() {
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
+  // const [showChat, setShowChat] = useState(false);
 
   function renderWelcomeButton() {
     return <div id="user-sidebar">{currentUser || "User"}</div>;
@@ -20,7 +23,6 @@ function Sidebar() {
       .then(({ data }) => setUser(data))
       .catch((err) => console.log(err.response.data));
   }, []);
-
   async function updateUser() {
     try {
       const user = await axios.patch(`http://localhost:3001/users/updateUser`, {
@@ -34,6 +36,14 @@ function Sidebar() {
       console.log(err.response.data);
     }
   }
+// function ChatOpener(){
+//   return(
+// <div id="comunication-container">
+// <Chat />
+// <Sharelocaition />
+// </div>
+//   )
+// }
   function EditUser() {
     return (
       <div id="update-user-container">
@@ -94,6 +104,10 @@ function Sidebar() {
         </button>
         {show && <EditUser />}
       </div>
+      {/* <button id="chat-btn" onClick={() => setShowChat((prev) => !prev)}>
+        Chat
+      </button>
+      {showChat && <ChatOpener />} */}
     </div>
   );
 }

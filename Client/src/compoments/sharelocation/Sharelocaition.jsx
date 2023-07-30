@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-
+import "../Chat/Chat.css"
 
 function Sharelocaition() {
     const [found,setFound]=useState()
@@ -45,12 +45,12 @@ function Sharelocaition() {
     console.log(coordinates);
     console.log(photourl);
   return (
-    <div>
-        <input onChange={(e) => onchange(e)} type="file" />
-        <textarea onChange={(e)=>setFound(e.target.value)} placeholder='what did you find' type="text" />
-        <button onClick={()=>takelocation()}>take location</button>
+    <div id='sharelocation-container'>
+        <input id='file-input-container' onChange={(e) => onchange(e)} type="file" />
+      <div id='description-send-container'>  <textarea id='description-input-container' onChange={(e)=>setFound(e.target.value)} placeholder=' what did you find' type="text" />
+        <button id='location-send-btn' onClick={()=>takelocation()}>take location</button>
+    </div>
     </div>
   )
 }
-
 export default Sharelocaition

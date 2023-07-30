@@ -8,24 +8,28 @@ exports.users = (req, res) => {
   });
 };
 exports.register = async (req, res) => {
+  console.log("dsfdsfa");
   try {
     const { userName, email, password, phone, info } = req.body;
-    const userExists = await User.findOne({userName, email, phone });
+    const userExists = await User.findOne({userName});
+    console.log(userExists);
     if (userExists) {
+      console.log("false");
       return res.status(401).send("User already exists");
     }
+    console.log("fine");
     const newUser = await User.create({ userName, email, password, phone, info });
-    res.status(200).send("Created successfully");
+    res.status(200).send(newUser);
   } catch (err) {
     res.status(500).send(err.message);
   }
 };
 exports.login = async (req, res) => {
   try {
-    const { userName, email, password, phone } = req.body;
-    const userExists = await User.findOne({ userName, email, phone });
+    const { userName, password} = req.body;
+    const userExists = await User.findOne({ userName });
     if (!userExists) {
-      const adminExists = await Admin.findOne({ userName, email, phone });
+      const adminExists = await Admin.findOne({ userName });
       if (!adminExists) {
       return res.status(401).json("No user");
     }}
@@ -34,11 +38,9 @@ exports.login = async (req, res) => {
     const {
       userName: tokenUsername,
       _id,
-      email: tokenEmail,
-      phone: tokenPhone,
     } = userExists;
     const token = jwt.sign(
-      { userName: tokenUsername, _id, email: tokenEmail, phone: tokenPhone },
+      { userName: tokenUsername, _id },
       process.env.JWT_SECRET,
       {
         expiresIn: "1d",

@@ -33,9 +33,10 @@ function Register() {
             mobility: registerMobility,
             medical: registerMedical
         }
-          })
-          .then((user) => {
-            navigate("/");
+      })
+      .then((user) => {
+        navigate("/");
+        console.log("sup");
           })
           alert("User have been created!")
         } catch (err) {
@@ -83,33 +84,36 @@ function Register() {
     <br />
     <select
   name="registerOrigin"
+  placeholder="Origin"
   onChange={(event) => {
     setRegisterOrigin(event.target.value);
   }}
 >
-  <option value=""> </option>
+  <option value="" disabled selected hidden>Origin</option>
   <option value="Local">Local</option>
   <option value="Israeli">Israeli</option>
 </select>
 <br />
 <select
   name="registerMobility"
+  placeholder="Mobility"
   onChange={(event) => {
     setRegisterMobility(event.target.value);
   }}
 >
-  <option value=""> </option>
+  <option value="" disabled selected hidden>Mobility</option>
   <option value="Pedestrian">Pedestrian</option>
   <option value="Mobile">Mobile</option>
 </select>
 <br />
 <select
   name="registerMedical"
+  placeholder="Medical Experience"
   onChange={(event) => {
     setRegisterMedical(event.target.value);
   }}
 >
-  <option value=""> </option>
+  <option value="" disabled selected hidden>Medical Experience</option>
   <option value="None">None</option>
   <option value="Medic">Medic</option>
   <option value="Paramedic">Paramedic</option>

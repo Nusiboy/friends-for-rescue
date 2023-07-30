@@ -24,13 +24,12 @@ function Login() {
     axios
     .post("http://localhost:3001/users/login", {
       userName: userNameValue,
-      email: emailValue,
       password: passwordValue,
-      phone: phoneValue,
     })
     .then((user) => {
       localStorage.setItem("user-token", user.data.token);
       localStorage.setItem("LoginName", userNameValue);
+      localStorage.setItem("usernum", phoneValue);
       setRef(!ref)
       navigate("/");
     })
@@ -56,28 +55,10 @@ function Login() {
         <br />
         <input
           type="text"
-          name="email"
-          placeholder='Email'
-          onChange={(event) => {
-            setEmailValue(event.target.value);
-          }}
-        />
-        <br />
-        <input
-          type="text"
           name="password"
           placeholder='Password'
           onChange={(event) => {
             setPasswordValue(event.target.value);
-          }}
-        />
-        <br />
-        <input
-          type="text"
-          name="phone"
-          placeholder='Phone number'
-          onChange={(event) => {
-            setPhoneValue(event.target.value);
           }}
         />
         <br />

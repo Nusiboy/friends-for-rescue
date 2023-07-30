@@ -77,3 +77,38 @@ exports.updateUser = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
+exports.markLocation = async (req, res) => {
+  try {
+    const { longitude, latitude, markType, found, information } = req.body;
+    if (!longitude){
+      return res.status(400).send("Please provide longitude.");
+    }
+    if (!latitude)
+    return res.status(400).send("Please provide latitude.");
+    if (!markType)
+    return res.status(400).send("Please provide markType.");
+    if (!found)
+    return res.status(400).send("Please provide found.");
+    if (!information)
+    return res.status(400).send("Please provide information.");
+    const { token } = req.body;
+    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findOne({ _id });
+    if (!user) {
+      return res.status(404).send("User not found.");
+    }
+    const mark = {
+      longitude: longitude,
+      latitude: latitude,
+      markType: markType,
+      found: found,
+      information: information
+    };
+    user.marks.push(mark);
+    await user.save();
+    res.status(202).send("Mark has been added!");
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};

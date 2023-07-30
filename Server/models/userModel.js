@@ -42,9 +42,11 @@ const userSchema = new mongoose.Schema({
           "Israeli Embassy",
           "Camping Site",
           "Hiking Trail",
+          "Other"
         ],
       },
-      description: { type: String },
+      found: { type: String },
+      information: { type: String },
       default: [],
     },
   ],

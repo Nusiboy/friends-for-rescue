@@ -89,7 +89,7 @@ function Register() {
     setRegisterOrigin(event.target.value);
   }}
 >
-  <option value="" disabled selected hidden>Origin</option>
+  <option value="" disabled hidden>Origin</option>
   <option value="Local">Local</option>
   <option value="Israeli">Israeli</option>
 </select>
@@ -101,19 +101,18 @@ function Register() {
     setRegisterMobility(event.target.value);
   }}
 >
-  <option value="" disabled selected hidden>Mobility</option>
+  <option value="" disabled hidden>Mobility</option>
   <option value="Pedestrian">Pedestrian</option>
   <option value="Mobile">Mobile</option>
 </select>
 <br />
 <select
   name="registerMedical"
-  placeholder="Medical Experience"
   onChange={(event) => {
     setRegisterMedical(event.target.value);
   }}
 >
-  <option value="" disabled selected hidden>Medical Experience</option>
+  <option value="" disabled hidden>Medical Experience</option>
   <option value="None">None</option>
   <option value="Medic">Medic</option>
   <option value="Paramedic">Paramedic</option>

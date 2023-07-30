@@ -46,21 +46,6 @@ function Chat() {
   return (
     <>
     <div id='chat-container'>
-        {/* <h1>welcome to the socket.io chat</h1>
-        <div>
-            <h1>what is your name</h1>
-            <input type="text"
-            onChange={(e)=>setName(e.target.value)}
-            placeholder='name' 
-            />
-            <button
-            id={nameselected ? "pressed":""}
-            onClick={()=>{
-                localStorage.setItem("name",name)
-                setNameSelected(!nameselected)
-            }}
-            >apply</button>
-        </div> */}
         <div id='secondery-chat-container'>
             <h1>write a message</h1>
             <input id='message-input-container'

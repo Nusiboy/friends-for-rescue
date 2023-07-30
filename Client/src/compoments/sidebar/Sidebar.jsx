@@ -36,14 +36,6 @@ function Sidebar() {
       console.log(err.response.data);
     }
   }
-// function ChatOpener(){
-//   return(
-// <div id="comunication-container">
-// <Chat />
-// <Sharelocaition />
-// </div>
-//   )
-// }
   function EditUser() {
     return (
       <div id="update-user-container">

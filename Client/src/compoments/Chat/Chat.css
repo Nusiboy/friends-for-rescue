@@ -13,10 +13,10 @@
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-top: 5vh;
 }
 #chat-container{
     display: flex;
-    margin-top: 28vh;
     flex-direction: column;
     align-content: center;
     justify-content: center;
@@ -49,6 +49,9 @@
 }
 #description-send-container{
     display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
 }
 #description-input-container{
     width: 46vw;
@@ -60,6 +63,16 @@
     display: flex;
     box-shadow: #33333363 0px 10px 36px 0px, rgb(0 0 0 / 16%) 0px 0px 0px 1px;
 }
+#mark-type-select{
+    border-style: none;
+    color: rgb(27, 27, 27);
+    background-color: rgb(58, 247, 105);
+    border-radius: 10px;
+    margin-left: 1vw;
+    display: flex;
+    box-shadow: #33333363 0px 10px 36px 0px, rgb(0 0 0 / 16%) 0px 0px 0px 1px;
+
+}
 #location-send-btn{
     border-style: none;
     border-radius: 20px;
@@ -67,5 +80,6 @@
     width: 22vw;
     background-color: rgb(0, 187, 47);
     margin-left: 1vw;
+    margin-top: 1vh;
     box-shadow: #33333363 0px 10px 36px 0px, rgb(0 0 0 / 16%) 0px 0px 0px 1px;
 }

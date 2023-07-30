@@ -38,9 +38,10 @@
 }
 #update-user-container{
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 3vh;
+  margin-top: -12.5vh;
+  margin-left: 9vw;
+  flex-direction: column;
 }
 #update-origin-select{
 border-radius: 20px;

@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
     }
     console.log("fine");
     const newUser = await User.create({ userName, email, password, phone, info });
-    res.status(200).send("Created successfully");
+    res.status(200).send(newUser);
   } catch (err) {
     res.status(500).send(err.message);
   }

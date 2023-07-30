@@ -5,9 +5,8 @@ import Sharelocaition from '../sharelocation/Sharelocaition'
 function Map() {
   return (
     <div>
-<div>map</div>
-<div><Chat/></div>
 <Sidebar/>
+<Chat/>
 <Sharelocaition/>
     </div>
   )

@@ -91,7 +91,9 @@ function Layout() {
         <div id="layoutContent">
           <Outlet />
         </div>
+        
       </div>
+      
     </div>
   );
 }

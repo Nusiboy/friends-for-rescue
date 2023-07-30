@@ -48,6 +48,7 @@ import Sidebar from "../sidebar/Sidebar";
 import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYXZzaGEiLCJhIjoiY2xraTIzdnJ1MDRscjNxbWd6M3Vzdm1zeCJ9.clUun8yz9QaQrKAkL2y-sA";
 

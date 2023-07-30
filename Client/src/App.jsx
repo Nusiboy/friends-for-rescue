@@ -19,7 +19,7 @@ function App() {
     <RefreshContext.Provider value={ {ref:refresh ,  setRef: setRefresh}}>
       <Routes>
         <Route path='/' element={<Layout />}>
-           <Route index element={<Homepage />} />
+          <Route index element={<Homepage />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/Register' element={<Register />} />
           <Route path='/Sidebar' element={<Sidebar />} />

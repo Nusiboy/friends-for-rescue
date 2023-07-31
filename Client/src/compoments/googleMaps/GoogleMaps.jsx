@@ -1,103 +1,84 @@
-import React, { useEffect, useState } from "react";
-import { useLoadScript, GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+import React, { useCallback, useEffect, useState } from "react";
+import {  GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+import { useContext } from "react";
+import { Context } from "../../context/UseContext";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./googleMaps.css";
 import '../findPlace/FindPlace'
+import Sidebar from "../sidebar/Sidebar";
+import GoogleMapsPolygon from "../googleMapsPolygon/GoogleMapsPolygon";
 
-import usePlacesAutocomplete,{getGeocode,getLatLng} from 'use-places-autocomplete'
-import{Combobox,ComboboxInput,ComboboxPopover,ComboboxList,ComboboxOption}from "@reach/combobox"
+
+
 
 function GoogleMaps() {
-   
-  const center = { lat: 4.639539, lng: -74.10146 };
-  const options = { disavleDefaultUI: true, clickableIcons: false };
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDfbCGZAMYlPXeslYygKG1dIMXioxz70TI",
-    libraries: ["places"],
-  });
-  // const [query,setQuery]=useState('')
-  const [mapLoaded, setMapLoaded] = useState(false);
+   const{center,options,isLoaded, loadError,mapLoaded, setMapLoaded,map, setMap }=useContext(Context)
+
   const [hospitals, setHospitals] = useState([]);
   const [popup,setPopup]=useState(null)
-  const [selected, setSelected] = useState(null);
-  const {
-    ready,
-    value,
-    setValue,
-    suggestions: { status, data },
-    clearSuggestions,
-  } = usePlacesAutocomplete();
-
-  const handleSelect = async (address) => {
-    setValue(address, false);
-    clearSuggestions();
-
-    const results = await getGeocode({ address });
-    const { lat, lng } = await getLatLng(results[0]);
-    setSelected({ lat, lng });
+  // const [selected, setSelected] = useState(null);
+  const [drawnPolygons, setDrawnPolygons] = useState([]);
+  const handlePolygonDrawn = (newPolygon) => {
+    setDrawnPolygons([...drawnPolygons, newPolygon]);
   };
+ 
+
+  
+
   useEffect(() => {
-    if (mapLoaded) {
+    if (map) {
       searchHospitals(center);
     }
-  }, [mapLoaded]);
+  }, [map]);
   useEffect(() => {
     if (isLoaded && !loadError) {
-      setMapLoaded(true);
+      console.log("hi");
+      setMap(true);
     }
   }, [isLoaded, loadError]);
   const searchHospitals = (location) => {
     const request = {
       location: location,
-      //   radius: , // Adjust this value to control the search area
-      query: "hospital",
+        radius: 10000, // Adjust this value to control the search area
+      query: "Hospital",
+      keyword: "Hospital",
+      openNow:true, 
+      type:["hospital"]
     };
 
     const service = new window.google.maps.places.PlacesService(
-      document.createElement("div")
+      document.createElement("div") 
     );
-    service.textSearch(request, handleTextSearch);
+    service.nearbySearch(request, handleTextSearch);
+  
+
   };
 
   const handleTextSearch = (results, status) => {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
       console.log(results);
+      console.log(results.map((value,index)=>{
+        return value.geometry
+      }))
       setHospitals(results);
     }
   };
 
-  if (!mapLoaded) {
+  if (!map) {
     return <div>Loading...</div>;
   }
 
+console.log(map)
   return (
+    <div>
     <div className="map-conteiner">
-        <div className="places-container">
-        <Combobox onSelect={handleSelect} >
-          <ComboboxInput
-            value={value}
-            ey={mapLoaded ? "input-loaded" : "input-not-loaded"}
-            onChange={(e) => setValue(e.target.value)}
-            disabled={!ready}
-            className="combobox-input"
-            placeholder="Search an address"
-          />
-          <ComboboxPopover>
-            <ComboboxList style={{backgroundColor: "#fff", border: "1px solid #ccc",cursor:"pointer"}} >
-              {status === "OK" &&
-                data.map(({ place_id, description }) => (
-                  <ComboboxOption key={place_id} value={description} />
-                ))}
-            </ComboboxList>
-          </ComboboxPopover>
-        </Combobox>
-      </div>
-        {/* <FindPlace/> */}
+       {/* <GoogleMapsPolygon onPolygonDrawn={handlePolygonDrawn}/>  */}
+       
       <GoogleMap
         options={options}
         center={center}
         zoom={10}
-        mapContainerStyle={{ width: "100%", height: "100%" }}
+        mapContainerStyle={{ width: "100vw", height: "100vh" }}
         
       >
         
@@ -124,13 +105,18 @@ function GoogleMaps() {
                 lng: popup.geometry.location.lng(),}}
                 onCloseClick={()=>{
                     setPopup(null)
+                    console.log(popup);
                 }}>
                     <div><h2>{popup.name}</h2>
                     <p>{popup.formatted_address}</p></div>
                 </InfoWindow>
         )}
-         {selected && <Marker position={selected} />}
+         {/* {selected && <Marker position={selected} />} */}
       </GoogleMap>
+    </div>
+    
+      <Sidebar/>
+    
     </div>
   );
 }

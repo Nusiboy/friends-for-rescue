@@ -95,17 +95,17 @@ function Sharelocaition() {
   console.log(photourl);
   return (
     <div id="sharelocation-container">
-      <h1>Location Updater</h1>
+      <h2>Location Updater</h2>
       <input
         id="file-input-container"
         onChange={(e) => onchange(e)}
         type="file"
-      />
+      /> 
       <div id="description-send-container">
         <textarea
           id="description-input-container"
           onChange={(e) => setFound(e.target.value)}
-          placeholder=" what did you find"
+          placeholder="what did you find"
           type="text"
         />
         <select

@@ -31,8 +31,8 @@ const userSchema = new mongoose.Schema({
   },
   marks: [
     {
-      longitude: { type: Number, unique: true },
-      latitude: { type: Number, unique: true },
+      longitude: { type: Number },
+      latitude: { type: Number },
       markType: {
         type: String,
         enum: [

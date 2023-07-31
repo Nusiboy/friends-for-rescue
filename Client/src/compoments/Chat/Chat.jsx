@@ -46,8 +46,8 @@ function Chat() {
   return (
     <>
     <div id='chat-container'>
+            <h2>write a message</h2>
         <div id='secondery-chat-container'>
-            <h1>write a message</h1>
             <input id='message-input-container'
              type="text"
              onChange={(e)=>setMessage(e.target.value)}
@@ -56,7 +56,7 @@ function Chat() {
              <button id='send-message-btn' onClick={(e)=>handleSendMessage(e)}>send</button>
         </div>
         <div>
-            <h1>Messages:</h1>
+            <h2>Messages:</h2>
             {messages.map((message,index)=>{
                 return(
                     <div key={index}>

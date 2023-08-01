@@ -1,16 +1,15 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import '../login/Login.css'
+import "../login/Login.css";
 import { useNavigate } from "react-router-dom";
-import { Contextt } from '../../context/RefreshConmtext';
-  
+import { RefreshContext } from "../../context/RefreshContext";
 function Login() {
   const [userNameValue, setUserNameValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [refresh, setRefresh] = useState();
-  const {ref, setRef} = useContext(Contextt)
+  const { ref, setRef } = useContext(RefreshContext);
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
@@ -22,54 +21,50 @@ function Login() {
   }, [refresh]);
   function loginUser() {
     axios
-    .post("http://localhost:3001/users/login", {
-      userName: userNameValue,
-      password: passwordValue,
-    })
-    .then((user) => {
-      localStorage.setItem("user-token", user.data.token);
-      localStorage.setItem("LoginName", userNameValue);
-      localStorage.setItem("usernum", phoneValue);
-      setRef(!ref)
-      navigate("/");
-    })
-    .catch((err) => {
-      if (err) {
-        console.log(err);
-      }
+      .post("http://localhost:3001/users/login", {
+        userName: userNameValue,
+        password: passwordValue,
+      })
+      .then((user) => {
+        localStorage.setItem("user-token", user.data.token);
+        localStorage.setItem("LoginName", userNameValue);
+        localStorage.setItem("usernum", phoneValue);
+        setRef(!ref);
+        navigate("/");
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
       });
   }
   return (
- <div>
-   <div id="login-register-container">
       <div id="login-container">
-        <h1>Login</h1>
-        <input
-          type="text"
-          name="username"
-          placeholder='Username'
-          onChange={(event) => {
-            setUserNameValue(event.target.value);
-          }}
-        />
-        <br />
-        <input
-          type="text"
-          name="password"
-          placeholder='Password'
-          onChange={(event) => {
-            setPasswordValue(event.target.value);
-          }}
-        />
-        <br />
-        <button id="login-btn" type="sumbit" onClick={loginUser}>
-          login
-        </button>
+        <div id="login-secondery-container">
+          <h1 id="login-header">Login</h1>
+          <input className="login-input"
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={(event) => {
+              setUserNameValue(event.target.value);
+            }}
+          />
+          <br />
+          <input className="login-input"
+            type="text"
+            name="password"
+            placeholder="Password"
+            onChange={(event) => {
+              setPasswordValue(event.target.value);
+            }}
+          />
+          <br />
+          <button id="login-btn" type="sumbit" onClick={loginUser}>
+            login
+          </button>
+        </div>
       </div>
-    </div>
-    <div id='admin-login-container'>
-    </div>
-  </div>
-  )
+  );
 }
-export default Login
+export default Login;

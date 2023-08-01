@@ -11,7 +11,7 @@ const adminSchema = new mongoose.Schema({
       message: "Email must contain @",
     },
   },
-  phone: { type: Number, unique: true, required: true },
+  phone: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   marks: [
     {
@@ -26,9 +26,11 @@ const adminSchema = new mongoose.Schema({
           "Israeli Embassy",
           "Camping Site",
           "Hiking Trail",
+          "Other"
         ],
       },
-      description: { type: String },
+      found: { type: String },
+      information: { type: String },
       default: [],
     },
   ],

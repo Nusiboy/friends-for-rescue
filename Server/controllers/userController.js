@@ -8,22 +8,19 @@ exports.users = (req, res) => {
   });
 };
 exports.register = async (req, res) => {
-  console.log("dsfdsfa");
   try {
     const { userName, email, password, phone, info } = req.body;
-    const userExists = await User.findOne({userName});
-    console.log(userExists);
+    const userExists = await User.findOne({ userName });
     if (userExists) {
-      console.log("false");
       return res.status(401).send("User already exists");
     }
-    console.log("fine");
-    const newUser = await User.create({ userName, email, password, phone, info });
-    res.status(200).send(newUser);
+    const newUser = await User.create({ userName, email, password, phone, info, marks: [] });
+    res.status(200).send("Created successfully");
   } catch (err) {
     res.status(500).send(err.message);
   }
 };
+
 exports.login = async (req, res) => {
   try {
     const { userName, password} = req.body;
@@ -73,6 +70,41 @@ exports.updateUser = async (req, res) => {
     }
     await user.save();
     res.status(202).send("User has been updated");
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+exports.markLocation = async (req, res) => {
+  try {
+    const { longitude, latitude, markType, found, information } = req.body;
+    if (!longitude){
+      return res.status(400).send("Please provide longitude.");
+    }
+    if (!latitude)
+    return res.status(400).send("Please provide latitude.");
+    if (!markType)
+    return res.status(400).send("Please provide markType.");
+    if (!found)
+    return res.status(400).send("Please provide found.");
+    if (!information)
+    return res.status(400).send("Please provide information.");
+    const { token } = req.body;
+    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findOne({ _id });
+    if (!user) {
+      return res.status(404).send("User not found.");
+    }
+    const mark = {
+      longitude: longitude,
+      latitude: latitude,
+      markType: markType,
+      found: found,
+      information: information
+    };
+    user.marks.push(mark);
+    await user.save();
+    res.status(202).send("Mark has been added!");
   } catch (err) {
     res.status(500).json(err.message);
   }

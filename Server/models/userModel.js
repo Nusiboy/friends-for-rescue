@@ -31,8 +31,8 @@ const userSchema = new mongoose.Schema({
   },
   marks: [
     {
-      longitude: { type: Number, unique: true },
-      latitude: { type: Number, unique: true },
+      longitude: { type: Number },
+      latitude: { type: Number },
       markType: {
         type: String,
         enum: [
@@ -42,9 +42,11 @@ const userSchema = new mongoose.Schema({
           "Israeli Embassy",
           "Camping Site",
           "Hiking Trail",
+          "Other"
         ],
       },
-      description: { type: String },
+      found: { type: String },
+      information: { type: String },
       default: [],
     },
   ],

@@ -3,13 +3,11 @@ import { useState } from "react";
 import "../layout/Layout.css";
 import { Outlet, Link } from "react-router-dom";
 import MobileButton from "../mobileButton/MobileButton";
-import { ContextUser } from "../../context/ContextUser";
-import { RefreshContext } from "../../context/RefreshContext";
-import Sidebar from "../sidebar/Sidebar";
+import {Contextt} from '../../context/RefreshConmtext'
 function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { ref, setRef } = useContext(RefreshContext);
-  const { currentUser, setCurrentUser } = useContext(ContextUser);
+  const { ref, setRef, currentUser, setCurrentUser  } = useContext(Contextt);
+
   function signOut() {
     localStorage.removeItem("user-token");
     localStorage.removeItem("LoginName");
@@ -42,6 +40,7 @@ function Layout() {
             <Link className="headerLink" to={"/"}>
               Map
             </Link>
+            <Link  className="headerLink" to={"/googlemaps"} >googlemaps</Link>
             <Link className="headerLink" to={"/Register"}>
               Register
             </Link>
@@ -91,7 +90,9 @@ function Layout() {
         <div id="layoutContent">
           <Outlet />
         </div>
+        
       </div>
+      
     </div>
   );
 }

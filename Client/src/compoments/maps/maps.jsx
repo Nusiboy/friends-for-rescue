@@ -6,7 +6,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiYXZzaGEiLCJhIjoiY2xraTIzdnJ1MDRscjNxbWd6M3Vzdm1zeCJ9.clUun8yz9QaQrKAkL2y-sA";
 
-function Map() {
+function Maps() {
   const [viewportt, setViewportt] = useState({
     latitude: 4.639539,
     longitude: -74.10146,
@@ -58,4 +58,4 @@ function Map() {
   );
 }
 
-export default Map;
+export default Maps;

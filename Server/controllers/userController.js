@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
     if (userExists) {
       return res.status(401).send("User already exists");
     }
-    const newUser = await User.create({ userName, email, password, phone, info });
+    const newUser = await User.create({ userName, email, password, phone, info, marks: [] });
     res.status(200).send("Created successfully");
   } catch (err) {
     res.status(500).send(err.message);

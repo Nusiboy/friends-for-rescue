@@ -1,10 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ContextUser } from "../../context/ContextUser";
+import {Contextt} from '../../context/RefreshConmtext';
+import { Context } from "../../context/UseContext";
+import{Link} from 'react-router-dom'
 import "./Sidebar.css";
 import axios from "axios";
 
 function Sidebar() {
-  const { currentUser, setCurrentUser } = useContext(ContextUser);
+  const { toggleDrawingMode } = useContext(Context);
+  const { currentUser, setCurrentUser } = useContext(Contextt);
   const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
@@ -113,8 +116,9 @@ function Sidebar() {
   return (
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
+        
         <button className="layer-btn">layer</button>
-        <button className="layer-btn">layer</button>
+        <button  onClick={toggleDrawingMode} className="layer-btn">polygon</button>
         <button className="layer-btn">layer</button>
       </div>
       <div>

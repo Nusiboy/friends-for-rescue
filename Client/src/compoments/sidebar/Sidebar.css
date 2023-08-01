@@ -40,7 +40,8 @@
   position: relative;
   border-radius: 1vw;
   border-style: none;
-  background-color: rgb(113, 233, 149);
+  background-color:rgb(113, 233, 149);
+  cursor: pointer;
 }
 #sidebar-user-name {
   display: flex;

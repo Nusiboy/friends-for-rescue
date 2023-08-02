@@ -43,133 +43,180 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.markPolygon = async (req, res) => {
+// exports.markPolygon = async (req, res) => {
+//   try {
+//     const { coordinates, area, type } = req.body;
+//     if (!coordinates) {
+//       return res.status(400).send("Please provide coordinates.");
+//     }
+//     // if (!area) return res.status(400).send("Please provide area.");
+//     if (!type) return res.status(400).send("Please provide type.");
+//     const { token } = req.body;
+//     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+//     const admin = await Admin.findOne({ _id });
+//     if (!admin) {
+//       return res.status(404).send("Admin not found.")
+//     }
+//     const polygon = {
+//       type: type, 
+//       coordinates,
+//       // area
+//     };
+//     if (!admin.shapes[0]) {
+//       admin.shapes[0] = {};
+//     }
+//     if (!admin.shapes[0].polygons) {
+//       admin.shapes[0].polygons = [];
+//     }
+//     admin.shapes[0].polygons.push(polygon);
+//       await admin.save();
+//       res.status(202).send("Polygon has been added!");
+//     } catch (err) {
+//       res.status(500).json(err.message);
+//     }
+//   };
+// exports.markPolyline = async (req, res) => {
+//   try {
+//     const { coordinates, lines, type } = req.body;
+//     if (!coordinates) {
+//       return res.status(400).send("Please provide coordinates.");
+//     }
+//     if (!lines) return res.status(400).send("Please provide lines.");
+//     if (!type) return res.status(400).send("Please provide type.");
+//     const { token } = req.body;
+//     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+//     const admin = await Admin.findOne({ _id });
+//     if (!admin) {
+//       return res.status(404).send("Admin not found.")
+//     }
+//     const polyline = {
+//       type: type, 
+//       coordinates,
+//       lines
+//     };
+//     if (!admin.shapes[0]) {
+//       admin.shapes[0] = {};
+//     }
+//     if (!admin.shapes[0].polylines) {
+//       admin.shapes[0].polylines = [];
+//     }
+//     admin.shapes[0].polylines.push(polyline);
+//       await admin.save();
+//       res.status(202).send("Polyline has been added!");
+//     } catch (err) {
+//       res.status(500).json(err.message);
+//     }
+//   };
+// exports.markCircle = async (req, res) => {
+//   try {
+//     const { center, radius, area, type } = req.body;
+//     if (!center) {
+//       return res.status(400).send("Please provide center.");
+//     }
+//     if (!radius) return res.status(400).send("Please provide radius.");
+//     // if (!area) return res.status(400).send("Please provide area.");
+//     if (!type) return res.status(400).send("Please provide type.");
+//     const { token } = req.body;
+//     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+//     const admin = await Admin.findOne({ _id });
+//     if (!admin) {
+//       return res.status(404).send("Admin not found.")
+//     }
+//     const circle = {
+//       type: type, 
+//       center,
+//       radius
+//     };
+//     if (!admin.shapes[0]) {
+//       admin.shapes[0] = {};
+//     }
+//     if (!admin.shapes[0].circles) {
+//       admin.shapes[0].circles = [];
+//     }
+//     admin.shapes[0].circles.push(circle);
+//       await admin.save();
+//       res.status(202).send("Circle has been added!");
+//     } catch (err) {
+//       res.status(500).json(err.message);
+//     }
+//   };
+// exports.markRectangle = async (req, res) => {
+//   try {
+//     const { northEast, southWest, area, type } = req.body;
+//     if (!northEast) {
+//       return res.status(400).send("Please provide longitude.");
+//     }
+//     if (!southWest) return res.status(400).send("Please provide latitude.");
+//     // if (!area) return res.status(400).send("Please provide area.");
+//     if (!type) return res.status(400).send("Please provide type.");
+//     const { token } = req.body;
+//     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+//     const admin = await Admin.findOne({ _id });
+//     if (!admin) {
+//       return res.status(404).send("Admin not found.")
+//     }
+//     const rectangle = {
+//       type: type, 
+//       northEast,
+//       southWest
+//     };
+//     if (!admin.shapes[0]) {
+//       admin.shapes[0] = {};
+//     }
+//     if (!admin.shapes[0].rectangles) {
+//       admin.shapes[0].rectangles = [];
+//     }
+//     admin.shapes[0].rectangles.push(rectangle);
+//       await admin.save();
+//       res.status(202).send("Rectangle has been added!");
+//     } catch (err) {
+//       res.status(500).json(err.message);
+//     }
+//   };
+exports.markShape = async (req, res) => {
   try {
-    const { coordinates, area, type } = req.body;
-    if (!coordinates) {
-      return res.status(400).send("Please provide coordinates.");
+    const { type } = req.body;
+    if (!type) {
+      return res.status(400).send("Please provide shape type.");
     }
-    // if (!area) return res.status(400).send("Please provide area.");
-    if (!type) return res.status(400).send("Please provide type.");
     const { token } = req.body;
     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
     const admin = await Admin.findOne({ _id });
     if (!admin) {
-      return res.status(404).send("Admin not found.")
+      return res.status(404).send("Admin not found.");
     }
-    const polygon = {
-      type: type, 
-      coordinates,
-      // area
+    const shapeProperties = {
+      polygon: ['coordinates'],
+      polyline: ['coordinates', 'lines'],
+      circle: ['center', 'radius'],
+      rectangle: ['northEast', 'southWest']
     };
     if (!admin.shapes[0]) {
       admin.shapes[0] = {};
     }
-    if (!admin.shapes[0].polygons) {
-      admin.shapes[0].polygons = [];
+
+    const shapeTypeProperties = shapeProperties[type];
+    if (!shapeTypeProperties) {
+      return res.status(400).send(`Invalid shape type: ${type}.`);
     }
-    admin.shapes[0].polygons.push(polygon);
-      await admin.save();
-      res.status(202).send("Polygon has been added!");
-    } catch (err) {
-      res.status(500).json(err.message);
+
+    const shape = {};
+    shapeTypeProperties.forEach(property => {
+      if (!req.body[property]) {
+        return res.status(400).send(`Please provide ${property}.`);
+      }
+      shape[property] = req.body[property];
+    });
+
+    if (!admin.shapes[0][type + 's']) {
+      admin.shapes[0][type + 's'] = [];
     }
-  };
-exports.markPolyline = async (req, res) => {
-  try {
-    const { coordinates, lines, type } = req.body;
-    if (!coordinates) {
-      return res.status(400).send("Please provide coordinates.");
-    }
-    if (!lines) return res.status(400).send("Please provide lines.");
-    if (!type) return res.status(400).send("Please provide type.");
-    const { token } = req.body;
-    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
-    const admin = await Admin.findOne({ _id });
-    if (!admin) {
-      return res.status(404).send("Admin not found.")
-    }
-    const polyline = {
-      type: type, 
-      coordinates,
-      lines
-    };
-    if (!admin.shapes[0]) {
-      admin.shapes[0] = {};
-    }
-    if (!admin.shapes[0].polylines) {
-      admin.shapes[0].polylines = [];
-    }
-    admin.shapes[0].polylines.push(polyline);
-      await admin.save();
-      res.status(202).send("Polyline has been added!");
-    } catch (err) {
-      res.status(500).json(err.message);
-    }
-  };
-exports.markCircle = async (req, res) => {
-  try {
-    const { center, radius, area, type } = req.body;
-    if (!center) {
-      return res.status(400).send("Please provide center.");
-    }
-    if (!radius) return res.status(400).send("Please provide radius.");
-    // if (!area) return res.status(400).send("Please provide area.");
-    if (!type) return res.status(400).send("Please provide type.");
-    const { token } = req.body;
-    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
-    const admin = await Admin.findOne({ _id });
-    if (!admin) {
-      return res.status(404).send("Admin not found.")
-    }
-    const circle = {
-      type: type, 
-      center,
-      radius
-    };
-    if (!admin.shapes[0]) {
-      admin.shapes[0] = {};
-    }
-    if (!admin.shapes[0].circles) {
-      admin.shapes[0].circles = [];
-    }
-    admin.shapes[0].circles.push(circle);
-      await admin.save();
-      res.status(202).send("Circle has been added!");
-    } catch (err) {
-      res.status(500).json(err.message);
-    }
-  };
-exports.markRectangle = async (req, res) => {
-  try {
-    const { northEast, southWest, area, type } = req.body;
-    if (!northEast) {
-      return res.status(400).send("Please provide longitude.");
-    }
-    if (!southWest) return res.status(400).send("Please provide latitude.");
-    // if (!area) return res.status(400).send("Please provide area.");
-    if (!type) return res.status(400).send("Please provide type.");
-    const { token } = req.body;
-    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
-    const admin = await Admin.findOne({ _id });
-    if (!admin) {
-      return res.status(404).send("Admin not found.")
-    }
-    const rectangle = {
-      type: type, 
-      northEast,
-      southWest
-    };
-    if (!admin.shapes[0]) {
-      admin.shapes[0] = {};
-    }
-    if (!admin.shapes[0].rectangles) {
-      admin.shapes[0].rectangles = [];
-    }
-    admin.shapes[0].rectangles.push(rectangle);
-      await admin.save();
-      res.status(202).send("Rectangle has been added!");
-    } catch (err) {
-      res.status(500).json(err.message);
-    }
-  };
+
+    admin.shapes[0][type + 's'].push(shape);
+    await admin.save();
+
+    res.status(202).send(`${type} has been added!`);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};

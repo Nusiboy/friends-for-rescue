@@ -1,12 +1,13 @@
-import { createContext,useState } from "react";
-export const Contextt=createContext({})
+import { createContext, useState } from "react";
+export const RefContext=createContext({})
 function RefreshContext ({children}){
     const [currentUser, setCurrentUser] = useState(localStorage.getItem("LoginName"))
   const [refresh, setRefresh] = useState(false)
+  const [ref,setRef]=useState(false)
   return(
-<Contextt.Provider value={{currentUser, setCurrentUser,refresh, setRefresh}}>
+<RefContext.Provider value={{currentUser, setCurrentUser,refresh, setRefresh,ref,setRef}}>
     {children}
-</Contextt.Provider>
+</RefContext.Provider>
   )
 }
 export default RefreshContext

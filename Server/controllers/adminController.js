@@ -22,17 +22,14 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { userName, password} = req.body;
+    const { userName, password } = req.body;
     const adminExists = await Admin.findOne({ userName });
-      if (!adminExists) {
+    if (!adminExists) {
       return res.status(401).json("No user");
     }
     const passwordIsValid = bcrypt.compare(password, adminExists.password);
     if (!passwordIsValid) return res.status(401).json("password incorrect");
-    const {
-      userName: tokenUsername,
-      _id,
-    } = adminExists;
+    const { userName: tokenUsername, _id } = adminExists;
     const token = jwt.sign(
       { userName: tokenUsername, _id },
       process.env.JWT_SECRET,
@@ -45,37 +42,134 @@ exports.login = async (req, res) => {
     res.status(500).send(err.messege);
   }
 };
-exports.markLocation = async (req, res) => {
+
+exports.markPolygon = async (req, res) => {
   try {
-    const { longitude, latitude, markType, found, information } = req.body;
-    if (!longitude){
-      return res.status(400).send("Please provide longitude.");
+    const { coordinates, area, type } = req.body;
+    if (!coordinates) {
+      return res.status(400).send("Please provide coordinates.");
     }
-    if (!latitude)
-    return res.status(400).send("Please provide latitude.");
-    if (!markType)
-    return res.status(400).send("Please provide markType.");
-    if (!found)
-    return res.status(400).send("Please provide found.");
-    if (!information)
-    return res.status(400).send("Please provide information.");
+    // if (!area) return res.status(400).send("Please provide area.");
+    if (!type) return res.status(400).send("Please provide type.");
     const { token } = req.body;
     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
     const admin = await Admin.findOne({ _id });
     if (!admin) {
-      return res.status(404).send("Admin not found.");
+      return res.status(404).send("Admin not found.")
     }
-    const mark = {
-      longitude: longitude,
-      latitude: latitude,
-      markType: markType,
-      found: found,
-      information: information
+    const polygon = {
+      type: type, 
+      coordinates,
+      // area
     };
-    admin.marks.push(mark);
-    await admin.save();
-    res.status(202).send("Mark has been added!");
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-};
+    if (!admin.shapes[0]) {
+      admin.shapes[0] = {};
+    }
+    if (!admin.shapes[0].polygons) {
+      admin.shapes[0].polygons = [];
+    }
+    admin.shapes[0].polygons.push(polygon);
+      await admin.save();
+      res.status(202).send("Polygon has been added!");
+    } catch (err) {
+      res.status(500).json(err.message);
+    }
+  };
+exports.markPolyline = async (req, res) => {
+  try {
+    const { coordinates, lines, type } = req.body;
+    if (!coordinates) {
+      return res.status(400).send("Please provide coordinates.");
+    }
+    if (!lines) return res.status(400).send("Please provide lines.");
+    if (!type) return res.status(400).send("Please provide type.");
+    const { token } = req.body;
+    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+    const admin = await Admin.findOne({ _id });
+    if (!admin) {
+      return res.status(404).send("Admin not found.")
+    }
+    const polyline = {
+      type: type, 
+      coordinates,
+      lines
+    };
+    if (!admin.shapes[0]) {
+      admin.shapes[0] = {};
+    }
+    if (!admin.shapes[0].polylines) {
+      admin.shapes[0].polylines = [];
+    }
+    admin.shapes[0].polylines.push(polyline);
+      await admin.save();
+      res.status(202).send("Polyline has been added!");
+    } catch (err) {
+      res.status(500).json(err.message);
+    }
+  };
+exports.markCircle = async (req, res) => {
+  try {
+    const { center, radius, area, type } = req.body;
+    if (!center) {
+      return res.status(400).send("Please provide center.");
+    }
+    if (!radius) return res.status(400).send("Please provide radius.");
+    // if (!area) return res.status(400).send("Please provide area.");
+    if (!type) return res.status(400).send("Please provide type.");
+    const { token } = req.body;
+    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+    const admin = await Admin.findOne({ _id });
+    if (!admin) {
+      return res.status(404).send("Admin not found.")
+    }
+    const circle = {
+      type: type, 
+      center,
+      radius
+    };
+    if (!admin.shapes[0]) {
+      admin.shapes[0] = {};
+    }
+    if (!admin.shapes[0].circles) {
+      admin.shapes[0].circles = [];
+    }
+    admin.shapes[0].circles.push(circle);
+      await admin.save();
+      res.status(202).send("Circle has been added!");
+    } catch (err) {
+      res.status(500).json(err.message);
+    }
+  };
+exports.markRectangle = async (req, res) => {
+  try {
+    const { northEast, southWest, area, type } = req.body;
+    if (!northEast) {
+      return res.status(400).send("Please provide longitude.");
+    }
+    if (!southWest) return res.status(400).send("Please provide latitude.");
+    // if (!area) return res.status(400).send("Please provide area.");
+    if (!type) return res.status(400).send("Please provide type.");
+    const { token } = req.body;
+    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+    const admin = await Admin.findOne({ _id });
+    if (!admin) {
+      return res.status(404).send("Admin not found.")
+    }
+    const rectangle = {
+      type: type, 
+      northEast,
+      southWest
+    };
+    if (!admin.shapes[0]) {
+      admin.shapes[0] = {};
+    }
+    if (!admin.shapes[0].rectangles) {
+      admin.shapes[0].rectangles = [];
+    }
+    admin.shapes[0].rectangles.push(rectangle);
+      await admin.save();
+      res.status(202).send("Rectangle has been added!");
+    } catch (err) {
+      res.status(500).json(err.message);
+    }
+  };

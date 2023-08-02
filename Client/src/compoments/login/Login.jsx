@@ -2,14 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../login/Login.css";
 import { useNavigate } from "react-router-dom";
-import { RefreshContext } from "../../context/RefreshContext";
+import { RefContext } from '../../context/RefreshConmtext';
+  
 function Login() {
   const [userNameValue, setUserNameValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [refresh, setRefresh] = useState();
-  const { ref, setRef } = useContext(RefreshContext);
+  const { ref, setRef } = useContext(RefContext);
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 

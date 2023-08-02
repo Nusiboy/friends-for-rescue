@@ -83,7 +83,9 @@ console.log(map)
       >
         
         {hospitals.map((hospital) => {
+          console.log(hospital);
           return (
+           
             <Marker
               key={hospital.place_id}
               icon={{url: hospital.icon, scaledSize: new window.google.maps.Size(25,25)}}

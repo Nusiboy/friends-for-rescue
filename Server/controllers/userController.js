@@ -2,8 +2,11 @@ const User = require("../models/userModel");
 const Admin = require('../models/adminModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-exports.users = (req, res) => {
-  User.find({}).then((data) => {
+exports.users = async (req, res) => {
+  console.log(req.body.id);
+  const realid = jwt.verify(req.body.id,process.env.JWT_SECRET)
+  User.findOne({_id:realid}).then((data) => {
+    console.log(data);
     res.send(data);
   });
 };

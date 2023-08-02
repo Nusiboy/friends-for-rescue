@@ -1,21 +1,26 @@
 import React, { useContext, useState, useEffect } from "react";
-import {Contextt} from '../../context/RefreshConmtext';
+import { RefContext } from '../../context/RefreshConmtext';
 import { Context } from "../../context/UseContext";
-import{Link} from 'react-router-dom'
 import "./Sidebar.css";
 import axios from "axios";
+import Chat from "../Chat/Chat";
+import Sharelocaition from "../sharelocation/Sharelocaition";
+
 
 function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes}) {
   // const { toggleDrawingMode } = useContext(Context);
-  const { currentUser, setCurrentUser } = useContext(Contextt);
+   const { currentUser, setCurrentUser } = useContext(RefContext);
+
   const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   function renderWelcomeButton() {
     const firstLetter = currentUser.charAt(0);
+    console.log(currentUser);
     return (
       <button id="sidebar-user-name" onClick={() => setShow((prev) => !prev)}>
         {firstLetter}
@@ -23,8 +28,14 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
     );
   }
   useEffect(() => {
+    console.log(localStorage.getItem("user-token"));
+    
     axios
-      .get("http://localhost:3001/users")
+      .post("http://localhost:3001/users",{id:localStorage.getItem("user-token")}).then(({ data }) =>{
+        setUpdateOrigin(data.info.origin)
+        setUpdateMobility(data.info.mobility)
+        setUpdateMedical(data.info.medical)
+    })
       .then(({ data }) => setUser(data))
       .catch((err) => console.log(err.response.data));
   }, []);
@@ -52,7 +63,7 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
           }}
           value={updateOrigin}
         >
-          <option className="edit-options" default selected disabled>
+          <option className="edit-options" default disabled>
             Origin
           </option>
           <option className="edit-options" value="Local">
@@ -71,7 +82,7 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
           }}
           value={updateMobility}
         >
-          <option className="edit-options" default selected disabled>
+          <option className="edit-options" default disabled>
             Mobility
           </option>
           <option className="edit-options" value="Pedestrian">
@@ -90,7 +101,7 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
           }}
           value={updateMedical}
         >
-          <option className="edit-options" default selected disabled>
+          <option className="edit-options" default disabled>
             Medical Experience
           </option>
           <option className="edit-options" value="None">
@@ -113,6 +124,14 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
       </div>
     );
   }
+  function ChatOpener(){
+    return(
+  <div id="comunication-container">
+  <Sharelocaition />
+  <Chat />
+  </div>
+    )
+  }
   return (
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
@@ -133,11 +152,18 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
         )}
         <button  onClick={toggleDrawingMode} className="layer-btn">polygon</button>
         <button className="layer-btn">layer</button>
+        <button id="chat-btn" onClick={() => setShowChat((prev) => !prev)}>
+        Chat
+      </button>
+      {showChat && <ChatOpener />}
+        
       </div>
       <div>
         {localStorage.getItem("user-token") && renderWelcomeButton()}
         {show && <EditUser />}
+        
       </div>
+      
     </div>
   );
 }

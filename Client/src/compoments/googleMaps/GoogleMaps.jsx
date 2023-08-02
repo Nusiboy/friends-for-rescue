@@ -78,7 +78,7 @@ console.log(map)
         options={options}
         center={center}
         zoom={10}
-        mapContainerStyle={{ width: "100vw", height: "100vh" }}
+        mapContainerStyle={{ width: "100vw", height: "90vh" }}
         
       >
         

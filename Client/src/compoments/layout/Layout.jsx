@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../layout/Layout.css";
 import { Outlet, Link } from "react-router-dom";
 import MobileButton from "../mobileButton/MobileButton";
-import {Contextt} from '../../context/RefreshConmtext'
+import {RefContext} from "../../context/RefreshConmtext";
 function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { ref, setRef, currentUser, setCurrentUser  } = useContext(Contextt);
+  const { ref, setRef, currentUser, setCurrentUser  } = useContext(RefContext);
 
   function signOut() {
     localStorage.removeItem("user-token");

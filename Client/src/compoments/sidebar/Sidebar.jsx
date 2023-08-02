@@ -6,9 +6,11 @@ import axios from "axios";
 import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 
-function Sidebar() {
-  const { toggleDrawingMode } = useContext(Context);
-  const { currentUser, setCurrentUser } = useContext(RefContext);
+
+function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes}) {
+  // const { toggleDrawingMode } = useContext(Context);
+   const { currentUser, setCurrentUser } = useContext(RefContext);
+
   const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
@@ -135,6 +137,19 @@ function Sidebar() {
       <div id="sidebar-layers-container">
         
         <button className="layer-btn">layer</button>
+        <button onClick={hideShpes} className="layer-btn"> hide</button>
+          <button
+                className="layer-btn"
+                onClick={toggleDrawingMode}
+              >
+                {drawingMode ? "Disable Drawing" : "Enable Drawing"}
+              </button>
+        
+        {selectedShape && (
+          <div>
+<button className="layer-btn" onClick={deleteShape}>Delete Shape</button>
+          </div>
+        )}
         <button  onClick={toggleDrawingMode} className="layer-btn">polygon</button>
         <button className="layer-btn">layer</button>
         <button id="chat-btn" onClick={() => setShowChat((prev) => !prev)}>

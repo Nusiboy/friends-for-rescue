@@ -6,11 +6,8 @@ import axios from "axios";
 import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 
-
 function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes}) {
-  // const { toggleDrawingMode } = useContext(Context);
-   const { currentUser, setCurrentUser } = useContext(RefContext);
-
+  const { currentUser, setCurrentUser } = useContext(RefContext);
   const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");

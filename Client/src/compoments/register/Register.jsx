@@ -33,7 +33,7 @@ function Register() {
   async function registerUser() {
     try {
       const user = await axios
-        .post("http://localhost:3001/users/register", {
+        .post("http://localhost:3000/users/add", {
           userName: registerUserNameValue,
           email: registerEmailValue,
           password: registerPasswordValue,
@@ -96,6 +96,7 @@ function Register() {
         }}
       />
       <br />
+      
       <select
         className="select-register"
         name="registerOrigin"

@@ -4,19 +4,21 @@ import socketIO from "socket.io-client";
 const socket = socketIO.connect("http://localhost:4000/");
 
 function Chat() {
-  const [name, setName] = useState(localStorage.getItem("LoginName"));
-  const [nameselected, setNameSelected] = useState(false);
+  const [name, setName] = useState(localStorage.getItem("username"));
+  const [nameselected, setNameSelected] = useState(true);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    socket.on("messageResponse", (data) =>
+    socket.on("messageResponse", (data) =>{
       setMessages([
-        ...messages,
-        { info: data, num: localStorage.getItem("usernum") },
-      ])
+         { info: data, num: localStorage.getItem("usernum"),time:new Date() },
+         ...messages,
+      ])}
     );
+    console.log(messages);
+    setMessages((prev)=>prev.sort((b,a)=>a.time-b.time))
   }, [socket, messages]);
 
   useEffect(() => {
@@ -25,6 +27,12 @@ function Chat() {
       setUsers([...users, data]);
     });
   }, [socket, users]);
+  useEffect(() => {
+    if (!JSON.parse(localStorage?.getItem("myMessages"))) {
+      localStorage?.setItem("myMessages", JSON.stringify([]))
+    }
+    
+  }, []);
 
   useEffect(() => {
     socket.on("userDisconnected", (data) => {
@@ -35,15 +43,47 @@ function Chat() {
       );
     });
   });
+  function handleSendallMessages(){
+    const saved=JSON.parse(localStorage.getItem("myMessages"))
+    console.log(saved)
+    saved.map((item)=>
+    socket.emit("message", {
+      text: item.text,
+      name: localStorage.getItem("username"),
+      date:item.date,
+      id: `${item.socketID}${Math.random()}`,
+      socketID: item.socketID,
+      updatedlater:item.date
+    })
+    )
+    localStorage?.setItem("myMessages", JSON.stringify([]))
+    
+
+  }
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (message.trim() && localStorage.getItem("LoginName")) {
+    const time=new Date()
+    if (message.trim() && localStorage.getItem("username")) {
+      console.log("hi");
       socket.emit("message", {
         text: message,
-        name: localStorage.getItem("LoginName"),
+        name: localStorage.getItem("username"),
+        date:time,
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
       });
+      const allmymessage =JSON.parse(localStorage?.getItem("myMessages"))
+      
+      console.log(allmymessage);
+      localStorage?.setItem("myMessages", JSON.stringify([
+        ...allmymessage,
+        {
+        text: message,
+        name: localStorage.getItem("username"),
+        date:`${time}`,
+        socketID: socket.id
+      }]));
+      console.log(localStorage?.getItem("myMessages"));
     }
   };
   return (
@@ -60,16 +100,21 @@ function Chat() {
           <button id="send-message-btn" onClick={(e) => handleSendMessage(e)}>
             send
           </button>
+          <button onClick={() => handleSendallMessages()}>
+            i have wifi update all
+          </button>
         </div>
         <div>
           <h2>Messages:</h2>
-          {messages.map((message, index) => {
+          {messages.map((messageone, index) => {
             return (
               <div key={index}>
-                <a target="_blank" href={`https://wa.me/+972${message?.num}`}>
-                  <h2>{message?.info?.name}</h2>
+                <a target="_blank" href={`https://wa.me/+972${messageone?.num}`}>
+                  <h2>{messageone?.info?.name}</h2>
                 </a>
-                <h3>{message?.info?.text}</h3>
+                <h3>{messageone?.info?.text}</h3>
+                <p>{`${messageone?.time}`}</p>
+                <p>{messageone?.info?.updatedlater}</p>
               </div>
             );
           })}

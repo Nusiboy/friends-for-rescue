@@ -1,7 +1,7 @@
 #comunication-container {
   display: flex;
   flex-direction: column;
-  width: 11.5vw;
+  width: 100vw;
   height: 90vh;
   position: absolute;
   top: 0;

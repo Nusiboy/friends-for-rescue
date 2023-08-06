@@ -7,41 +7,50 @@ import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 
 
+
 function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes,setSearh}) {
   // const { toggleDrawingMode } = useContext(Context);
    const { currentUser, setCurrentUser } = useContext(RefContext);
 const [inputSearch,setInputSearh]=useState('')
-  const [updateOrigin, setUpdateOrigin] = useState("");
+=======  const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
   const [showChat, setShowChat] = useState(false);
+  
+console.log(localStorage.getItem("type")=="admin");
 
   function renderWelcomeButton() {
-    const firstLetter = currentUser.charAt(0);
-    console.log(currentUser);
-    return (
-      <button id="sidebar-user-name" onClick={() => setShow((prev) => !prev)}>
-        {firstLetter}
-      </button>
-    );
+    // const firstLetter = currentUser.charAt(0);
+    // console.log(currentUser);
+    // return (
+    //   <button id="sidebar-user-name" onClick={() =>{
+        if (localStorage.getItem("type")=="user") {
+          setShow((prev) => !prev)
+        }
+        console.log("open");
+      // }}>
+      //   {firstLetter}
+      // </button>
+    // );
   }
-  useEffect(() => {
-    console.log(localStorage.getItem("user-token"));
+  // useEffect(() => {
+  //   console.log(localStorage.getItem("user-token"));
     
-    axios
-      .post("http://localhost:3001/users",{id:localStorage.getItem("user-token")}).then(({ data }) =>{
-        setUpdateOrigin(data.info.origin)
-        setUpdateMobility(data.info.mobility)
-        setUpdateMedical(data.info.medical)
-    })
-      .then(({ data }) => setUser(data))
-      .catch((err) => console.log(err.response.data));
-  }, []);
+  //   axios
+  //     .post("http://localhost:3001/users",{id:localStorage.getItem("user-token")}).then(({ data }) =>{
+  //       setUpdateOrigin(data.info.origin)
+  //       setUpdateMobility(data.info.mobility)
+  //       setUpdateMedical(data.info.medical)
+  //   })
+  //     .then(({ data }) => setUser(data))
+  //     .catch((err) => console.log(err.response.data));
+  // }, []);
   async function updateUser() {
+    console.log("sendreq");
     try {
-      const user = await axios.patch(`http://localhost:3001/users/updateUser`, {
+      const user = await axios.patch(`http://localhost:3000/users/edit`, {
         origin: updateOrigin,
         mobility: updateMobility,
         medical: updateMedical,
@@ -118,7 +127,7 @@ const [inputSearch,setInputSearh]=useState('')
           </option>
         </select>
         <br />
-        <button id="update-btn" type="submit" onClick={updateUser}>
+        <button id="update-btn" type="submit" onClick={()=>updateUser()}>
           Update User
         </button>
       </div>
@@ -161,9 +170,8 @@ const [inputSearch,setInputSearh]=useState('')
         
       </div>
       <div>
-        {localStorage.getItem("user-token") && renderWelcomeButton()}
+        {localStorage.getItem("type")=="user"&&<button onClick={()=>renderWelcomeButton() }>edit</button>}
         {show && <EditUser />}
-        
       </div>
       
     </div>

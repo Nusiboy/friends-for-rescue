@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/UseContext";
-import { useJsApiLoader } from "@react-google-maps/api";
+import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
 import Sidebar from "../sidebar/Sidebar";
+
 import axios from "axios";
 const libraries = ["places", "drawing"];
+
 const DrawingTools = () => {
   const {
     center,
+    options,
     drawingMode,
     toggleDrawingMode,
     setMapLoaded,
@@ -14,7 +17,7 @@ const DrawingTools = () => {
     map,
   } = useContext(Context);
 
-  
+  const libraries = ["places", "drawing"];
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY,
     libraries: libraries,
@@ -22,7 +25,7 @@ const DrawingTools = () => {
 
   const [shapes, setShapes] = useState([]);
   const [selectedShape, setSelectedShape] = useState(null);
-  
+
 
   const saveShapeData = async  (shape) => {
     console.log(shape);
@@ -97,38 +100,22 @@ const DrawingTools = () => {
     console.log("Shape Coordinates:", shapeCoordinates);
   
     // setShapes((prevShapes) => [...prevShapes, shapeCoordinates]);
+
   };
-  
-  
-  useEffect(() => {
-    // Log the coordinates whenever the shapes state changes
-    shapes.forEach((shape) => {
-      if (shape.type === "circle") {
-        console.log("Circle Center:", shape.center);
-        console.log("Circle Radius:", shape.radius);
-      } else if (shape.type === "polygon" || shape.type === "polyline") {
-        console.log("Shape Paths:", shape.paths);
-      } else if (shape.type === "rectangle") {
-        console.log("Rectangle Bounds:", shape.bounds);
-      }
-    });
-  }, [shapes]);
 
   const updateShapeData = (shape) => {
     // Find the index of the shape in the shapes state
     const shapeIndex = shapes.findIndex((shapeData) => shapeData === shape);
-  
+    
     // If the shape is found, update its data
     if (shapeIndex !== -1) {
       const updatedShapeData = {
         ...shapes[shapeIndex],
         // Update properties specific to the shape type (e.g., center for circles, paths for polygons/polylines, etc.)
-        center: shape.getCenter().toJSON(),
-        paths: shape.getPath().getArray().map((latLng) => {
-          return { lat: latLng.lat(), lng: latLng.lng() };
-        }),
+        // center: shape.getCenter().toJSON(),
+        //  paths: shape.getPaths().getArray().map((path) => path.getArray()),
       };
-  
+      
       // Update the shapes state with the updated shape data
       setShapes((prevShapes) => {
         const updatedShapes = [...prevShapes];
@@ -140,14 +127,10 @@ const DrawingTools = () => {
 
   useEffect(() => {
     if (isLoaded && !map) {
-      const mapInstance = new window.google.maps.Map(
-        document.getElementById("map"),
-        {
-          center: center,
-          zoom: 8,
-        }
-      );
-      
+      const mapInstance = new window.google.maps.Map(document.getElementById("map"), {
+        center: center,
+        zoom: 8,
+      });
 
       const drawingManager = new window.google.maps.drawing.DrawingManager({
         drawingMode: window.google.maps.drawing.OverlayType.MARKER,
@@ -155,7 +138,6 @@ const DrawingTools = () => {
         drawingControlOptions: {
           position: window.google.maps.ControlPosition.TOP_CENTER,
           drawingModes: [
-            window.google.maps.drawing.OverlayType.MARKER ,
             window.google.maps.drawing.OverlayType.MARKER,
             window.google.maps.drawing.OverlayType.CIRCLE,
             window.google.maps.drawing.OverlayType.POLYGON,
@@ -169,30 +151,30 @@ const DrawingTools = () => {
         },
         circleOptions: {
           fillColor: "#ffff00",
-          fillOpacity: 0.1,
-          strokeWeight: 3,
+          fillOpacity: 1,
+          strokeWeight: 5,
           clickable: true,
           editable: true,
           zIndex: 1,
         },
         polygonOptions: {
           fillColor: "#ffff00",
-          fillOpacity: 0.1,
-          strokeWeight: 3,
+          fillOpacity: 1,
+          strokeWeight: 5,
           clickable: true,
           editable: true,
           zIndex: 1,
         },
         polylineOptions: {
-          strokeWeight: 3,
+          strokeWeight: 5,
           clickable: true,
           editable: true,
           zIndex: 1,
         },
         rectangleOptions: {
           fillColor: "#ffff00",
-          fillOpacity: 0.1,
-          strokeWeight: 3,
+          fillOpacity: 1,
+          strokeWeight: 5,
           clickable: true,
           editable: true,
           zIndex: 1,
@@ -203,28 +185,24 @@ const DrawingTools = () => {
       setMap(mapInstance);
       setMapLoaded(true);
 
-      window.google.maps.event.addListener(
-        drawingManager,
-        "overlaycomplete",
-        (event) => {
-          // Handle the creation of a new shape
-          const newShape = event.overlay;
-          setShapes((prevShapes) => [...prevShapes, newShape]);
+      window.google.maps.event.addListener(drawingManager, "overlaycomplete", (event) => {
+        // Handle the creation of a new shape
+        const newShape = event.overlay;
+        setShapes((prevShapes) => [...prevShapes, newShape]);
 
-          // Save the shape data
-          saveShapeData(newShape);
+        // Save the shape data
+        saveShapeData(newShape);
 
-          // Add a click event listener to the new shape
-          window.google.maps.event.addListener(newShape, "click", () => {
-            setSelectedShape(newShape);
-          });
-        }
-      );
+        // Add a click event listener to the new shape
+        window.google.maps.event.addListener(newShape, "click", () => {
+          setSelectedShape(newShape);
+        });
+      });
     } else if (map && drawingMode) {
-      // Toggle the drawing tools based on the drawingMode state
+      // Remove drawing tools from the map
       const drawingManager = map.get("drawingManager");
       if (drawingManager) {
-        drawingManager.setOptions({ drawingControl: drawingMode });
+        drawingManager.setMap(null);
       }
     }
   }, [isLoaded, map, center, drawingMode, setMap, setMapLoaded]);
@@ -234,7 +212,7 @@ const DrawingTools = () => {
       // Add event listeners for shape editing
       shapes.forEach((shapeData) => {
         const shape = shapeData; // Get the actual shape object from the shapeData
-
+        
         // Add specific event listeners based on the shape type
         if (shape.type === "circle") {
           window.google.maps.event.addListener(shape, "center_changed", () => {
@@ -242,6 +220,7 @@ const DrawingTools = () => {
           });
           window.google.maps.event.addListener(shape, "radius_changed", () => {
             updateShapeData(shape);
+            console.log(shape);
           });
         } else if (shape.type === "polygon" || shape.type === "polyline") {
           window.google.maps.event.addListener(shape, "set_at", () => {
@@ -263,47 +242,33 @@ const DrawingTools = () => {
       setSelectedShape(null);
 
       // If you also want to remove the shape data from your state, you need to filter it out as well
-      setShapes((prevShapes) =>
-        prevShapes.filter((shape) => shape !== selectedShape)
-      );
+      setShapes((prevShapes) => prevShapes.filter((shape) => shape !== selectedShape));
     }
   };
 
   if (loadError) {
     return <div>Error loading Google Maps API</div>;
   }
-const hideShpes=()=>{
-  drawingManager.setOptions({
-    drawingControl: false
-  });
-  
-}
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "flex-end",
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
+    <div style={{ width: "100vw", height: "100vh" }}>
       {isLoaded ? (
         <>
-          <div id="map" style={{ width: "95vw" }}></div>
+         
+          {selectedShape && (
+            <div>
+              <button onClick={deleteShape}>Delete Shape</button>
+            </div>
+          )}
+          <div id="map" style={{ width: "90vw", height: "100vh", }}> <button style={{zIndex:"999",position:'absolute',top: "10px",
+      left: "10px",}} onClick={toggleDrawingMode}>
+            {drawingMode ? "Disable Drawing" : "Enable Drawing"}
+          </button></div>
         </>
       ) : (
         <div>Loading...</div>
       )}
-      <Sidebar
-        drawingMode={drawingMode}
-        toggleDrawingMode={toggleDrawingMode}
-        deleteShape={deleteShape}
-        hideShpes={hideShpes}
-        selectedShape={selectedShape}
-        style={{ height: "100vh" }}
-      >
-        {selectedShape && <div style={{ zIndex: "999" }}></div>}
-      </Sidebar>
+      <Sidebar style={{ width: "10vw", height: "100vh", }}/>
     </div>
   );
 };

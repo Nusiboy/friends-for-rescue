@@ -173,56 +173,52 @@ exports.login = async (req, res) => {
 //       res.status(500).json(err.message);
 //     }
 //   };
-  exports.markShape = async (req, res) => {
-    console.log(req.body);
-    try {
-      const { type } = req.body;
-      if (!type) {
-        return res.status(400).send("Please provide shape type.");
-      }
-      const { token } = req.body;
-      console.log("you here");
-      const { _id } = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(_id);
-      const admin = await Admin.findOne({ _id });
-      console.log(admin);
-      if (!admin) {
-        return res.status(404).send("Admin not found.");
-      }
-      const shapeProperties = {
-        polygon: ['coordinates'],
-        polyline: ['coordinates', 'lines'],
-        circle: ['center', 'radius'],
-        rectangle: ['northEast', 'southWest']
-      };
-      console.log("nice");
-      if (!admin.shapes[0]) {
-        admin.shapes[0] = {};
-      }
-  
-      const shapeTypeProperties = shapeProperties[type];
-      if (!shapeTypeProperties) {
-        return res.status(400).send(`Invalid shape type: ${type}.`);
-      }
-  
-      const shape = {};
-      shapeTypeProperties.forEach(property => {
-        if (!req.body[property]) {
-          return res.status(400).send(`Please provide ${property}.`);
-        }
-        shape[property] = req.body[property];
-      });
-  
-      if (!admin.shapes[0][type + 's']) {
-        admin.shapes[0][type + 's'] = [];
-      }
-  
-      admin.shapes[0][type + 's'].push(shape);
-      await admin.save();
-  
-      res.status(202).send(`${type} has been added!`);
-    } catch (err) {
-      console.log("fail");
-      res.status(500).json(err.message);
+
+exports.markShape = async (req, res) => {
+  try {
+    const { type } = req.body;
+    if (!type) {
+      return res.status(400).send("Please provide shape type.");
     }
-  };
+    const { token } = req.body;
+    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+    const admin = await Admin.findOne({ _id });
+    if (!admin) {
+      return res.status(404).send("Admin not found.");
+    }
+    const shapeProperties = {
+      polygon: ['coordinates'],
+      polyline: ['coordinates', 'lines'],
+      circle: ['center', 'radius'],
+      rectangle: ['northEast', 'southWest']
+    };
+    if (!admin.shapes[0]) {
+      admin.shapes[0] = {};
+    }
+
+    const shapeTypeProperties = shapeProperties[type];
+    if (!shapeTypeProperties) {
+      return res.status(400).send(`Invalid shape type: ${type}.`);
+    }
+
+    const shape = {};
+    shapeTypeProperties.forEach(property => {
+      if (!req.body[property]) {
+        return res.status(400).send(`Please provide ${property}.`);
+      }
+      shape[property] = req.body[property];
+    });
+
+    if (!admin.shapes[0][type + 's']) {
+      admin.shapes[0][type + 's'] = [];
+
+    }
+
+    admin.shapes[0][type + 's'].push(shape);
+    await admin.save();
+
+    res.status(202).send(`${type} has been added!`);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};

@@ -3,6 +3,9 @@ import { Context } from "../../context/UseContext";
 import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
 import Sidebar from "../sidebar/Sidebar";
 
+import axios from "axios";
+const libraries = ["places", "drawing"];
+
 const DrawingTools = () => {
   const {
     center,
@@ -23,17 +26,81 @@ const DrawingTools = () => {
   const [shapes, setShapes] = useState([]);
   const [selectedShape, setSelectedShape] = useState(null);
 
-  const saveShapeData = (shape) => {
-    // Extract relevant information from the shape object
-    const shapeData = {
-      type: shape.type,
-      // Add more properties as needed, depending on the shape type (e.g., center for circles, paths for polygons/polylines, etc.)
-      //  center: shape.getCenter().toJSON(),
-      //  paths: shape.getPaths().getArray().map((path) => path.getArray()),
-    };
 
-    // Save the shape data to your state or send it to your server for storage
-    setShapes((prevShapes) => [...prevShapes, shapeData]);
+  const saveShapeData = async  (shape) => {
+    console.log(shape);
+    let shapeCoordinates = {};
+    
+    let token=localStorage.getItem("user-token")
+  
+    if (shape instanceof google.maps.Circle) {
+      console.log("circle");
+      const center = shape.getCenter();
+      const radius = shape.getRadius();
+      shapeCoordinates = {
+        type: "circle",
+        center: { lat: center.lat(), lng: center.lng() },
+        radius: radius,
+        token:token
+      };
+    } else if (shape instanceof google.maps.Polygon) {
+      console.log("Polygon");
+      const path = shape.getPath().getArray();
+      const coordinates = path.map((coord) => ({
+        lat: coord.lat(),
+        lng: coord.lng()
+      }));
+      shapeCoordinates = {
+        type: "polygon",
+        coordinates: coordinates,
+        token:token
+      };
+    } else if (shape instanceof google.maps.Polyline) {
+      console.log("Polyline");
+      const path = shape.getPath().getArray();
+      const coordinates = path.map((coord) => ({
+        lat: coord.lat(),
+        lng: coord.lng()
+      }));
+      shapeCoordinates = {
+        type: "polyline",
+        coordinates: coordinates,
+        token:token
+      };
+    } else if (shape instanceof google.maps.Rectangle) {
+      console.log("Rectangle");
+      const bounds = shape.getBounds();
+      const northEast = bounds.getNorthEast();
+      const southWest = bounds.getSouthWest();
+      shapeCoordinates = {
+        type: "rectangle",
+        northEast: { lat: northEast.lat(), lng: northEast.lng() },
+        southWest: { lat: southWest.lat(), lng: southWest.lng() },
+        token:token
+      };
+    } else if (shape instanceof google.maps.Marker) {
+      console.log("Marker");
+      const position = shape.getPosition();
+      shapeCoordinates = {
+        type: "marker",
+        position: { lat: position.lat(), lng: position.lng() },
+        token:token
+      };
+    }
+    console.log(shapeCoordinates);
+    try{
+      await axios.post("http://localhost:3001/admins/markShape", shapeCoordinates);
+  
+      
+      setShapes((prevShapes) => [...prevShapes, shapeCoordinates]);
+    } catch(err){
+      console.error("Error saving shape data:", err);
+    }
+  
+    console.log("Shape Coordinates:", shapeCoordinates);
+  
+    // setShapes((prevShapes) => [...prevShapes, shapeCoordinates]);
+
   };
 
   const updateShapeData = (shape) => {

@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
     console.log(hashPassword,"this is the hashed password");
     const newUser=await User.create({
       userName,
-      type:"user",
+      type,
       email,
       phone,
       password:hashPassword,
@@ -32,46 +32,55 @@ exports.register = async (req, res) => {
     res.status(500).json(err.message)
   }
 };
-// exports.login = async (req, res) => {
-//   try {
-//     const { userName, email, password, phone, type, info } = req.body;
-//     const userExists = await User.findOne({ userName });
-//     if (userExists) {
-//       return res.status(401).send("User already exists");
-//     }
-//     const newUser = await User.create({
-//       userName,
-//       email,
-//       password,
-//       phone,
-//       type,
-//       info,
-//       marks: [],
-//     });
-//     res.status(200).send("Created successfully");
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
-// exports.loginUser= async(req, res)=>{
-  
-//   const { userName, password } = req.body;
-//   const userExists = await User.findOne({userName});
-//   if(!userExists){
-//     return res.status(400).json("no user")
-  
-//   }
-//   const isMatch= await bcrypt.compare(password,userExists.password)
-//   if(!isMatch){
-// return  res.status(400).json("password incorect")
-//   }
-//   const token = jwt.sign(
-//     { userName: tokenUsername, _id },
-//     process.env.JWT_SECRET,
-//     {
-//       expiresIn: "1d",
-//     })
-// }
+exports.login = async (req, res) => {
+  console.log(req.body);
+  try {
+    const {userName,password}=req.body
+    const existUser=await User.findOne({userName})
+    let type=existUser.type
+    let num=existUser.phone
+    if (!existUser) {
+      return res.status(401).json("couldnt find this user")
+    }
+  bcrypt.compare(password,existUser.password,(err,isMatch)=>{
+    if (err||!isMatch) {
+      return res.status(402).json("invalid username or password")
+    }else{
+      const token=jwt.sign({id:existUser._id},process.env.JWT_SECRET)
+      console.log("sucess");
+      res.json({token,type,num,userName})
+    }
+  })
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+exports.update= async(req, res)=>{
+  console.log(req.body);
+  const { origin, mobility,medical } = req.body;
+  const newinfo = { 
+    "info": { 
+      "origin": origin, 
+      "mobility": mobility, 
+      "medical": medical 
+    }
+  };
+  try{
+    const realId=jwt.verify(req.body.token,process.env.JWT_SECRET)
+    console.log(realId);
+    const userData=await User.findOne({_id:realId.id})
+    console.log(userData);
+    if (userData.type=="user") {
+      console.log("here");
+      let doc = await User.findOneAndUpdate({_id: realId.id},newinfo,{new: true});
+    return res.status(200).json(doc)
+    }else{
+      console.log("you are admin");
+    }
+  }catch(err){
+    return res.status(500).json(err.message)
+  }
+}
 
 // exports.login = async (req, res) => {
 //   try {

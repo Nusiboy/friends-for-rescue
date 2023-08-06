@@ -40,14 +40,5 @@ const userSchema = new mongoose.Schema({
       default: null,
     },
   },
-  marks: [
-    {
-      longitude: { type: Number },
-      latitude: { type: Number },
-      URL: { type: String },
-      information: { type: String },
-      default: [],
-    },
-  ],
 });
 module.exports = mongoose.model("User", userSchema);

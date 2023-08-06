@@ -5,18 +5,10 @@ import "../Chat/Chat.css";
 function Sharelocaition() {
   const [refresh, setRefresh] = useState();
   const [user, setUser] = useState([]);
-  const [found, setFound] = useState();
-  const [coordinates, setCoordinates] = useState();
+  const [found, setFound] = useState("");
+  const [coordinates, setCoordinates] = useState([]);
   const [photourl, setPhotourl] = useState("");
-  const [mark, setMark] = useState(
-    "Police Station",
-    "Beit Chabad",
-    "Hospital",
-    "Israeli Embassy",
-    "Camping Site",
-    "Hiking Trail",
-    "Other"
-  );
+  const [mark, setMark] = useState();
   function takelocation() {
     if (found) {
       if ("geolocation" in navigator) {
@@ -24,19 +16,24 @@ function Sharelocaition() {
           function (position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
+            const date=new Date();
             console.log({
+              username: localStorage.getItem("username"),
+              markType: mark,
               latitude: `${latitude}`,
               longitude: `${longitude}`,
               found: `${found}`,
               img: `${latitude}`,
             });
-            setCoordinates({
+            setCoordinates((prev)=>[...prev,{
+              username: localStorage.getItem("username"),
               latitude: `${latitude}`,
               longitude: `${longitude}`,
               found: `${photourl}`,
               information: `${found}`,
               markType: `${mark}`,
-            });
+              date:date
+            }]);
           },
           function (error) {
             console.error("Error getting user location:", error.message);
@@ -48,32 +45,53 @@ function Sharelocaition() {
     }
   }
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/users")
-      .then(({ data }) => setUser(data))
-      .catch((err) => console.log(err.message));
-  }, [refresh]);
+    localStorage.setItem("coordinates", [JSON.stringify(coordinates)]);
+  }, [coordinates]);
 
-  async function Mark() {
+  // async function Mark() {
+  //   try {
+  //     const user = await axios.post(
+  //       `http://localhost:3000/users/markLocation`,
+  //       {
+  //         username: localStorage.getItem("username"),
+  //         longitude: coordinates.longitude,
+  //         latitude: coordinates.latitude,
+  //         markType: mark,
+  //         found: photourl,
+  //         information: found,
+  //       }
+  //     );
+  //     alert("Mark has been placed!");
+  //   } catch (err) {
+  //     console.log(err.response.data);
+  //   }
+  // }
+  async function updateInfo(){
+    const infocor=localStorage.getItem("coordinates")
+    console.log(infocor);
+    
     try {
-      const user = await axios.post(
-        `http://localhost:3001/users/markLocation`,
-        {
-          token: localStorage.getItem("user-token"),
-          longitude: coordinates.longitude,
-          latitude: coordinates.latitude,
-          markType: mark,
-          found: photourl,
-          information: found,
+      const data = JSON.parse(infocor);
+        console.log("lior");
+        console.log(data);
+        data.map(async(item)=>{
+         await axios.post(
+            "http://localhost:3000/marks/add",
+            item
+          )
+
+        })
+        localStorage.setItem("coordinates", []);
+        setCoordinates([])
+          alert("Marks has been placed!");
+        } catch (err) {
+          console.log(err.response.data);
         }
-      );
-      alert("Mark has been placed!");
-    } catch (err) {
-      console.log(err.response.data);
-    }
   }
+
+
   function sendInfo() {
-    Mark();
+    // Mark();
     takelocation();
   }
 
@@ -129,6 +147,9 @@ function Sharelocaition() {
         </select>
         <button id="location-send-btn" onClick={() => sendInfo()}>
           take location
+        </button>
+        <button  onClick={() => updateInfo()}>
+          update information
         </button>
       </div>
     </div>

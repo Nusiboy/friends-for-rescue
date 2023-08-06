@@ -7,8 +7,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  background: rgb(9, 121, 39);
-  background: linear-gradient( 180deg, rgb(20, 180, 47) 0%, rgba(43, 172, 40, 1) 20%, rgb(73, 209, 71) 65% );
+  background: rgb(216, 254, 226);
   padding: 1vw;
   align-items: center;
 }

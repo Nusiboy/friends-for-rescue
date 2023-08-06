@@ -7,12 +7,12 @@
   top: 0;
   left: 0;
   bottom: 0;
-  background: rgb(9, 121, 39);
+  background: rgb(30, 135, 152);
   background: linear-gradient(
     180deg,
-    rgb(20, 180, 47) 0%,
-    rgba(43, 172, 40, 1) 20%,
-    rgb(73, 209, 71) 65%
+    rgba(30, 135, 152, 1) 0%,
+    rgba(40, 158, 172, 1) 15%,
+    rgba(83, 183, 189, 1) 68%
   );
   padding: 1vw;
 }
@@ -40,7 +40,7 @@
   position: relative;
   border-radius: 1vw;
   border-style: none;
-  background-color:rgb(113, 233, 149);
+  background-color: rgb(113, 233, 149);
   cursor: pointer;
 }
 #sidebar-user-name {
@@ -116,77 +116,153 @@
   gap: 13vh;
   margin-top: 8vh;
 }
-#update-user-container {
+#edit-btn {
   display: flex;
-  flex-wrap: wrap;
-  margin-top: -12.5vh;
-  margin-left: 9.2vw;
-  flex-direction: column;
+  padding: 10%;
+  border-radius: 20px;
+  border-style: none;
+  outline: none;
+  box-shadow: rgb(50 50 93 / 67%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 52%) 0px 30px 60px -30px,
+    rgb(10 37 64 / 55%) 0px -2px 6px 0px inset;
+}
+#update-user-container {
+  height: 90vh;
+  display: flex;
+  width: 95vw;
+  margin-top: -81vh;
+  margin-left: 10.5vw;
   position: absolute;
   padding: 4px;
+  background: rgb(216, 254, 226);
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: -83.3vh;
+}
+@media screen and (min-width: 320px) {
+  #update-user-container {
+    margin-left: 10vw;
+    margin-top: -83.7vh;
+  }
+}
+@media screen and (min-width: 364px) {
+  #update-user-container {
+    margin-left: 10.5vw;
+    margin-top: -83.9vh;
+  }
 }
 @media screen and (min-width: 372px) {
   #update-user-container {
-    margin-left: 7.5vw;
+    margin-left: 8.5vw;
+    margin-top: -83.7vh;
+  }
+}
+@media screen and (min-width: 405px) {
+  #update-user-container {
+    margin-left: 8.5vw;
+    margin-top: -83.9vh;
   }
 }
 @media screen and (min-width: 450px) {
   #update-user-container {
-    margin-left: 7.2vw;
-  
+    margin-left: 8vw;
+    margin-top: -84.4vh;
+  }
+}
+@media screen and (min-width: 560px) {
+  #update-user-container {
+    margin-left: 7.3vw;
+    margin-top: -84.6vh;
   }
 }
 @media screen and (min-width: 589px) {
   #update-user-container {
-    margin-left: 6.3vw;
-  
+    margin-left: 7vw;
+    margin-top: -84.5vh;
+  }
+}
+@media screen and (min-width: 640px) {
+  #update-user-container {
+    margin-left: 7vw;
+    margin-top: -84.7vh;
+  }
+}
+@media screen and (min-width: 680px) {
+  #update-user-container {
+    margin-left: 7vw;
+    margin-top: -85.1vh;
   }
 }
 @media screen and (min-width: 769px) {
   #update-user-container {
-    margin-left: 3.5vw;
-  
+    margin-left: 4vw;
+    margin-top: -84.5vh;
+  }
+}
+@media screen and (min-width: 880px) {
+  #update-user-container {
+    margin-left: 4vw;
+    margin-top: -84.7vh;
   }
 }
 @media screen and (min-width: 1000px) {
   #update-user-container {
-    margin-left: 3.7vw;
-  
+    margin-left: 4vw;
+    margin-top: -82vh;
   }
 }
 #update-origin-select {
   border-radius: 20px;
   height: 3vh;
+  width: 100px;
   border-style: none;
   border: none;
   outline: none;
-  background-color: rgb(7, 221, 150);
+  background-color: rgb(100, 219, 146);
+  box-shadow: rgb(50 50 93 / 67%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 52%) 0px 30px 60px -30px,
+    rgb(10 37 64 / 55%) 0px -2px 6px 0px inset;
 }
 #update-mobility-select {
   border-radius: 20px;
   height: 3vh;
+  width: 100px;
   border-style: none;
   border: none;
   outline: none;
-  background-color: rgb(7, 221, 150);
+  background-color: rgb(100, 219, 146);
+  box-shadow: rgb(50 50 93 / 67%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 52%) 0px 30px 60px -30px,
+    rgb(10 37 64 / 55%) 0px -2px 6px 0px inset;
 }
 #update-medical-select {
   border-radius: 20px;
   height: 3vh;
+  width: 100px;
+
   border-style: none;
   outline: none;
   border: none;
-  background-color: rgb(7, 221, 150);
+  background-color: rgb(100, 219, 146);
+  box-shadow: rgb(50 50 93 / 67%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 52%) 0px 30px 60px -30px,
+    rgb(10 37 64 / 55%) 0px -2px 6px 0px inset;
 }
 #update-btn {
   border-radius: 20px;
   border-style: none;
   outline: none;
-  padding: 20%;
-  background-color: rgb(7, 221, 150);
-  font-size: 0.9em;
-  width: 4vw;
-  height: 2vh;
+  padding: 10px;
+  width: 60px;
+  height: 35px;
+  background-color: rgb(100, 219, 146);
+  box-shadow: rgb(50 50 93 / 67%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 52%) 0px 30px 60px -30px,
+    rgb(10 37 64 / 55%) 0px -2px 6px 0px inset;
+  font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,16 +278,18 @@ body {
   height: 100vh;
 }
 #chat-btn {
-    position: absolute;
-    padding: 1%;
-    z-index: 4;
-    border-radius: 20px;
-    margin-top: 55vh;
-    margin-left: -0.65vw;
-    font-weight: 600;
-    border-style: none;
-    background: mediumseagreen;
-    box-shadow: rgb(50 50 93 / 31%) 0px 50px 100px -20px, rgb(0 0 0 / 52%) 0px 30px 60px -30px, rgb(10 37 64 / 75%) 0px -2px 6px 0px inset;
+  position: absolute;
+  padding: 1%;
+  z-index: 4;
+  border-radius: 20px;
+  margin-top: 55vh;
+  margin-left: -0.65vw;
+  font-weight: 600;
+  border-style: none;
+  background: mediumseagreen;
+  box-shadow: rgb(50 50 93 / 31%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 52%) 0px 30px 60px -30px,
+    rgb(10 37 64 / 75%) 0px -2px 6px 0px inset;
 }
 @media screen and (min-width: 300px) {
   #chat-btn {

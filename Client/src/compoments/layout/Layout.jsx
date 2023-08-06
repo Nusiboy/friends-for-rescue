@@ -1,22 +1,17 @@
 import React, { useContext, useState } from "react";
 import "../layout/Layout.css";
 import { Outlet, Link } from "react-router-dom";
-import MobileButton from "../mobileButton/MobileButton";
+// import MobileButton from "../mobileButton/MobileButton";
 import {RefContext} from "../../context/RefreshConmtext";
 function Layout() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { ref, setRef, currentUser, setCurrentUser  } = useContext(RefContext);
-
+const [showregister,setShowregister]=useState(true)
   function signOut() {
     localStorage.removeItem("user-token");
-    localStorage.removeItem("LoginName");
-  }
-  function renderLoginButton() {
-    return (
-      <Link className="headerLink" to={"/Login"}>
-        Login
-      </Link>
-    );
+    localStorage.removeItem("usernum");
+    localStorage.removeItem("type");
+    localStorage.removeItem("username");
+    setShowregister(false)
   }
   function renderWelcomeButton() {
     return (
@@ -32,18 +27,25 @@ function Layout() {
     <div>
       <div id="layoutMain">
         <div id="layoutHeader">
-          <div id="mobileLinks">
+          {/* <div id="mobileLinks">
             <MobileButton isMenu={isMenuOpen} setMenu={setIsMenuOpen} />
-          </div>
+          </div> */}
           <div id="layoutLinks">
             <Link className="headerLink" to={"/"}>
               Map
             </Link>
-            <Link  className="headerLink" to={"/googlemaps"} >googlemaps</Link>
-            <Link className="headerLink" to={"/Register"}>
+            {/* <Link  className="headerLink" to={"/googlemaps"} >googlemaps</Link> */}
+            {showregister&&<Link className="headerLink" to={"/Register"}>
               Register
+            </Link>}
+            <Link className="headerLink" to={"/Login"}>
+        Login
             </Link>
-            {!localStorage.getItem("user-token") &&
+            {!showregister&&<Link onClick={()=>signOut()} className="headerLink" to={"/"}>
+        logout
+            </Link>}
+            
+            {/* {!localStorage.getItem("user-token") &&
               !localStorage.getItem("LoginName") &&
               renderLoginButton()}
             {localStorage.getItem("user-token") &&
@@ -51,11 +53,11 @@ function Layout() {
               renderWelcomeButton()}
             {localStorage.getItem("user-token") &&
               localStorage.getItem("LoginName") &&
-              renderSignOutButton()}
+              renderSignOutButton()} */}
           </div>
           <h1 id="main-header">Friends for Rescue</h1>
         </div>
-        {isMenuOpen && (
+        {/* {isMenuOpen && (
           <div id="divLinks">
             <Link
               className="headerLink"
@@ -85,7 +87,7 @@ function Layout() {
               localStorage.getItem("LoginName") &&
               renderSignOutButton()}
           </div>
-        )}
+        )} */}
         <div id="layoutContent">
           <Outlet />
         </div>

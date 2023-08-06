@@ -3,39 +3,37 @@ import axios from "axios";
 import "../login/Login.css";
 import { useNavigate } from "react-router-dom";
 
+// const [emailValue, setEmailValue] = useState("");
 import { RefContext } from "../../context/RefreshConmtext";
 
 function Login() {
   const [userNameValue, setUserNameValue] = useState("");
-  const [emailValue, setEmailValue] = useState("");
-  const [typeValue, setTypeValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
-  const [refresh, setRefresh] = useState();
+  // const [refresh, setRefresh] = useState();
   const { ref, setRef } = useContext(RefContext);
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/users")
-      .then(({ data }) => setUser(data))
-      .catch((err) => console.log(err.message));
-  }, [refresh]);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3001/users")
+  //     .then(({ data }) => setUser(data))
+  //     .catch((err) => console.log(err.message));
+  // }, [refresh]);
   function loginUser() {
     axios
-      .post("http://localhost:3001/users/login", {
+      .post("http://localhost:3000/users/login", {
         userName: userNameValue,
         password: passwordValue,
-        type: typeValue,
       })
       .then((user) => {
         console.log(user);
         localStorage.setItem("user-token", user.data.token);
-        localStorage.setItem("LoginName", userNameValue);
-        localStorage.setItem("type", typeValue);
-        localStorage.setItem("usernum", phoneValue);
-console.log(typeValue);
+        localStorage.setItem("type", user.data.type);
+        localStorage.setItem("usernum", user.data.num);
+        localStorage.setItem("username", user.data.userName);
+
         setRef(!ref);
         navigate("/");
       })
@@ -68,21 +66,6 @@ console.log(typeValue);
             setPasswordValue(event.target.value);
           }}
         />
-        <br />
-        <select
-          onChange={(event) => {
-            setTypeValue(event.target.value);
-          }}
-          className="select-register"
-          name="type"
-          value={typeValue}
-        >
-          <option default selected>select type</option>
-          <option  value="user">
-            User
-          </option>
-          <option value="admin">Admin</option>
-        </select>
         <br />
         <button id="login-btn" type="sumbit" onClick={loginUser}>
           login

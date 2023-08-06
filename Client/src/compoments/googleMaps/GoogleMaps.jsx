@@ -13,7 +13,7 @@ import GoogleMapsPolygon from "../googleMapsPolygon/GoogleMapsPolygon";
 
 function GoogleMaps() {
    const{center,options,isLoaded, loadError,mapLoaded, setMapLoaded,map, setMap }=useContext(Context)
-
+const [search,setSearh]=useState('')
   const [hospitals, setHospitals] = useState([]);
   const [popup,setPopup]=useState(null)
   // const [selected, setSelected] = useState(null);
@@ -40,10 +40,10 @@ function GoogleMaps() {
     const request = {
       location: location,
         radius: 10000, // Adjust this value to control the search area
-      query: "Hospital",
-      keyword: "Hospital",
+      query: {search:search.toString()},
+      keyword:{search:search.toString()},
       openNow:true, 
-      type:["hospital"]
+      // type:["hospital"]
     };
 
     const service = new window.google.maps.places.PlacesService(
@@ -117,7 +117,7 @@ console.log(map)
       </GoogleMap>
     </div>
     
-      <Sidebar/>
+      <Sidebar setSearh={setSearh}/>
     
     </div>
   );

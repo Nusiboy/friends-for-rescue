@@ -173,6 +173,7 @@ exports.login = async (req, res) => {
 //       res.status(500).json(err.message);
 //     }
 //   };
+
 exports.markShape = async (req, res) => {
   try {
     const { type } = req.body;
@@ -210,6 +211,7 @@ exports.markShape = async (req, res) => {
 
     if (!admin.shapes[0][type + 's']) {
       admin.shapes[0][type + 's'] = [];
+
     }
 
     admin.shapes[0][type + 's'].push(shape);

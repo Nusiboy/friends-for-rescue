@@ -24,4 +24,5 @@ const markSchema = new mongoose.Schema({
     type: Date, 
   },
 });
+
 module.exports = mongoose.model("Mark", markSchema);

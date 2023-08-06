@@ -23,3 +23,13 @@ exports.addmark = async (req, res) => {
       }
     
   };
+
+
+  exports.takemark = async (req, res) => {
+    try{
+      let data = await Mark.find()
+       return res.status(200).json(data)
+     } catch(err){
+       res.status(500).json(err.message)
+     }
+  };

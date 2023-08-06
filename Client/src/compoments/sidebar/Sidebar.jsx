@@ -7,10 +7,10 @@ import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 
 
-function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes}) {
+function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes,setSearh}) {
   // const { toggleDrawingMode } = useContext(Context);
    const { currentUser, setCurrentUser } = useContext(RefContext);
-
+const [inputSearch,setInputSearh]=useState('')
   const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
@@ -137,6 +137,8 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
       <div id="sidebar-layers-container">
         
         <button className="layer-btn">layer</button>
+        <input type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
+        <button onClick={()=>{setSearh(inputSearch)}}>search</button>
         <button onClick={hideShpes} className="layer-btn"> hide</button>
           <button
                 className="layer-btn"

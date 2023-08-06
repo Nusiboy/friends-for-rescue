@@ -34,7 +34,7 @@ const adminRoutes = require("./routes/adminRoute");
 const PORT = 3001;
 const cors = require("cors");
 const http = require("http").Server(app);
-const socketIO = require("socket.io")(http);
+// const socketIO = require("socket.io")(http);
 require("dotenv").config()
 mongoose
   .connect(process.env.MONGO_CONNECTOR, {})
@@ -46,19 +46,19 @@ mongoose
     console.error(err.message);
   });
 
-socketIO.on("connection", (socket) => {
-  console.log("user connected");
-  socketIO.emit("userconnected", `${socket.id}`);
+// socketIO.on("connection", (socket) => {
+//   console.log("user connected");
+//   socketIO.emit("userconnected", `${socket.id}`);
 
-  socket.on("message", (data) => {
-    socketIO.emit("messageResponse", data);
-  });
+//   socket.on("message", (data) => {
+//     socketIO.emit("messageResponse", data);
+//   });
 
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-    socketIO.emit("userDisconnected", `${socket.id}`);
-  });
-});
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//     socketIO.emit("userDisconnected", `${socket.id}`);
+//   });
+// });
 
 app.use(cors());
 

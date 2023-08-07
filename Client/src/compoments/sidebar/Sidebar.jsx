@@ -12,7 +12,7 @@ function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideSh
   // const { toggleDrawingMode } = useContext(Context);
    const { currentUser, setCurrentUser } = useContext(RefContext);
 const [inputSearch,setInputSearh]=useState('')
-=======  const [updateOrigin, setUpdateOrigin] = useState("");
+const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);

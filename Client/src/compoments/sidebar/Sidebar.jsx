@@ -1,52 +1,37 @@
 import React, { useContext, useState, useEffect } from "react";
-import { RefContext } from '../../context/RefreshConmtext';
+import { RefContext } from "../../context/RefreshConmtext";
 import { Context } from "../../context/UseContext";
 import "./Sidebar.css";
 import axios from "axios";
 import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
+import DisplayData from "../datalayer/DisplayData";
 
-
-
-function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes,setSearh}) {
-  // const { toggleDrawingMode } = useContext(Context);
-   const { currentUser, setCurrentUser } = useContext(RefContext);
-const [inputSearch,setInputSearh]=useState('')
-=======  const [updateOrigin, setUpdateOrigin] = useState("");
+function Sidebar({
+  deleteShape,
+  selectedShape,
+  toggleDrawingMode,
+  drawingMode,
+  hideShpes,
+}) {
+  const { currentUser, setCurrentUser } = useContext(RefContext);
+  const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
   const [showChat, setShowChat] = useState(false);
-  
-console.log(localStorage.getItem("type")=="admin");
+  const [showPractices, setShowPractices] = useState(false);
+
+  console.log(localStorage.getItem("type") == "admin");
 
   function renderWelcomeButton() {
-    // const firstLetter = currentUser.charAt(0);
-    // console.log(currentUser);
-    // return (
-    //   <button id="sidebar-user-name" onClick={() =>{
-        if (localStorage.getItem("type")=="user") {
-          setShow((prev) => !prev)
-        }
-        console.log("open");
-      // }}>
-      //   {firstLetter}
-      // </button>
-    // );
+    if (localStorage.getItem("type") == "user") {
+      setShow((prev) => !prev);
+    }
+    console.log("open");
   }
-  // useEffect(() => {
-  //   console.log(localStorage.getItem("user-token"));
-    
-  //   axios
-  //     .post("http://localhost:3001/users",{id:localStorage.getItem("user-token")}).then(({ data }) =>{
-  //       setUpdateOrigin(data.info.origin)
-  //       setUpdateMobility(data.info.mobility)
-  //       setUpdateMedical(data.info.medical)
-  //   })
-  //     .then(({ data }) => setUser(data))
-  //     .catch((err) => console.log(err.response.data));
-  // }, []);
+
   async function updateUser() {
     console.log("sendreq");
     try {
@@ -127,53 +112,64 @@ console.log(localStorage.getItem("type")=="admin");
           </option>
         </select>
         <br />
-        <button id="update-btn" type="submit" onClick={()=>updateUser()}>
+        <button id="update-btn" type="submit" onClick={() => updateUser()}>
           Update User
         </button>
       </div>
     );
   }
-  function ChatOpener(){
-    return(
-  <div id="comunication-container">
-  <Sharelocaition />
-  <Chat />
-  </div>
-    )
+  function ChatOpener() {
+    return (
+      <div id="comunication-container">
+        <Sharelocaition />
+        <Chat />
+      </div>
+    );
   }
   return (
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
-        
         <button className="layer-btn">layer</button>
-        <input type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
-        <button onClick={()=>{setSearh(inputSearch)}}>search</button>
-        <button onClick={hideShpes} className="layer-btn"> hide</button>
-          <button
-                className="layer-btn"
-                onClick={toggleDrawingMode}
-              >
-                {drawingMode ? "Disable Drawing" : "Enable Drawing"}
-              </button>
-        
+        <button onClick={hideShpes} className="layer-btn">
+          {" "}
+          hide
+        </button>
+        <button className="layer-btn" onClick={toggleDrawingMode}>
+          {drawingMode ? "Disable Drawing" : "Enable Drawing"}
+        </button>
+
         {selectedShape && (
           <div>
-<button className="layer-btn" onClick={deleteShape}>Delete Shape</button>
+            <button className="layer-btn" onClick={deleteShape}>
+              Delete Shape
+            </button>
           </div>
         )}
-        <button  onClick={toggleDrawingMode} className="layer-btn">polygon</button>
+        <button onClick={toggleDrawingMode} className="layer-btn">
+          polygon
+        </button>
         <button className="layer-btn">layer</button>
         <button id="chat-btn" onClick={() => setShowChat((prev) => !prev)}>
-        Chat
-      </button>
-      {showChat && <ChatOpener />}
-        
+          Chat
+        </button>
+        {showChat && <ChatOpener />}
+      
+          <button
+            className="layer-btn"
+            onClick={() => setShowPractices((prev) => !prev)}
+          >
+            best practices
+          </button>
+          {showPractices && <DisplayData showPractices={showPractices} />}
       </div>
       <div>
-        {localStorage.getItem("type")=="user"&&<button onClick={()=>renderWelcomeButton() }>edit</button>}
+        {localStorage.getItem("type") == "user" && (
+          <button id="edit-btn" onClick={() => renderWelcomeButton()}>
+            edit
+          </button>
+        )}
         {show && <EditUser />}
       </div>
-      
     </div>
   );
 }

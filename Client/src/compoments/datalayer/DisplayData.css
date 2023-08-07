@@ -1,0 +1,25 @@
+.right-sidebar {
+  right: 0;
+}
+.right-sidebar-on {
+  height: 100px;
+  width: 40vw;
+  transition: all 0.3s ease;
+  position: ABSOLUTE;
+  top: 0;
+  right: -1900%;
+  background-color: white;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 450px) {
+  .right-sidebar-on {
+    right: -954%;
+  }
+}
+li{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}

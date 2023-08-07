@@ -100,7 +100,7 @@ function Chat() {
           <button id="send-message-btn" onClick={(e) => handleSendMessage(e)}>
             send
           </button>
-          <button onClick={() => handleSendallMessages()}>
+          <button id="send--wifi-message-btn" onClick={() => handleSendallMessages()}>
             i have wifi update all
           </button>
         </div>

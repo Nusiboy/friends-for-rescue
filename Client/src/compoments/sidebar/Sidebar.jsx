@@ -1,32 +1,32 @@
 import React, { useContext, useState, useEffect } from "react";
-import { RefContext } from '../../context/RefreshConmtext';
+import { RefContext } from "../../context/RefreshConmtext";
 import { Context } from "../../context/UseContext";
 import "./Sidebar.css";
 import axios from "axios";
 import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
-
-
+import DisplayData from "../datalayer/DisplayData";
 
 function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes,setSearh}) {
   // const { toggleDrawingMode } = useContext(Context);
    const { currentUser, setCurrentUser } = useContext(RefContext);
 const [inputSearch,setInputSearh]=useState('')
 const [updateOrigin, setUpdateOrigin] = useState("");
+
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
   const [showChat, setShowChat] = useState(false);
-  
-console.log(localStorage.getItem("type")=="admin");
+  const [showPractices, setShowPractices] = useState(false);
+
+  console.log(localStorage.getItem("type") == "admin");
 
   function renderWelcomeButton() {
-        if (localStorage.getItem("type")=="user") {
-          setShow((prev) => !prev)
-        }
-        console.log("open");
-
+    if (localStorage.getItem("type") == "user") {
+      setShow((prev) => !prev);
+    }
+    console.log("open");
   }
   async function updateUser() {
     console.log("sendreq");
@@ -108,25 +108,31 @@ console.log(localStorage.getItem("type")=="admin");
           </option>
         </select>
         <br />
-        <button id="update-btn" type="submit" onClick={()=>updateUser()}>
+        <button id="update-btn" type="submit" onClick={() => updateUser()}>
           Update User
         </button>
       </div>
     );
   }
-  function ChatOpener(){
-    return(
-  <div id="comunication-container">
-  <Sharelocaition />
-  <Chat />
-  </div>
-    )
+  function ChatOpener() {
+    return (
+      <div id="comunication-container">
+        <Sharelocaition />
+        <Chat />
+      </div>
+    );
   }
   return (
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
-        
         <button className="layer-btn">layer</button>
+        <button onClick={hideShpes} className="layer-btn">
+          {" "}
+          hide
+        </button>
+        <button className="layer-btn" onClick={toggleDrawingMode}>
+          {drawingMode ? "Disable Drawing" : "Enable Drawing"}
+        </button>
         <input type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
         <button onClick={()=>{setSearh(inputSearch)}}>search</button>
         <button onClick={hideShpes} className="layer-btn"> hide</button>
@@ -139,19 +145,35 @@ console.log(localStorage.getItem("type")=="admin");
 
         {selectedShape && (
           <div>
-<button className="layer-btn" onClick={deleteShape}>Delete Shape</button>
+            <button className="layer-btn" onClick={deleteShape}>
+              Delete Shape
+            </button>
           </div>
         )}
-        <button  onClick={toggleDrawingMode} className="layer-btn">polygon</button>
+        <button onClick={toggleDrawingMode} className="layer-btn">
+          polygon
+        </button>
         <button className="layer-btn">layer</button>
         <button id="chat-btn" onClick={() => setShowChat((prev) => !prev)}>
-        Chat
-      </button>
-      {showChat && <ChatOpener />}
-        
+          Chat
+        </button>
+        {showChat && <ChatOpener />}
+      
+          <button
+            className="layer-btn"
+            onClick={() => setShowPractices((prev) => !prev)}
+          >
+            best practices
+          </button>
+          {showPractices && <DisplayData showPractices={showPractices} />}
       </div>
       <div>
-        {localStorage.getItem("type")=="user"&&<button id="edit-btn" onClick={()=>renderWelcomeButton() }>edit</button>}
+        {localStorage.getItem("type") == "user" && (
+          <button id="edit-btn" onClick={() => renderWelcomeButton()}>
+            edit
+          </button>
+        )}
+=======
         {show && <EditUser />}
       </div>
     </div>

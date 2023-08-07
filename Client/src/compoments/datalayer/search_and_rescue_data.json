@@ -1,0 +1,871 @@
+{
+  "data": [
+    {
+      "terrainType": "Mountainous",
+      "bestPractices": [
+        {
+          "Grid Search:": "Divide the search area into grids and systematically search each grid, ensuring thorough coverage."
+        },
+        {
+          "Line Search:": "Organize searchers in a line formation and move together to cover a wide area efficiently."
+        },
+        {
+          "Technical Rope Rescue:": "Utilize specialized rope techniques to navigate difficult or steep terrain and perform rescues."
+        },
+        {
+          "Aerial Reconnaissance:": "Use helicopters or drones for wide-area reconnaissance and to identify potential search areas."
+        },
+        {
+          "Avalanche Transceiver Search:": "Employ avalanche transceivers to locate buried individuals in avalanche-prone areas."
+        },
+        {
+          "Search Dogs:": "Utilize trained search and rescue dogs with their keen sense of smell to locate missing persons."
+        },
+        {
+          "Helicopter Rescue:": "Perform rescues and extractions in remote or inaccessible areas using helicopters."
+        },
+        {
+          "High-Point Anchor System:": "Establish anchor points to secure ropes and perform technical rescues in steep terrain."
+        },
+        {
+          "GPS and Mapping:": "Use GPS technology and detailed maps to navigate and coordinate search efforts."
+        },
+        {
+          "Night Operations:": "Conduct searches during nighttime with proper lighting and night vision equipment."
+        },
+        {
+          "Communication Relay Teams:": "Establish communication relay teams to maintain contact between search teams in mountainous regions with limited signal coverage."
+        },
+        {
+          "Medical Triage:": "Conduct medical triage to assess and prioritize the treatment of injured individuals."
+        },
+        {
+          "Shelter Building:": "Train searchers in constructing emergency shelters for protection during extended search operations."
+        },
+        {
+          "Snowmobile/ATV Search:": "Utilize snowmobiles or all-terrain vehicles for quick access and coverage of large mountainous areas."
+        },
+        {
+          "Sector Search:": "Divide the search area into sectors and thoroughly search each sector using systematic patterns."
+        },
+        {
+          "Thermal Imaging Technology:": "Use thermal imaging cameras to identify heat signatures, aiding in locating missing individuals."
+        },
+        {
+          "Long-Range Communication:": "Utilize high-frequency radios or satellite communication devices to maintain contact over long distances."
+        },
+        {
+          "Mountain Navigation Skills:": "Ensure searchers possess adequate mountain navigation skills to move safely and efficiently."
+        },
+        {
+          "Wilderness First Aid:": "Train searchers in wilderness first aid to provide immediate medical care to injured individuals."
+        },
+        {
+          "Emergency Signaling:": "Teach searchers to use visual and auditory emergency signals to communicate and attract attention."
+        }
+      ]
+    },
+    {
+      "terrainType": "Avalanche",
+      "bestPractices": [
+        {
+          "Transceiver Search:": "Use avalanche transceivers (beacons) to locate buried victims by sending and receiving signals."
+        },
+        {
+          "Probe Line Search:": "Form a line of rescuers and systematically probe the snow to pinpoint the location of buried individuals."
+        },
+        {
+          "Recco Technology:": "Utilize Recco reflectors, which can be detected by specialized detectors, to aid in locating victims."
+        },
+        {
+          "Avalanche Search Dogs:": "Employ trained search and rescue dogs with their heightened sense of smell to locate buried individuals."
+        },
+        {
+          "Strategic Probing:": "Focus probing efforts in high-probability areas based on witness accounts or avalanche characteristics."
+        },
+        {
+          "Visual Observations:": "Conduct visual observations from safe vantage points to identify clues about the avalanche and potential burial sites."
+        },
+        {
+          "Deploy Airbags:": "Encourage individuals to wear avalanche airbags, which increase their chances of staying on the surface during an avalanche."
+        },
+        {
+          "Beacon Training Parks:": "Establish training parks to practice using avalanche transceivers effectively."
+        },
+        {
+          "Mobile Applications:": "Utilize mobile applications designed to assist with avalanche rescue and provide real-time tracking."
+        },
+        {
+          "Signal Isolation:": "Ensure rescuers turn off their avalanche transceivers' transmit mode during the search to avoid interference."
+        },
+        {
+          "Multiple Burial Protocol:": "Prioritize locating and rescuing multiple buried victims simultaneously through efficient teamwork."
+        },
+        {
+          "Shoveling Techniques:": "Train rescuers in effective shoveling techniques to remove snow rapidly during a rescue."
+        },
+        {
+          "Avalanche Probes:": "Carry long avalanche probes to reach buried victims quickly."
+        },
+        {
+          "Combing Technique:": "Employ a combing technique to cover an area systematically, minimizing the chance of missing buried victims."
+        },
+        {
+          "Avalanche Forecasting:": "Utilize avalanche forecasting to plan search and rescue efforts safely."
+        },
+        {
+          "Avi-Guards:": "Employ avalanche guards equipped with avalanche airbags and specialized rescue equipment for preventive measures during risky activities."
+        },
+        {
+          "Use of Recco Detectors:": "Equip search teams with Recco detectors to improve the chances of locating Recco-equipped victims."
+        },
+        {
+          "Collaboration with Helicopters:": "Coordinate with helicopters for aerial reconnaissance and potential extractions."
+        },
+        {
+          "Thermal Imaging Technology:": "Deploy thermal imaging cameras to detect heat signatures of buried individuals."
+        },
+        {
+          "Medical Triage:": "Prioritize medical treatment for rescued victims based on the severity of injuries."
+        }
+      ]
+    },
+    {
+      "terrainType": "Forest/Jungles",
+      "bestPractices": [
+        {
+          "Hasty Search:": "Quickly cover large areas with search teams to locate the subject efficiently."
+        },
+        {
+          "Grid Search:": "Divide the forested area into grids and systematically search each grid to ensure thorough coverage."
+        },
+        {
+          "Use of GPS and Maps:": "Utilize GPS technology and detailed maps for navigation and tracking progress during the search."
+        },
+        {
+          "Communication Protocols:": "Establish clear communication protocols between search teams to maintain contact and coordinate efforts."
+        },
+        {
+          "Visual and Auditory Search:": "Rely on keen observation skills and listening for calls for help or sounds of distress."
+        },
+        {
+          "Search Dogs:": "Employ trained search and rescue dogs to assist in locating missing individuals in challenging terrain."
+        },
+        {
+          "Drone/Aerial Search:": "Utilize drones or helicopters for aerial reconnaissance to survey large areas and identify potential search areas."
+        },
+        {
+          "Night Operations:": "Conduct night searches using proper lighting and night vision equipment to maximize search coverage."
+        },
+        {
+          "Shouting and Whistling:": "Encourage searchers to call out and use whistles to attract the attention of the subject or other searchers."
+        },
+        {
+          "Tree Platforms:": "Use tree platforms or elevated positions to gain a broader view of the forest/jungle."
+        },
+        {
+          "Cueing from Wildlife:": "Pay attention to the behavior of wildlife, which may indicate the presence of humans nearby."
+        },
+        {
+          "Marking Cleared Areas:": "Use flagging or other markers to identify areas already searched to avoid duplication of efforts."
+        },
+        {
+          "Use of Local Guides:": "Seek assistance from local guides or inhabitants familiar with the terrain and potential locations."
+        },
+        {
+          "Survival Training:": "Consider the possibility of the subject's survival skills and their impact on search strategies."
+        },
+        {
+          "Land Navigation Skills:": "Ensure searchers possess proper land navigation skills to move efficiently and avoid getting lost."
+        },
+        {
+          "Sniffer Devices:": "Use sniffer devices that can detect human scents or chemical markers in the air to aid in locating individuals."
+        },
+        {
+          "Thermal Imaging Technology:": "Deploy thermal imaging cameras to detect body heat signatures, especially useful in dense vegetation."
+        },
+        {
+          "Cutting Paths:": "Clear or cut paths through thick vegetation to facilitate search progress."
+        },
+        {
+          "Medical Triage:": "Train searchers in wilderness first aid to provide immediate medical care to injured individuals."
+        },
+        {
+          "Public Awareness:": "Utilize media and public awareness campaigns to gather information and potential sightings from the community."
+        }
+      ]
+    },
+    {
+      "terrainType": "Desert",
+      "bestPractices": [
+        {
+          "Sector Search:": "Divide the desert area into sectors and conduct a systematic search of each sector to ensure comprehensive coverage."
+        },
+        {
+          "Use of GPS and Maps:": "Utilize GPS technology and detailed maps for navigation and to track search progress."
+        },
+        {
+          "Water Conservation:": "Train searchers in water conservation techniques to ensure they stay hydrated during extended search operations."
+        },
+        {
+          "Camel/ATV Search:": "Utilize camels or all-terrain vehicles for quick access and coverage of large desert areas."
+        },
+        {
+          "Sector Marking:": "Use markers or GPS waypoints to indicate areas already searched and prevent duplication of efforts."
+        },
+        {
+          "Aerial Surveillance:": "Employ aircraft or drones for wide-area reconnaissance and to identify potential search areas."
+        },
+        {
+          "Thermal Imaging Technology:": "Deploy thermal imaging cameras to detect heat signatures, which can aid in locating individuals."
+        },
+        {
+          "Shelter Building:": "Train searchers in constructing emergency shelters to protect against extreme weather conditions."
+        },
+        {
+          "Night Operations:": "Conduct searches during nighttime with proper lighting and night vision equipment."
+        },
+        {
+          "Flare Signals:": "Carry flares or signal mirrors to attract attention and communicate with other search teams."
+        },
+        {
+          "Combining with Local Guides:": "Seek assistance from local guides or inhabitants familiar with the desert landscape."
+        },
+        {
+          "Air-Dropping Supplies:": "Consider air-dropping supplies, such as water or medical equipment, to support search teams."
+        },
+        {
+          "Public Awareness:": "Utilize media and public awareness campaigns to gather information and potential sightings from the community."
+        },
+        {
+          "Medical Triage:": "Prioritize medical treatment for rescued individuals based on the severity of injuries and dehydration."
+        },
+        {
+          "Long-Range Communication:": "Utilize high-frequency radios or satellite communication devices to maintain contact over long distances."
+        },
+        {
+          "Use of Mirrors:": "Use mirrors to signal and communicate with distant search teams or potential rescuers."
+        },
+        {
+          "Animal Signs:": "Pay attention to animal behavior and tracks, which may lead to water sources or indicate human presence."
+        },
+        {
+          "Search Dogs:": "Employ trained search and rescue dogs to assist in locating missing individuals in vast desert landscapes."
+        },
+        {
+          "Emergency Signaling:": "Teach searchers to use visual and auditory emergency signals to communicate and attract attention."
+        },
+        {
+          "Strategic Search Patterns:": "Adopt search patterns that cover critical areas, such as oases or known water sources, where missing individuals might seek refuge."
+        }
+      ]
+    },
+    {
+      "terrainType": "Snow/Glaciers",
+      "bestPractices": [
+        {
+          "Avalanche Transceiver Search:": "Use avalanche transceivers (beacons) to locate buried individuals in avalanche-prone areas."
+        },
+        {
+          "Probe Line Search:": "Form a line of rescuers and systematically probe the snow to pinpoint the location of buried individuals."
+        },
+        {
+          "Avalanche Search Dogs:": "Employ trained search and rescue dogs with their heightened sense of smell to locate missing individuals in avalanche debris."
+        },
+        {
+          "Recco Technology:": "Utilize Recco reflectors, which can be detected by specialized detectors, to aid in locating victims."
+        },
+        {
+          "Strategic Probing:": "Focus probing efforts in high-probability areas based on avalanche dynamics and witness accounts."
+        },
+        {
+          "Visual Observations:": "Conduct visual observations from safe vantage points to identify potential avalanche incidents and burial sites."
+        },
+        {
+          "Helicopter Reconnaissance:": "Use helicopters for aerial reconnaissance to survey large areas and identify potential search areas."
+        },
+        {
+          "Transceiver Training Parks:": "Establish training parks to practice using avalanche transceivers effectively."
+        },
+        {
+          "Mobile Applications:": "Utilize mobile applications designed to assist with avalanche rescue and provide real-time tracking."
+        },
+        {
+          "Signal Isolation:": "Ensure rescuers turn off their avalanche transceivers' transmit mode during the search to avoid interference."
+        },
+        {
+          "Multiple Burial Protocol:": "Prioritize locating and rescuing multiple buried victims simultaneously through efficient teamwork."
+        },
+        {
+          "Shoveling Techniques:": "Train rescuers in effective shoveling techniques to remove snow rapidly during a rescue."
+        },
+        {
+          "Avalanche Probes:": "Carry long avalanche probes to reach buried victims quickly and efficiently."
+        },
+        {
+          "Medical Triage:": "Prioritize medical treatment for rescued victims based on the severity of injuries and exposure."
+        },
+        {
+          "Avalanche Airbags:": "Encourage individuals to wear avalanche airbags, which increase their chances of staying on the surface during an avalanche."
+        },
+        {
+          "Thermal Imaging Technology:": "Deploy thermal imaging cameras to detect body heat signatures, especially useful in cold environments."
+        },
+        {
+          "Use of Avalanche Forecasts:": "Refer to avalanche forecasts to plan search and rescue efforts safely."
+        },
+        {
+          "Collaboration with Helicopters:": "Coordinate with helicopters for aerial reconnaissance and potential extractions."
+        },
+        {
+          "Snow Shelters:": "Train searchers in constructing snow shelters to protect against extreme weather during rescue operations."
+        },
+        {
+          "Coordination with Mountain Guides:": "Seek assistance from experienced mountain guides familiar with snow and glacier terrain."
+        }
+      ]
+    },
+    {
+      "terrainType": "Swamps",
+      "bestPractices": [
+        {
+          "Island Hopping:": "Move from one elevated area (island) to another via natural or man-made pathways."
+        },
+        {
+          "Watercraft Search:": "Use boats or canoes to navigate waterlogged areas and search for missing individuals."
+        },
+        {
+          "GPS and Maps:": "Utilize GPS technology and detailed maps to navigate and track search progress."
+        },
+        {
+          "Communication Protocols:": "Establish clear communication protocols between search teams to maintain contact and coordinate efforts."
+        },
+        {
+          "Search Dogs:": "Employ trained search and rescue dogs to assist in locating missing individuals in challenging swamp terrain."
+        },
+        {
+          "Drone/Aerial Search:": "Utilize drones or helicopters for aerial reconnaissance to survey large swamp areas and identify potential search areas."
+        },
+        {
+          "Thermal Imaging Technology:": "Deploy thermal imaging cameras to detect heat signatures, especially useful in low-light conditions."
+        },
+        {
+          "Night Operations:": "Conduct searches during nighttime with proper lighting and night vision equipment."
+        },
+        {
+          "Shouting and Whistling:": "Encourage searchers to call out and use whistles to attract the attention of the subject or other searchers."
+        },
+        {
+          "Marking Cleared Areas:": "Use flagging or other markers to identify areas already searched to avoid duplication of efforts."
+        },
+        {
+          "Terrain Assessment:": "Assess the stability of the swamp terrain and avoid hazardous areas such as sinkholes or quicksand."
+        },
+        {
+          "Use of Local Guides:": "Seek assistance from local guides or inhabitants familiar with the swamp landscape."
+        },
+        {
+          "Snake Bite Prevention:": "Take precautions to prevent snake bites and other swamp-specific hazards."
+        },
+        {
+          "Survival Training:": "Consider the possibility of the subject's survival skills and their impact on search strategies."
+        },
+        {
+          "Pole Probing:": "Use long poles to probe the swampy ground for submerged subjects or obstacles."
+        },
+        {
+          "Medical Triage:": "Prioritize medical treatment for rescued individuals based on the severity of injuries and exposure."
+        },
+        {
+          "Use of Life Jackets:": "Ensure searchers wear appropriate personal protective equipment, including life jackets."
+        },
+        {
+          "Wilderness First Aid:": "Train searchers in wilderness first aid to provide immediate medical care to injured individuals."
+        },
+        {
+          "Emergency Signaling:": "Teach searchers to use visual and auditory emergency signals to communicate and attract attention."
+        },
+        {
+          "Combing Technique:": "Employ a combing technique to cover the swamp area systematically and minimize the chance of missing the subject."
+        }
+      ]
+    },
+    {
+      "terrainType": "Rivers/Coasts",
+      "bestPractices": [
+        {
+          "Downstream Search:": "Conduct searches downstream from the point last seen to follow the natural flow of the river or coastline."
+        },
+        {
+          "Watercraft Search:": "Utilize boats, kayaks, or other watercraft to navigate and search waterlogged areas."
+        },
+        {
+          "GPS and Maps:": "Utilize GPS technology and detailed maps to navigate and track search progress."
+        },
+        {
+          "Communication Protocols:": "Establish clear communication protocols between search teams and maintain contact throughout the operation."
+        },
+        {
+          "Search Dogs:": "Employ trained search and rescue dogs to assist in locating missing individuals near water bodies."
+        },
+        {
+          "Sonar Technology:": "Utilize specialized sonar devices to search underwater areas, such as rivers and ponds."
+        },
+        {
+          "Aerial Reconnaissance:": "Use helicopters or drones for aerial reconnaissance to survey large river or coastal areas."
+        },
+        {
+          "Night Operations:": "Conduct searches during nighttime with proper lighting and night vision equipment."
+        },
+        {
+          "Shouting and Whistling:": "Encourage searchers to call out and use whistles to attract the attention of the subject or other searchers."
+        },
+        {
+          "Swiftwater Training:": "Train searchers in swiftwater rescue techniques to safely navigate and rescue in fast-flowing rivers."
+        },
+        {
+          "Marking Cleared Areas:": "Use flagging or other markers to identify areas already searched to avoid duplication of efforts."
+        },
+        {
+          "Flare Signals:": "Carry flares or signal mirrors to attract attention and communicate with other search teams or potential rescuers."
+        },
+        {
+          "Use of Local Guides:": "Seek assistance from local guides or inhabitants familiar with the river or coastal landscape."
+        },
+        {
+          "Rope Systems:": "Utilize rope systems and specialized rescue techniques for riverbank or cliff rescues."
+        },
+        {
+          "Personal Floatation Devices (PFDs):": "Ensure searchers wear appropriate PFDs to enhance safety during water-based search operations."
+        },
+        {
+          "Medical Triage:": "Prioritize medical treatment for rescued individuals based on the severity of injuries and exposure."
+        },
+        {
+          "Use of Life Rings and Throw Bags:": "Equip search teams with life rings and throw bags for quick deployment during water rescues."
+        },
+        {
+          "Beachcombing:": "Search and inspect coastal areas for signs of the subject or debris."
+        },
+        {
+          "Water Depth Measurement:": "Monitor water depth and changes in water levels to ensure safety during rescue operations."
+        },
+        {
+          "Emergency Signaling:": "Teach searchers to use visual and auditory emergency signals to communicate and attract attention."
+        }
+      ]
+    },
+    {
+      "terrainType": "Caves/Tunnels",
+      "bestPractices": [
+        {
+          "Cave Mapping:": "Utilize detailed cave mapping and exploration data to plan search efforts and navigate through the cave system."
+        },
+        {
+          "Cave Diving:": "Deploy trained cave divers to explore submerged sections of the cave or tunnel system."
+        },
+        {
+          "Use of GPS and Maps:": "Utilize GPS technology and maps for navigation and tracking search progress in the cave or tunnel."
+        },
+        {
+          "Communication Protocols:": "Establish clear communication protocols between search teams to maintain contact and coordinate efforts."
+        },
+        {
+          "Cave Climbing/Rappelling:": "Train rescuers in cave climbing and rappelling techniques for vertical rescues."
+        },
+        {
+          "Cave Search Dogs:": "Employ trained search and rescue dogs to assist in locating missing individuals in the cave or tunnel system."
+        },
+        {
+          "Cave Air Quality Monitoring:": "Monitor air quality and gas levels to ensure rescuer safety and detect hazardous conditions."
+        },
+        {
+          "Cave Radio System:": "Use specialized cave radio systems to maintain communication in underground environments."
+        },
+        {
+          "Infrared Cameras:": "Deploy infrared cameras to detect heat signatures, especially useful in low-light cave conditions."
+        },
+        {
+          "Cave Surveying:": "Conduct cave surveying to identify passages and potential routes within the cave system."
+        },
+        {
+          "Night Operations:": "Conduct searches during nighttime with proper lighting and night vision equipment."
+        },
+        {
+          "Shouting and Listening:": "Encourage searchers to call out and listen for responses in the cave or tunnel system."
+        },
+        {
+          "Marking Cleared Paths:": "Use markers or flagging to indicate areas already searched to avoid duplication of efforts."
+        },
+        {
+          "Cave Collapse Prevention:": "Assess cave stability and take precautions to prevent additional collapses during rescue operations."
+        },
+        {
+          "Medical Triage:": "Prioritize medical treatment for rescued individuals based on the severity of injuries and exposure."
+        },
+        {
+          "Cave Wall Tapping:": "Tap on cave walls to communicate with other searchers or potential subjects."
+        },
+        {
+          "Rope Systems:": "Utilize rope systems and specialized rescue techniques for vertical or confined space rescues."
+        },
+        {
+          "Use of Local Cavers:": "Seek assistance from experienced local cavers familiar with the cave system."
+        },
+        {
+          "Emergency Signaling Devices:": "Equip search teams with emergency signaling devices, such as whistles or handheld flares."
+        },
+        {
+          "Personal Protective Equipment (PPE):": "Ensure searchers wear appropriate PPE, including helmets and headlamps, for safety during cave or tunnel search operations."
+        }
+      ]
+    },
+    {
+      "terrainType": "Aerial SAR",
+      "bestPractices": [
+        {
+          "Aerial Surveys:": "Conduct aerial surveys using aircraft or drones to cover vast areas and identify potential search locations."
+        },
+        {
+          "Infrared and Thermal Imaging:": "Utilize infrared and thermal imaging technology to detect heat signatures, particularly useful for locating missing individuals."
+        },
+        {
+          "GPS and Satellite Tracking:": "Utilize GPS and satellite tracking systems to monitor the movements and locations of search teams and subjects."
+        },
+        {
+          "Aerial Reconnaissance:": "Deploy helicopters or fixed-wing aircraft for reconnaissance, allowing for an overview of the search area."
+        },
+        {
+          "Night Vision Technology:": "Use night vision goggles and equipment to conduct search operations during low-light conditions."
+        },
+        {
+          "Search Pattern Planning:": "Organize aerial search patterns, such as grids or parallel tracks, to ensure comprehensive coverage."
+        },
+        {
+          "Emergency Locator Transmitters (ELTs):": "Detect signals from ELTs installed in aircraft or personal locator beacons carried by subjects."
+        },
+        {
+          "Collaboration with Air Traffic Control:": "Coordinate with air traffic control to access restricted airspace and enhance safety during aerial search operations."
+        },
+        {
+          "Real-time Communication:": "Maintain real-time communication between aerial assets and ground teams for effective coordination."
+        },
+        {
+          "Precision Drop System:": "Use precision drop systems to deliver supplies or equipment to ground teams or subjects."
+        },
+        {
+          "Aerial Photography and Videography:": "Use aerial photography and videography to capture images and footage for analysis and documentation."
+        },
+        {
+          "Rescue Hoist Operations:": "Conduct rescue hoist operations from helicopters for extractions in challenging terrain."
+        },
+        {
+          "Emergency Air Evacuations:": "Perform emergency air evacuations for subjects in need of immediate medical attention."
+        },
+        {
+          "Satellite Communication:": "Utilize satellite communication devices for communication in remote areas without reliable ground-based networks."
+        },
+        {
+          "Automatic Dependent Surveillance-Broadcast (ADS-B):": "Use ADS-B technology to track aircraft and monitor their locations in real-time."
+        },
+        {
+          "Long-endurance Drones:": "Deploy long-endurance drones for extended search missions and persistent surveillance."
+        },
+        {
+          "Geo-fencing:": "Implement geo-fencing technology to prevent drones from entering restricted or dangerous areas."
+        },
+        {
+          "Aircraft Searchlight:": "Utilize aircraft searchlights for illumination during night searches or signaling."
+        },
+        {
+          "Parachute Searchers:": "Deploy trained searchers via parachutes into remote and inaccessible areas."
+        },
+        {
+          "Use of Unmanned Aerial Vehicles (UAVs):": "Deploy UAVs to access challenging terrains and conduct searches in difficult-to-reach areas."
+        }
+      ]
+    },
+    {
+      "terrainType": "Maritime SAR",
+      "bestPractices": [
+        {
+          "Search Patterns:": "Implement search patterns, such as expanding square or parallel tracks, to cover the search area efficiently."
+        },
+        {
+          "Aerial Surveillance:": "Utilize aircraft or drones for aerial reconnaissance to survey large maritime areas and identify potential search locations."
+        },
+        {
+          "Use of GPS and Electronic Chart Systems:": "Utilize GPS and electronic chart systems for navigation and tracking search progress."
+        },
+        {
+          "Radar and AIS:": "Employ radar and Automatic Identification System (AIS) to detect and track vessels or targets in the search area."
+        },
+        {
+          "Communication Coordination:": "Establish clear communication protocols between maritime assets and search teams for effective coordination."
+        },
+        {
+          "Search Lights and Flares:": "Use searchlights and handheld flares for visual signaling and illumination during night searches."
+        },
+        {
+          "Infrared and Thermal Imaging:": "Utilize infrared and thermal imaging technology to detect heat signatures, particularly useful for locating individuals in the water."
+        },
+        {
+          "Floating Markers:": "Deploy floating markers or dye to track currents and potential movement of victims or objects in the water."
+        },
+        {
+          "Use of Local Fishing Boats:": "Seek assistance from local fishing boats familiar with the area to augment search efforts."
+        },
+        {
+          "Long-Range Acoustic Devices:": "Utilize long-range acoustic devices to transmit loud and clear messages during communication challenges."
+        },
+        {
+          "Satellite Communication:": "Utilize satellite communication devices to maintain contact in remote maritime areas with limited or no cellular coverage."
+        },
+        {
+          "Rapid Launch and Response:": "Maintain a rapid launch and response capability for immediate search deployment."
+        },
+        {
+          "Man Overboard Systems:": "Implement man overboard systems with alarms and tracking to detect and retrieve persons who fall overboard."
+        },
+        {
+          "Liferafts and Lifeboats:": "Deploy liferafts and lifeboats for quick and safe extraction of individuals from distressed vessels."
+        },
+        {
+          "Underwater Search Equipment:": "Use sonar and remotely operated underwater vehicles (ROVs) for underwater search operations."
+        },
+        {
+          "Helicopter Hoist Operations:": "Conduct helicopter hoist operations for extractions from vessels or water."
+        },
+        {
+          "Maritime Radio Channels:": "Use designated maritime radio channels for communication and distress calls."
+        },
+        {
+          "Vessel Drift Prediction:": "Predict vessel drift based on weather and tidal conditions to refine search areas."
+        },
+        {
+          "Coordination with Coast Guard or Maritime Authorities:": "Coordinate with coast guard or relevant maritime authorities to access additional resources and support."
+        }
+      ]
+    },
+    {
+      "terrainType": "Plains/Wilderness",
+      "bestPractices": [
+        {
+          "Grid Search:": "Divide the search area into grids and systematically search each grid to ensure comprehensive coverage."
+        },
+        {
+          "Aerial Surveillance:": "Utilize aircraft or drones for aerial reconnaissance to survey large wilderness areas and identify potential search locations."
+        },
+        {
+          "Use of GPS and Maps:": "Utilize GPS technology and detailed maps to navigate and track search progress."
+        },
+        {
+          "Communication Protocols:": "Establish clear communication protocols between search teams to maintain contact and coordinate efforts."
+        },
+        {
+          "Search Dogs:": "Employ trained search and rescue dogs to assist in locating missing individuals in vast wilderness landscapes."
+        },
+        {
+          "Night Operations:": "Conduct searches during nighttime with proper lighting and night vision equipment."
+        },
+        {
+          "Signal Fires:": "Use signal fires or smoke to attract attention and communicate with other search teams or potential rescuers."
+        },
+        {
+          "Shouting and Whistling:": "Encourage searchers to call out and use whistles to attract the attention of the subject or other searchers."
+        },
+        {
+          "Marking Cleared Areas:": "Use flagging or other markers to identify areas already searched to avoid duplication of efforts."
+        },
+        {
+          "Thermal Imaging Technology:": "Deploy thermal imaging cameras to detect heat signatures, especially useful in locating individuals at night or in cold environments."
+        },
+        {
+          "Survival Training:": "Consider the possibility of the subject's survival skills and their impact on search strategies."
+        },
+        {
+          "Medical Triage:": "Prioritize medical treatment for rescued individuals based on the severity of injuries and exposure."
+        },
+        {
+          "Wilderness First Aid:": "Train searchers in wilderness first aid to provide immediate medical care to injured individuals."
+        },
+        {
+          "Air Horns and Emergency Whistles:": "Equip search teams with air horns and emergency whistles for signaling and communication."
+        },
+        {
+          "Combing Technique:": "Employ a combing technique to cover the wilderness area systematically and minimize the chance of missing the subject."
+        },
+        {
+          "Use of Local Guides:": "Seek assistance from local guides or inhabitants familiar with the wilderness landscape."
+        },
+        {
+          "Water Source Tracking:": "Follow water sources and animal trails, which may lead to the subject's location."
+        },
+        {
+          "Public Awareness Campaigns:": "Utilize media and public awareness campaigns to gather information and potential sightings from the community."
+        },
+        {
+          "Parachute Searchers:": "Deploy trained searchers via parachutes into remote and inaccessible areas."
+        },
+        {
+          "Emergency Signaling Devices:": "Equip search teams with emergency signaling devices, such as whistles or handheld flares."
+        }
+      ]
+    },
+    {
+      "terrainType": "Urban Areas",
+      "bestPractices": [
+        {
+          "Building Assessments:": "Conduct building assessments to identify structural integrity and prioritize search efforts."
+        },
+        {
+          "Urban Search Dogs:": "Deploy trained search and rescue dogs to assist in locating missing individuals in urban environments."
+        },
+        {
+          "GIS and Mapping:": "Utilize Geographic Information Systems (GIS) and detailed maps for navigation and tracking search progress."
+        },
+        {
+          "Communication Protocols:": "Establish clear communication protocols between search teams and coordinate with local emergency services."
+        },
+        {
+          "Thermal Imaging Technology:": "Deploy thermal imaging cameras to detect heat signatures and locate victims in complex urban structures."
+        },
+        {
+          "Aerial Surveillance:": "Utilize helicopters or drones for aerial reconnaissance to survey urban areas and identify potential search locations."
+        },
+        {
+          "GPS and Smartphone Tracking:": "Utilize GPS technology and smartphone tracking apps to monitor and communicate with search teams."
+        },
+        {
+          "Building Floor Plans:": "Obtain and use building floor plans to understand layouts and plan search efforts effectively."
+        },
+        {
+          "Triage and Medical Care:": "Conduct medical triage to assess and prioritize the treatment of injured individuals."
+        },
+        {
+          "Search Markings:": "Use chalk or spray paint to mark cleared areas and indicate search progress within buildings."
+        },
+        {
+          "Use of Local Knowledge:": "Seek assistance from local residents or workers familiar with the area to gather information."
+        },
+        {
+          "Urban Collapsible Shelters:": "Use collapsible shelters to provide temporary refuge for displaced individuals."
+        },
+        {
+          "Urban Rope Rescue:": "Train rescuers in urban rope rescue techniques for extractions from high-rise buildings or confined spaces."
+        },
+        {
+          "Emergency Alert Systems:": "Utilize public emergency alert systems to broadcast information and seek assistance from the community."
+        },
+        {
+          "Search in Void Spaces:": "Conduct searches in void spaces, such as basements or crawl spaces, where victims may seek refuge."
+        },
+        {
+          "Urban Vehicle Extrication:": "Employ specialized techniques and tools for vehicle extrication in urban roadways."
+        },
+        {
+          "Public Address Systems:": "Use loudspeakers or public address systems to communicate with victims or provide instructions during evacuations."
+        },
+        {
+          "Collaboration with Urban Search Teams:": "Coordinate with specialized urban search and rescue teams for additional expertise and resources."
+        },
+        {
+          "Urban Sound Detection Devices:": "Deploy urban sound detection devices to locate victims in collapsed structures."
+        },
+        {
+          "Emergency Lighting:": "Use emergency lighting systems to illuminate dark or unsafe areas during search and rescue operations."
+        },
+        {
+          "Vertical Access:": "Utilize ladders, elevators, or aerial platforms for accessing upper floors of buildings."
+        },
+        {
+          "Confined Space Equipment:": "Use specialized equipment for rescues in confined spaces, such as collapsed tunnels or sewers."
+        },
+        {
+          "Search Cameras:": "Deploy fiber optic or robotic cameras to access tight spaces and assess conditions remotely."
+        },
+        {
+          "Structural Shoring:": "Implement temporary structural shoring to stabilize damaged buildings and enable safer search operations."
+        },
+        {
+          "Heavy Machinery:": "Use heavy machinery, such as cranes or excavators, to move debris and access blocked areas."
+        },
+        {
+          "Breaching Tools:": "Utilize breaching tools to create access points in reinforced structures or blocked entryways."
+        },
+        {
+          "Emergency Medical Evacuation:": "Conduct emergency medical evacuations from high-rise buildings or inaccessible locations."
+        },
+        {
+          "Multi-Agency Collaboration:": "Coordinate efforts with various agencies, including fire departments, police, and medical services."
+        },
+        {
+          "Incident Command System (ICS):": "Establish an ICS to organize and manage the search and rescue operation effectively."
+        },
+        {
+          "Community Engagement:": "Engage with the local community to gather information and potential leads."
+        },
+        {
+          "Technical Rope Access:": "Use technical rope access methods for high-angle rescues and accessing hard-to-reach locations."
+        },
+        {
+          "Building Collapse Search Techniques:": "Employ specialized search techniques for locating victims in collapsed structures."
+        },
+        {
+          "Gas and Chemical Detection:": "Use gas and chemical detection equipment to assess air quality and potential hazards."
+        },
+        {
+          "Personal Protective Equipment (PPE):": "Ensure searchers wear appropriate PPE, including helmets, masks, and gloves."
+        },
+        {
+          "Heavy Lifting Equipment:": "Deploy heavy lifting equipment for extrications involving large debris or heavy objects."
+        },
+        {
+          "Psychological Support:": "Provide psychological support for searchers and victims' families during the rescue operation."
+        },
+        {
+          "Victim Communication Devices:": "Use two-way radios or communication devices to establish contact with trapped victims."
+        },
+        {
+          "Search Lights:": "Deploy powerful search lights for illumination during night searches."
+        },
+        {
+          "Vehicle Extraction Techniques:": "Train rescuers in techniques for safely extracting individuals from entangled vehicles."
+        },
+        {
+          "Hazardous Material Handling:": "Handle hazardous materials safely during search and rescue operations."
+        },
+        {
+          "Incident Mapping:": "Create incident maps to visualize the search area, resources, and progress."
+        },
+        {
+          "Mass Casualty Incident (MCI) Triage:": "Implement MCI triage protocols to assess and prioritize multiple casualties."
+        },
+        {
+          "Confined Space Entry Teams:": "Form specialized teams for entering confined spaces safely."
+        },
+        {
+          "Urban Collapse Acoustics:": "Use acoustic monitoring equipment to detect sounds indicating the presence of survivors."
+        },
+        {
+          "Drone Surveillance:": "Utilize drones for real-time surveillance and rapid assessment of large areas."
+        },
+        {
+          "Technical Search Cameras:": "Employ technical search cameras to access void spaces and navigate challenging terrain."
+        },
+        {
+          "GIS Data Integration:": "Integrate GIS data, such as building layouts and infrastructure, into search planning."
+        },
+        {
+          "Helicopter Hoist Operations:": "Conduct helicopter hoist operations for extractions from elevated areas or buildings."
+        },
+        {
+          "Casualty Decontamination:": "Implement decontamination procedures for victims exposed to hazardous substances."
+        },
+        {
+          "After-Action Review:": "Conduct thorough after-action reviews to learn from the operation and improve future response capabilities."
+        }
+      ]
+    }
+  ]
+}

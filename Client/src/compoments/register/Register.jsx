@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Register.css";
-
+import Login from "../login/Login";
 function Register() {
   const [registerUserNameValue, setRegisterUserNameValue] = useState("");
   const [registerEmailValue, setRegisterEmailValue] = useState("");
@@ -148,6 +149,9 @@ function Register() {
       <button id="register-btn" type="submit" onClick={registerUser}>
         register
       </button>
+      <Link to={"/"}>
+        Already have an account? click to login!
+      </Link>
     </div>
   );
 }

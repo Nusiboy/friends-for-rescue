@@ -7,15 +7,12 @@ import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 import DisplayData from "../datalayer/DisplayData";
 
-function Sidebar({
-  deleteShape,
-  selectedShape,
-  toggleDrawingMode,
-  drawingMode,
-  hideShpes,
-}) {
-  const { currentUser, setCurrentUser } = useContext(RefContext);
-  const [updateOrigin, setUpdateOrigin] = useState("");
+function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes,setSearh}) {
+  // const { toggleDrawingMode } = useContext(Context);
+   const { currentUser, setCurrentUser } = useContext(RefContext);
+const [inputSearch,setInputSearh]=useState('')
+const [updateOrigin, setUpdateOrigin] = useState("");
+
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
@@ -31,7 +28,6 @@ function Sidebar({
     }
     console.log("open");
   }
-
   async function updateUser() {
     console.log("sendreq");
     try {
@@ -137,6 +133,15 @@ function Sidebar({
         <button className="layer-btn" onClick={toggleDrawingMode}>
           {drawingMode ? "Disable Drawing" : "Enable Drawing"}
         </button>
+        <input type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
+        <button onClick={()=>{setSearh(inputSearch)}}>search</button>
+        <button onClick={hideShpes} className="layer-btn"> hide</button>
+          <button
+                className="layer-btn"
+                onClick={toggleDrawingMode}
+              >
+                {drawingMode ? "Disable Drawing" : "Enable Drawing"}
+              </button>
 
         {selectedShape && (
           <div>
@@ -168,6 +173,7 @@ function Sidebar({
             edit
           </button>
         )}
+=======
         {show && <EditUser />}
       </div>
     </div>

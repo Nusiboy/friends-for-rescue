@@ -13,8 +13,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<GoogleMaps />} />
-          <Route path="/Login" element={<Login />} />
+          <Route index element={<Login />} />
+          <Route path="/GoogleMaps" element={<GoogleMaps />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Sidebar" element={<Sidebar />} />
           <Route path="googlemapspolygon" element={<GoogleMapsPolygon />} />

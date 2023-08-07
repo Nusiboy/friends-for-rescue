@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../login/Login.css";
 import { useNavigate } from "react-router-dom";
-
+import Register from "../register/Register";
 // const [emailValue, setEmailValue] = useState("");
 import { RefContext } from "../../context/RefreshConmtext";
 
 function Login() {
   const [userNameValue, setUserNameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const [phoneValue, setPhoneValue] = useState("");
   // const [refresh, setRefresh] = useState();
   const { ref, setRef } = useContext(RefContext);
   // const [user, setUser] = useState([]);
   const navigate = useNavigate();
-
   // useEffect(() => {
   //   axios
   //     .get("http://localhost:3001/users")
@@ -33,9 +32,9 @@ function Login() {
         localStorage.setItem("type", user.data.type);
         localStorage.setItem("usernum", user.data.num);
         localStorage.setItem("username", user.data.userName);
-
+  
         setRef(!ref);
-        navigate("/");
+        navigate("/GoogleMaps");
       })
       .catch((err) => {
         if (err) {
@@ -70,6 +69,11 @@ function Login() {
         <button id="login-btn" type="sumbit" onClick={loginUser}>
           login
         </button>
+      </div>
+      <div>
+        <Link to={"/Register"}>
+          Haven't signed to our services? click to sign! 
+        </Link>
       </div>
     </div>
   );

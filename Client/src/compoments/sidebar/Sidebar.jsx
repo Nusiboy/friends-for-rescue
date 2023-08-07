@@ -22,31 +22,12 @@ const [inputSearch,setInputSearh]=useState('')
 console.log(localStorage.getItem("type")=="admin");
 
   function renderWelcomeButton() {
-    // const firstLetter = currentUser.charAt(0);
-    // console.log(currentUser);
-    // return (
-    //   <button id="sidebar-user-name" onClick={() =>{
         if (localStorage.getItem("type")=="user") {
           setShow((prev) => !prev)
         }
         console.log("open");
-      // }}>
-      //   {firstLetter}
-      // </button>
-    // );
+
   }
-  // useEffect(() => {
-  //   console.log(localStorage.getItem("user-token"));
-    
-  //   axios
-  //     .post("http://localhost:3001/users",{id:localStorage.getItem("user-token")}).then(({ data }) =>{
-  //       setUpdateOrigin(data.info.origin)
-  //       setUpdateMobility(data.info.mobility)
-  //       setUpdateMedical(data.info.medical)
-  //   })
-  //     .then(({ data }) => setUser(data))
-  //     .catch((err) => console.log(err.response.data));
-  // }, []);
   async function updateUser() {
     console.log("sendreq");
     try {
@@ -155,7 +136,7 @@ console.log(localStorage.getItem("type")=="admin");
               >
                 {drawingMode ? "Disable Drawing" : "Enable Drawing"}
               </button>
-        
+
         {selectedShape && (
           <div>
 <button className="layer-btn" onClick={deleteShape}>Delete Shape</button>
@@ -170,10 +151,9 @@ console.log(localStorage.getItem("type")=="admin");
         
       </div>
       <div>
-        {localStorage.getItem("type")=="user"&&<button onClick={()=>renderWelcomeButton() }>edit</button>}
+        {localStorage.getItem("type")=="user"&&<button id="edit-btn" onClick={()=>renderWelcomeButton() }>edit</button>}
         {show && <EditUser />}
       </div>
-      
     </div>
   );
 }

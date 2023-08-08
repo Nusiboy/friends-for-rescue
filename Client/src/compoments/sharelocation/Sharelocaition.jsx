@@ -148,7 +148,7 @@ function Sharelocaition() {
         <button id="location-send-btn" onClick={() => sendInfo()}>
           take location
         </button>
-        <button  onClick={() => updateInfo()}>
+        <button id="location-wifi-send-btn" onClick={() => updateInfo()}>
           update information
         </button>
       </div>

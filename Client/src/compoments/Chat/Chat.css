@@ -35,140 +35,207 @@
   align-items: center;
 }
 #message-input-container {
-  background-color: rgb(34, 222, 255);
-  border-style: none;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
   outline: none;
-  padding-left: 5px;
-  border-radius: 20px;
-  width: 50vw;
-  height: 5vh;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  color: #000000;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
 }
-@media screen and (min-width: 541px) {
-    #send-message-btn {
-      height: 5vh;
-      width: 10vw;
-      font-size: 1em;
-    }
+#message-input-container:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
+  #message-input-container {
+    display: block;
+    margin: 0.4em auto;
   }
+}
 #send-message-btn {
-  border-style: none;
-  font-weight: 600;
-  border-radius: 20px;
-  margin-left: 1vw;
-  height: 5vh;
-  font-size: 0.8em;
-  width: 11.5vw;
-  background-color: rgb(0, 187, 178);
-  box-shadow: rgba(147, 147, 167, 0.25) 0px 30px 60px -12px inset,
-    rgba(138, 137, 137, 0.3) 0px 18px 36px -18px inset;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #000000;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
 }
-@media screen and (min-width: 541px) {
+#send-message-btn:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
   #send-message-btn {
-    height: 5vh;
-    width: 10vw;
-    font-size: 1em;
+    display: block;
+    margin: 0.4em auto;
   }
 }
-@media screen and (min-width: 900px) {
-  #send-message-btn {
-    height: 5vh;
-    width: 9vw;
-    font-size: 1.2em;
+#send--wifi-message-btn {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #000000;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
+}
+#send--wifi-message-btn:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
+  #send--wifi-message-btn {
+    display: block;
+    margin: 0.4em auto;
   }
 }
-#file-input-container{
-  width: 86px;
-  padding-left: -2vw;
-  height: 5vh;
-  margin-bottom: 1.8vh;
-  background-color: rgb(0, 187, 171);
-  border-radius: 12px;
-  border-color: #0e5366;
-  border-width: 1vw;
-  border-style: outset;
-  outline: none;
-  }
-  #file-input-container::-webkit-file-upload-button {
-    background-color: rgb(119, 118, 118);
-  }
-  
-#file-input-container:hover::before {
-    border-color: black;
-  }
-  #file-input-container:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-  }
+#file-input-container {
+  border-radius: 4px;
+  height: 22.2px;
+  width: 180px;
+  margin-bottom: 1vh;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+  margin-right: 16px;
+  transition: background-color 200ms;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
+}
+#file-input-container:hover {
+  background-color: #f3f4f6;
+}
+#file-input-container:active {
+  background-color: #e5e7eb;
+}
 #description-send-container {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+  gap: 2vw;
 }
 #description-input-container {
-  width: 46vw;
-  padding-left: 5px;
-  resize: none;
-  border-style: none;
-  color: rgb(27, 27, 27);
-  background-color: rgb(34, 222, 255);
-  border-radius: 10px;
-  display: flex;
-  border-style: none;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
   outline: none;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  color: #000000;
+  resize: none;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
+}
+#description-input-container:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
+  #description-input-container {
+    display: block;
+    margin: 0.4em auto;
+  }
 }
 #mark-type-select {
-  border-style: none;
-  color: rgb(27, 27, 27);
-  background-color: rgb(34, 222, 255);
-
-  border-radius: 10px;
-  margin-left: 1vw;
-  display: flex;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  outline: none;
+  color: #000000;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
+  text-align: center;
+  transition: all 0.2s;
+}
+#mark-type-select:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
+  #mark-type-select {
+    display: block;
+    margin: 0.4em auto;
+  }
+}
+#location-wifi-send-btn {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #000000;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
+}
+#location-wifi-send-btn:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
+  #location-wifi-send-btn {
+    display: block;
+    margin: 0.4em auto;
+  }
 }
 #location-send-btn {
-  border-style: none;
-  border-radius: 20px;
-  height: 5vh;
-  width: 22vw;
-  font-size: 0.7em;
-  font-weight: 600;
-  background-color: rgb(0, 187, 178);
-  margin-left: 1vw;
-  margin-top: 1vh;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #000000;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
 }
-@media screen and (min-width: 385px) {
-  #location-send-btn {
-    height: 5vh;
-    width: 14vw;
-    font-size: 0.6em;
-  }
+#location-send-btn:hover {
+  color: #000000;
+  background-color: #ffffff;
 }
-@media screen and (min-width: 480px) {
+@media all and (max-width: 30em) {
   #location-send-btn {
-    height: 6vh;
-    width: 10vw;
-    font-size: 0.7em;
-  }
-}
-@media screen and (min-width: 680px) {
-  #location-send-btn {
-    height: 6.5vh;
-    width: 9vw;
-    font-size: 0.75em;
-  }
-}
-@media screen and (min-width: 900px) {
-  #location-send-btn {
-    height: 7vh;
-    width: 8vw;
-    font-size: 0.8em;
+    display: block;
+    margin: 0.4em auto;
   }
 }

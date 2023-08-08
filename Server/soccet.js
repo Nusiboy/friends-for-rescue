@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express();
 const http = require("http").Server(app);
-const socketClient = require("socket.io-client")("http://localhost:4000");
+const socketClient = require("socket.io-client")("http://localhost:3000");
 const io = require("socket.io")(http, {
   cors: {
     origin: "*",
   },
 });
-const port = 4000;
+const port = 3000;
 io.on("connection", (socket) => {
   console.log("soccet connected");
   io.emit("soccetconnected", `${socket.id}`);

@@ -26,7 +26,7 @@ function Register() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/users")
+      .get("http://localhost:3000/users")
       .then(({ data }) => setUser(data))
       .catch((err) => console.log(err.message));
   }, [refresh]);

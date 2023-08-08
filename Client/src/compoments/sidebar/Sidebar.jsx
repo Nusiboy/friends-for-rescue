@@ -47,7 +47,7 @@ const [updateOrigin, setUpdateOrigin] = useState("");
     return (
       <div id="update-user-container">
         <select
-          id="update-origin-select"
+          className="update-input"
           name="updateOrigin"
           onChange={(event) => {
             setUpdateOrigin(event.target.value);
@@ -66,7 +66,7 @@ const [updateOrigin, setUpdateOrigin] = useState("");
         </select>
         <br />
         <select
-          id="update-mobility-select"
+          className="update-input"
           name="updateMobility"
           onChange={(event) => {
             setUpdateMobility(event.target.value);
@@ -85,7 +85,7 @@ const [updateOrigin, setUpdateOrigin] = useState("");
         </select>
         <br />
         <select
-          id="update-medical-select"
+          className="update-input"
           name="updateMedical"
           onChange={(event) => {
             setUpdateMedical(event.target.value);
@@ -126,9 +126,9 @@ const [updateOrigin, setUpdateOrigin] = useState("");
   function SearchOpener(){
     return(
       <div id="search-container">
-        <input id="description-input-container" type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
-        <button onClick={()=>{setSearh(inputSearch)}} id="send-message-btn">search</button>
-        <button onClick={hideShpes} id="send-message-btn"> hide</button>
+        <input id="search-input-container" type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
+        <button className="search-btns" onClick={()=>{setSearh(inputSearch)}}>search</button>
+        <button className="search-btns" onClick={hideShpes}> hide</button>
       </div>
       )
   }

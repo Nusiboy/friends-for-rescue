@@ -118,7 +118,7 @@
 #sidebar-layers-container {
   display: flex;
   flex-direction: column;
-  gap: 9vh;
+  gap: 8vh;
   align-items: center;
 }
 #search-container{

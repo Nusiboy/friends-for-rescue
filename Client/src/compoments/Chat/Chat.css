@@ -44,6 +44,7 @@
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  outline: none;
   color: #000000;
   text-align: center;
   transition: all 0.2s;
@@ -145,6 +146,7 @@
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  outline: none;
   color: #000000;
   resize: none;
   text-align: center;
@@ -171,6 +173,7 @@
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  outline: none;
   color: #000000;
   box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
   text-align: center;

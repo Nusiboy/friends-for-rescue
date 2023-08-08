@@ -12,7 +12,7 @@ function Login() {
   const navigate = useNavigate();
   function loginUser() {
     axios
-      .post("http://localhost:3000/users/login", {
+      .post("https://friends-for-rescue.onrender.com/users/login", {
         userName: userNameValue,
         password: passwordValue,
       })

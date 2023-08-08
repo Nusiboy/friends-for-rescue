@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import socketIO from "socket.io-client";
 
-const socket = socketIO.connect("http://localhost:3000/");
+const socket = socketIO.connect("https://friends-for-rescue.onrender.com");
 
 function Chat() {
   const [name, setName] = useState(localStorage.getItem("username"));

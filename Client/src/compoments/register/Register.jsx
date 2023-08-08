@@ -26,7 +26,7 @@ function Register() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://friends-for-rescue.onrender.com/users")
       .then(({ data }) => setUser(data))
       .catch((err) => console.log(err.message));
   }, [refresh]);
@@ -34,7 +34,7 @@ function Register() {
   async function registerUser() {
     try {
       const user = await axios
-        .post("http://localhost:3000/users/add", {
+        .post("https://friends-for-rescue.onrender.com/users/add", {
           userName: registerUserNameValue,
           email: registerEmailValue,
           password: registerPasswordValue,

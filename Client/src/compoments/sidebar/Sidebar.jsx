@@ -32,7 +32,7 @@ const [updateOrigin, setUpdateOrigin] = useState("");
   async function updateUser() {
     console.log("sendreq");
     try {
-      const user = await axios.patch(`http://localhost:3000/users/edit`, {
+      const user = await axios.patch(`https://friends-for-rescue.onrender.com/users/edit`, {
         origin: updateOrigin,
         mobility: updateMobility,
         medical: updateMedical,

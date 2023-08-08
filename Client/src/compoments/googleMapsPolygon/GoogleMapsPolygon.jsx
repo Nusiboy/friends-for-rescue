@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/UseContext";
 import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
 import Sidebar from "../sidebar/Sidebar";
-
 import axios from "axios";
+
 const libraries = ["places", "drawing"];
 
 const DrawingTools = () => {
@@ -19,7 +19,7 @@ const DrawingTools = () => {
 
   const libraries = ["places", "drawing"];
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries: libraries,
   });
 

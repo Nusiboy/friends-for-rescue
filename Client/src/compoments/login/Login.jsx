@@ -33,8 +33,9 @@ function Login() {
   }
   return (
     <div id="login-container">
+      <h1 id="welcome-header">Welcome to Firends for Rescue!</h1>
       <div id="login-secondery-container">
-        <h1 id="login-header">Login</h1>
+        <h2 id="login-header">Login</h2>
         <input
           className="login-input"
           type="text"
@@ -59,11 +60,9 @@ function Login() {
           login
         </button>
       </div>
-      <div>
-        <Link id="link-to" to={"/Register"}>
-          Haven't signed to our services? click to sign! 
+        <Link className="link-to" to={"/Register"}>
+          Haven't signed to our services? click to sign!
         </Link>
-      </div>
     </div>
   );
 }

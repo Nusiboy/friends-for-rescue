@@ -15,9 +15,7 @@ function DisplayData({showPractices}) {
 
   return (
     <div className= {showPractices? 'right-sidebar-on' : 'right-sidebar'}>
-      <label htmlFor="terrain"><p>Select Terrain Type:</p></label>
-      <br />
-      <select
+      <label htmlFor="terrain"><p id='terrain-header'>Select Terrain Type: <select id='terrain-select'
         name="terrain"
         value={selectedTerrain}
         onChange={handleTerrainChange}
@@ -27,7 +25,18 @@ function DisplayData({showPractices}) {
             {terrain}
           </option>
         ))}
-      </select>
+      </select></p></label>
+      {/* <select id='terrain-select'
+        name="terrain"
+        value={selectedTerrain}
+        onChange={handleTerrainChange}
+      >
+        {terrainTypes.map((terrain, index) => (
+          <option key={index} value={terrain}>
+            {terrain}
+          </option>
+        ))}
+      </select> */}
 
       {selectedTerrainData && (
         <div>

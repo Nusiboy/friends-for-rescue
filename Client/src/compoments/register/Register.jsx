@@ -97,7 +97,7 @@ function Register() {
         }}
       />
       <br />
-      
+
       <select
         className="select-register"
         name="registerOrigin"
@@ -149,9 +149,9 @@ function Register() {
       <button id="register-btn" type="submit" onClick={registerUser}>
         register
       </button>
-      <Link to={"/"}>
-        Already have an account? click to login!
-      </Link>
+        <Link className="link-to" to={"/"}>
+          Already have an account? click to login!
+        </Link>
     </div>
   );
 }

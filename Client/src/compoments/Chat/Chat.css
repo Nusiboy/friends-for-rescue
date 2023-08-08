@@ -7,10 +7,11 @@
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 9;
+  z-index: 11;
   background: rgb(216, 254, 226);
   padding: 1vw;
   align-items: center;
+  margin-top: 10vh;
 }
 #sharelocation-container {
   display: flex;
@@ -33,6 +34,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 1vw;
 }
 #message-input-container {
   display: inline-block;
@@ -65,7 +67,7 @@
   padding: 0.35em 1.2em;
   border: 0.1em solid #446b7e;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
+  border-radius: 20px;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
@@ -90,7 +92,7 @@
   padding: 0.35em 1.2em;
   border: 0.1em solid #446b7e;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
+  border-radius: 20px;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
@@ -134,7 +136,7 @@
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  gap: 2vw;
+  gap: 1vw;
 }
 #description-input-container {
   display: inline-block;
@@ -194,7 +196,7 @@
   padding: 0.35em 1.2em;
   border: 0.1em solid #446b7e;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
+  border-radius: 20px;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
@@ -219,7 +221,7 @@
   padding: 0.35em 1.2em;
   border: 0.1em solid #446b7e;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
+  border-radius: 20px;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;

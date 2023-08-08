@@ -117,7 +117,7 @@ console.log(map)
       </GoogleMap>
     </div>
     
-      <Sidebar setSearh={setSearh}/>
+      {/* <Sidebar setSearh={setSearh}/> */}
     
     </div>
   );

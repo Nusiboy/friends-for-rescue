@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Register.css";
-
 function Register() {
   const [registerUserNameValue, setRegisterUserNameValue] = useState("");
   const [registerEmailValue, setRegisterEmailValue] = useState("");
@@ -25,7 +25,7 @@ function Register() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/users")
+      .get("https://friends-for-rescue.onrender.com/users")
       .then(({ data }) => setUser(data))
       .catch((err) => console.log(err.message));
   }, [refresh]);
@@ -33,7 +33,7 @@ function Register() {
   async function registerUser() {
     try {
       const user = await axios
-        .post("http://localhost:3000/users/add", {
+        .post("https://friends-for-rescue.onrender.com/users/add", {
           userName: registerUserNameValue,
           email: registerEmailValue,
           password: registerPasswordValue,
@@ -96,7 +96,7 @@ function Register() {
         }}
       />
       <br />
-      
+
       <select
         className="select-register"
         name="registerOrigin"
@@ -148,6 +148,9 @@ function Register() {
       <button id="register-btn" type="submit" onClick={registerUser}>
         register
       </button>
+        <Link className="link-to" to={"/"}>
+          Already have an account? click to login!
+        </Link>
     </div>
   );
 }

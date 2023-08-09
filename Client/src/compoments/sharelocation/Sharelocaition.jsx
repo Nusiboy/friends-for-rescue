@@ -76,7 +76,7 @@ function Sharelocaition() {
         console.log(data);
         data.map(async(item)=>{
          await axios.post(
-            "http://localhost:3000/marks/add",
+            "https://friends-for-rescue.onrender.com/marks/add",
             item
           )
 
@@ -148,7 +148,7 @@ function Sharelocaition() {
         <button id="location-send-btn" onClick={() => sendInfo()}>
           take location
         </button>
-        <button  onClick={() => updateInfo()}>
+        <button id="location-wifi-send-btn" onClick={() => updateInfo()}>
           update information
         </button>
       </div>

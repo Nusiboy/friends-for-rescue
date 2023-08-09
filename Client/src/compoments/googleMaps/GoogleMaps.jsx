@@ -167,6 +167,7 @@ function GoogleMaps() {
                 console.log(userPopup);
                 setUserPopup(null);
               }}
+
             >
               <div>
                 <h1>{userPopup.username}</h1>
@@ -200,6 +201,8 @@ function GoogleMaps() {
       </div>
 
       <Sidebar setSearch={setSearch} />
+
+          
     </div>
   );
 }

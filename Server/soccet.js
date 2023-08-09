@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const http = require("http").Server(app);
-const socketClient = require("socket.io-client")("http://localhost:4000");
+const socketClient = require("socket.io-client")("https://friends-for-rescue.onrender.com");
 const io = require("socket.io")(http, {
   cors: {
     origin: "*",

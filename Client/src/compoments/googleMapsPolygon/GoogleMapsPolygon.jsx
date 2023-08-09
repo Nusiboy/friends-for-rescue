@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/UseContext";
 import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
 import Sidebar from "../sidebar/Sidebar";
-
 import axios from "axios";
+
 const libraries = ["places", "drawing"];
 
 const DrawingTools = () => {
@@ -18,7 +18,7 @@ const DrawingTools = () => {
   } = useContext(Context);
 
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries: libraries,
   });
 
@@ -82,8 +82,10 @@ const DrawingTools = () => {
       };
     }
     console.log(shapeCoordinates);
-    try {
-      await axios.post("http://localhost:3000/shapes/add", shapeCoordinates);
+
+    try{
+      await axios.post("https://friends-for-rescue.onrender.com/admins/markShape", shapeCoordinates);
+  
 
       setShapes((prevShapes) => [...prevShapes, shapeCoordinates]);
     } catch (err) {

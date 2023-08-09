@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import socketIO from "socket.io-client";
 
-const socket = socketIO.connect("http://localhost:4000/");
+const socket = socketIO.connect("https://friends-for-rescue.onrender.com");
 
 function Chat() {
   const [name, setName] = useState(localStorage.getItem("username"));
@@ -100,7 +100,7 @@ function Chat() {
           <button id="send-message-btn" onClick={(e) => handleSendMessage(e)}>
             send
           </button>
-          <button onClick={() => handleSendallMessages()}>
+          <button id="send--wifi-message-btn" onClick={() => handleSendallMessages()}>
             i have wifi update all
           </button>
         </div>

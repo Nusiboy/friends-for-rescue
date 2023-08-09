@@ -5,47 +5,75 @@
 }
 #main-header {
   font-family: "PT Sans Narrow", sans-serif;
-  margin-right: 7vw;
+  font-size:2.8em;
+}
+@media screen and (max-width: 1000px) {
+  #main-header {
+    font-size:3em;
+  }
+}
+@media screen and (max-width: 510px) {
+  #main-header {
+    font-size: 2.9em;
+  }
+}
+@media screen and (max-width: 420px) {
+  #main-header {
+    font-size: 2.2em;
+  }
 }
 #layoutMain {
   height: 100%;
   width: 100%;
 }
 #sign-out-btn {
-  border-radius: 30px;
-  border-style: none;
-  width: 10vw;
-  background-color: #c5ddf2;
-  height: 6vh;
-  color: black;
-  font-family: "PT Sans Narrow", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
-  font-size: 1.3em;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  position: absolute;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #446b7e;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 20px;
+  width: 10vw;
+  height: 6.5vh;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #000000;
+  text-align: center;
+  margin-left: 85vw;
+  margin-top: 2vh;
+  transition: all 0.2s;
+  box-shadow: rgb(50 50 93 / 5%) 0px 30px 60px -12px inset, rgb(100 201 219 / 71%) 0px 18px 36px -18px inset;
 }
-@media screen and (max-width: 620px) {
-    #sign-out-btn  {
-  width: 15vw;
-  height: 6vh;
-    }
+#sign-out-btn:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media screen and (min-width: 320px) {
+  #sign-out-btn {
+    width: 10vw;
+    height: 6.5vh;
+    font-size: 0.9em;
   }
-@media screen and (max-width: 780px) {
-    #sign-out-btn  {
-  width: 17vw;
-  height: 6vh;
-    }
+}
+@media screen and (min-width: 420px) {
+  #sign-out-btn {
+    width: 10vw;
+    height: 6.5vh;
+    font-size: 1.2em;
   }
-@media screen and (max-width: 385px) {
-    #sign-out-btn  {
-  width: 21vw;
-  height: 6vh;
-    }
+}
+@media screen and (min-width: 1000px) {
+  #sign-out-btn {
+    width: 10vw;
+    height: 6.5vh;
+    font-size: 1em;
   }
+}
+
 #hello-user {
   color: #0f5344;
   font-family: "PT Sans Narrow", sans-serif;
@@ -56,14 +84,13 @@
   height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  z-index: 2;
-  background: rgb(9, 121, 39);
+  justify-content: center;
+  background: rgb(30, 135, 152);
   background: linear-gradient(
     90deg,
-    rgb(20, 180, 47) 0%,
-    rgba(43, 172, 40, 1) 20%,
-    rgb(73, 209, 71) 65%
+    rgba(30, 135, 152, 1) 0%,
+    rgba(40, 158, 172, 1) 25%,
+    rgba(83, 183, 189, 1) 68%
   );
 }
 #layoutContent {
@@ -78,9 +105,11 @@
 }
 #layoutLinks {
   display: flex;
-  width: 60%;
+  width: 20%;
   justify-content: space-around;
   align-items: center;
+  margin-left: 2vw;
+  z-index: 2;
 }
 .headerLink {
   font-weight: bold;
@@ -160,18 +189,4 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-@media screen and (max-width: 790px) {
-  #mobileLinks {
-    display: block;
-  }
-  #layoutLinks {
-    display: none;
-  }
-  #layoutFooter {
-    padding: 2vh;
-  }
-  .footerColumnLink {
-    width: 25%;
-  }
 }

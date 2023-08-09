@@ -23,6 +23,7 @@ const DrawingTools = () => {
   });
 
   const [shapes, setShapes] = useState([]);
+  const [renderpage,setRenderpage]=useState(true)
   const [prevshapes, setPrevShapes] = useState([]);
   const [selectedShape, setSelectedShape] = useState(null);
 
@@ -64,7 +65,7 @@ const DrawingTools = () => {
     } else if (shape instanceof google.maps.Rectangle) {
       console.log("Rectangle");
       const bounds = shape.getBounds();
-      
+
       console.log(bounds);
       const northEast = bounds.getNorthEast();
       const southWest = bounds.getSouthWest();
@@ -83,9 +84,8 @@ const DrawingTools = () => {
     }
     console.log(shapeCoordinates);
 
-    try{
-      await axios.post("https://friends-for-rescue.onrender.com/admins/markShape", shapeCoordinates);
-  
+    try {
+      await axios.post("http://localhost:3000/shapes/add", shapeCoordinates);
 
       setShapes((prevShapes) => [...prevShapes, shapeCoordinates]);
     } catch (err) {
@@ -128,38 +128,46 @@ const DrawingTools = () => {
           zoom: 8,
         }
       );
+      
 
       async function takeshapes() {
         try {
           let data = await axios.get("http://localhost:3000/shapes/take");
           console.log(data.data);
           for (let shape of data.data) {
-          console.log(shape.northEast);
-              switch (shape.type) {
-                case "circle":
-                  console.log(shape.center);
-                  const newCircle = new google.maps.Circle({
-                    center: shape.center,
+            console.log(shape.northEast);
+            switch (shape.type) {
+              case "circle":
+                console.log(shape.center);
+                const newCircle = new google.maps.Circle({
+                  center: shape.center,
 
-                    radius: Number(shape.radius),
-                    strokeColor: "#FF0000",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: "#FF0000",
-                    fillOpacity: 0.35,
-                  });
-                  newCircle.setMap(mapInstance);
-                  break;
+                  radius: Number(shape.radius),
+                  strokeColor: "#FF0000",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                  fillColor: "#FF0000",
+                  fillOpacity: 0.35,
+                  clickable: true,
+                });
+                console.log(newCircle);
+                newCircle.addListener("click", () => {
+                  console.log(newCircle);
+                  setSelectedShape(shape._id);
+                });
+                newCircle.setMap(mapInstance);
+                break;
               case "rectangle":
                 let newbounds = {
                   north: shape.northEast.latitude,
-                  south:shape.southWest.latitude,
+                  south: shape.southWest.latitude,
                   east: shape.northEast.longitude,
                   west: shape.southWest.longitude,
                 };
-                
+
                 console.log();
                 console.log(newbounds);
+                
                 const newRectangle = new google.maps.Rectangle({
                   bounds: newbounds,
                   strokeColor: "#FF0000",
@@ -168,56 +176,73 @@ const DrawingTools = () => {
                   fillColor: "#FF0000",
                   fillOpacity: 0.35,
                 });
-                
+                newRectangle.addListener("click", () => {
+                  console.log(newRectangle);
+                  setSelectedShape(shape._id);
+                });
                 newRectangle.setMap(mapInstance);
                 break;
-                case "polyline":
-                  let polylineData= shape.coordinates.map((item)=>{
-return item
-                  })
-                  const newPolyline = new google.maps.Polyline({
-                    path: polylineData,
-                    strokeColor: "#FF0000",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: "#FF0000",
-                    fillOpacity: 0.35,
-                    clickable:true,
-                    editable:true
-                    
-                  });
-                  newPolyline.setMap(mapInstance);
-                  break;
-                  case "polygon":
-                    let polygonData=shape.coordinates.map((item)=>{
-                      return item
-                    })
-                    const newPolygon = new google.maps.Polygon({
-                      path:  polygonData,
-                      strokeColor: "#FF0000",
-                      strokeOpacity: 0.8,
-                      strokeWeight: 2,
-                      fillColor: "#FF0000",
-                      fillOpacity: 0.35,
-                    });
-                    newPolygon.setMap(mapInstance);
-                    break;
-                    case "Marker":
-                      const newMarker = new google.maps.Marker({
-                       position: {lat:Number(shape.latitude),lng:Number(shape.longitude)} ,
-                       icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-          draggable: true,
-                        
-                      });
-                      newMarker.setMap(mapInstance);
-                      break;
-                default:
-                  console.log("fuck");
-                  
-                  break;
-              }
-             
+              case "polyline":
+                let polylineData = shape.coordinates.map((item) => {
+                  return item;
+                });
+                const newPolyline = new google.maps.Polyline({
+                  path: polylineData,
+                  strokeColor: "#FF0000",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                  fillColor: "#FF0000",
+                  fillOpacity: 0.35,
+                  clickable: true,
+                  editable: true,
+                });
+                newPolyline.addListener("click", () => {
+                  console.log(newPolyline);
+                  setSelectedShape(shape._id);
+                });
+                newPolyline.setMap(mapInstance);
+                break;
+              case "polygon":
+                let polygonData = shape.coordinates.map((item) => {
+                  return item;
+                });
+                const newPolygon = new google.maps.Polygon({
+                  path: polygonData,
+                  strokeColor: "#FF0000",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                  fillColor: "#FF0000",
+                  fillOpacity: 0.35,
+                  clickable: true,
+                });
+                newPolygon.addListener("click", () => {
+                  console.log(newPolygon);
+                  setSelectedShape(shape._id);
+                });
+                newPolygon.setMap(mapInstance);
+
+                break;
+              case "Marker":
+                const newMarker = new google.maps.Marker({
+                  position: {
+                    lat: Number(shape.latitude),
+                    lng: Number(shape.longitude),
+                  },
+                  icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+                  draggable: true,
+                });
+                newMarker.setMap(mapInstance);
+                newMarker.addListener("click", () => {
+                  console.log(newMarker);
+                  setSelectedShape(shape._id);
+                });
+                break;
+              default:
+                console.log("fuck");
+
+                break;
             }
+          }
           // }
         } catch (err) {
           console.error("Error saving shape data:", err);
@@ -295,16 +320,20 @@ return item
 
           // Add a click event listener to the new shape
           window.google.maps.event.addListener(newShape, "click", () => {
+            console.log(newShape);
             setSelectedShape(newShape);
           });
         }
       );
     }
-  }, [isLoaded, map, center, setMap, setMapLoaded, drawingMode]);
+  }, [isLoaded, map, center, setMap, setMapLoaded, drawingMode,renderpage]);
+  useEffect(() => {
+    console.log(selectedShape);
+  }, [selectedShape]);
+  console.log(selectedShape);
   console.log(drawingMode);
   console.log(isLoaded, "isLoaded");
   console.log(!map, "Map");
-  useEffect(() => {}, []);
   useEffect(() => {
     if (isLoaded && map) {
       // Add event listeners for shape editing
@@ -333,16 +362,32 @@ return item
     }
   }, [isLoaded, map, shapes]);
 
-  const deleteShape = () => {
+  const deleteShape = async () => {
     if (selectedShape) {
       // Remove the shape from the map
-      selectedShape.setMap(null);
-      setSelectedShape(null);
+      // selectedShape.setMap(null);
+      // setSelectedShape(null);
 
       // If you also want to remove the shape data from your state, you need to filter it out as well
       setShapes((prevShapes) =>
         prevShapes.filter((shape) => shape !== selectedShape)
       );
+      //       try {
+      //         // Send a request to your backend to delete the shape's data
+      //         await axios.delete("http://localhost:3000/shapes/delete",{
+      //     _id:"64d23173f927231e4e9973da"
+      // });
+      //         console.log("Shape deleted from the database.");
+      //     } catch (error) {
+      //         console.error("Error deleting shape data:", error);
+      //     }
+      console.log(selectedShape, "selectedShape");
+      axios
+        .delete(`http://localhost:3000/shapes/delete/${selectedShape}`,)
+        .then(() => {
+          setRenderpage((prev)=>!prev)
+          console.log("deleted");
+        });
     }
   };
 
@@ -364,7 +409,7 @@ return item
       ) : (
         <div>Loading...</div>
       )}
-      <Sidebar style={{ width: "10vw", height: "100vh" }} />
+      {/* <Sidebar style={{ width: "10vw", height: "100vh" }} /> */}
     </div>
   );
 };

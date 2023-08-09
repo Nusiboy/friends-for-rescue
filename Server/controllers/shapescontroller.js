@@ -77,10 +77,11 @@ exports.takeshape = async (req, res) => {
   };
 
   exports.delete = async (req, res) => {
-    let {_id}=req.body
-    console.log(_id);
+    console.log("lior");
+    console.log(req.body);
+    console.log(req.params.id);
   try {
-    await Shape.deleteOne({ _id: _id });
+    await Shape.deleteOne({ _id: req.params.id });
     res.status(200).json("success");
   } catch (err) {
     res.status(400).json(err.message);

@@ -19,8 +19,10 @@ function GoogleMaps() {
     setMapLoaded,
     map,
     setMap,
+    search,
+    setSearch,
   } = useContext(Context);
-  const [search, setSearch] = useState(null);
+  // const [search, setSearch] = useState(null);
   const [hospitals, setHospitals] = useState([]);
   const [popup, setPopup] = useState(null);
   const [userPopup, setUserPopup] = useState(null);
@@ -57,7 +59,7 @@ function GoogleMaps() {
   // }
   async function deleteMark(props) {
     console.log(props);
-  
+
     try {
       await axios.delete("http://localhost:3000/marks/delete", { data: props });
       console.log("deleted");
@@ -167,19 +169,53 @@ function GoogleMaps() {
                 console.log(userPopup);
                 setUserPopup(null);
               }}
-
             >
               <div>
-                <h1>{userPopup.username}</h1>
-                <p>{userPopup.markType}</p>
-                <p>{userPopup.information}</p>
-                <img height={20} width={20} src={userPopup.found} alt={userPopup.information} />
-                <button onClick={()=>deleteMark(userPopup)}>delete</button>
+                <h1 style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "24px",
+                    margin: "0",
+                    paddingBottom: "4px",
+                    color: '#555'
+                  }}>{userPopup.username}</h1>
+                <p style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",margin: "0",
+                    paddingBottom: "4px",
+                    color: '#555'
+                  }}>{userPopup.markType}</p>
+                <p style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",margin: "0",
+                    paddingBottom: "4px",
+                    color: '#555'
+                  }}>{userPopup.information}</p>
+                <img
+                  height={20}
+                  width={20}
+                  src={userPopup.found}
+                  alt={userPopup.information}
+                />
+                <button  style={{
+        marginTop: "10px",
+        padding: "6px 12px",
+        fontSize: "16px",
+        backgroundColor: "ActiveBorder",
+        color: "#fff",
+        border: "none",
+        borderRadius: "4px",
+        cursor: "pointer",
+      }}  onClick={() => deleteMark(userPopup)}>delete</button>
               </div>
             </InfoWindow>
           )}
           {popup && (
             <InfoWindow
+            
               position={{
                 lat: popup.geometry.location.lat(),
                 lng: popup.geometry.location.lng(),
@@ -189,9 +225,60 @@ function GoogleMaps() {
                 console.log(popup);
               }}
             >
-              <div>
-                <h2>{popup.name}</h2>
+              <div
+                style={{
+                  backgroundColor: "#fff",
+                  padding: "20px",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                  textAlign: "center",
+                }}
+              >
+                <h2
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "24px",
+                    margin: "0",
+                    paddingBottom: "4px",
+                    color: '#555'
+                  }}
+                >
+                  {popup.name}
+                </h2>
                 <p>{popup.formatted_address}</p>
+                <p
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",margin: "0",
+                    paddingBottom: "4px",
+                    color: '#555'
+                  }}
+                >
+                  <h3>Address: </h3>
+                  <h4>{popup.vicinity}</h4>{" "}
+                </p>
+                <p
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",margin: "0",
+                    paddingBottom: "4px",
+                    color: '#555'
+                  }}
+                >
+                  <h4>rating:</h4>
+                  {<h5>{popup.rating}</h5>}
+                </p>
+                {popup.photos && (
+                  <img
+                    style={{ width: 200, height: 150, borderRadius: '4px', boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)", }}
+                    src={popup.photos[0].getUrl()}
+                    alt=""
+                  />
+                )}
               </div>
             </InfoWindow>
           )}
@@ -200,9 +287,7 @@ function GoogleMaps() {
         </GoogleMap>
       </div>
 
-      <Sidebar setSearch={setSearch} />
-
-          
+      {/* <Sidebar setSearch={setSearch} /> */}
     </div>
   );
 }

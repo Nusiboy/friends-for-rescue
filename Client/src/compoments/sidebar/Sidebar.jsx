@@ -53,6 +53,8 @@ const [inputSearch,setInputSearch]=useState("")
   function EditUser() {
     return (
       <div id="update-user-container">
+        <h1>Update your user</h1>
+        <br />
         <select
           className="update-input"
           name="updateOrigin"

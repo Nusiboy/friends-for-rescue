@@ -12,6 +12,7 @@
   padding: 1vw;
   align-items: center;
   margin-top: 10vh;
+  overflow-y: scroll;
 }
 #sharelocation-container {
   display: flex;
@@ -240,4 +241,18 @@
     display: block;
     margin: 0.4em auto;
   }
+}
+.comment{
+  text-decoration: none;
+  display: flex;
+  font-family: "PT Sans Narrow", sans-serif;
+}
+.comment-name-sent{
+  text-decoration:underline;
+  color: #004369;
+}
+.header-chat{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

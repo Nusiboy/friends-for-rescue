@@ -8,18 +8,18 @@ import Sharelocaition from "../sharelocation/Sharelocaition";
 
 
 
-function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes,setSearh}) {
+function Sidebar({deleteShape,selectedShape,toggleDrawingMode,hideShpes,setSearch}) {
   // const { toggleDrawingMode } = useContext(Context);
    const { currentUser, setCurrentUser } = useContext(RefContext);
+   const{setDrawingMode,drawingMode,refresh,setRefresh}=useContext(Context)
 const [inputSearch,setInputSearh]=useState('')
-=======  const [updateOrigin, setUpdateOrigin] = useState("");
+ const [updateOrigin, setUpdateOrigin] = useState("");
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
   const [showChat, setShowChat] = useState(false);
   
-console.log(localStorage.getItem("type")=="admin");
 
   function renderWelcomeButton() {
     // const firstLetter = currentUser.charAt(0);
@@ -30,23 +30,9 @@ console.log(localStorage.getItem("type")=="admin");
           setShow((prev) => !prev)
         }
         console.log("open");
-      // }}>
-      //   {firstLetter}
-      // </button>
-    // );
+     
   }
-  // useEffect(() => {
-  //   console.log(localStorage.getItem("user-token"));
-    
-  //   axios
-  //     .post("http://localhost:3001/users",{id:localStorage.getItem("user-token")}).then(({ data }) =>{
-  //       setUpdateOrigin(data.info.origin)
-  //       setUpdateMobility(data.info.mobility)
-  //       setUpdateMedical(data.info.medical)
-  //   })
-  //     .then(({ data }) => setUser(data))
-  //     .catch((err) => console.log(err.response.data));
-  // }, []);
+ 
   async function updateUser() {
     console.log("sendreq");
     try {
@@ -89,7 +75,7 @@ console.log(localStorage.getItem("type")=="admin");
           onChange={(event) => {
             setUpdateMobility(event.target.value);
           }}
-          value={updateMobility}
+          value={updateMobility}s
         >
           <option className="edit-options" default disabled>
             Mobility
@@ -147,13 +133,17 @@ console.log(localStorage.getItem("type")=="admin");
         
         <button className="layer-btn">layer</button>
         <input type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
-        <button onClick={()=>{setSearh(inputSearch)}}>search</button>
-        <button onClick={hideShpes} className="layer-btn"> hide</button>
-          <button
+        <button onClick={()=>{setSearch(inputSearch)}}>search</button>
+        <button onClick={()=>{setSearch("")}} >clean</button>
+        <button onClick={()=>{
+          setDrawingMode(!drawingMode)
+          console.log(drawingMode)
+          setRefresh(!refresh)}} className="layer-btn">  {drawingMode ? "Show" : "Hide"}</button>
+          <button 
                 className="layer-btn"
                 onClick={toggleDrawingMode}
               >
-                {drawingMode ? "Disable Drawing" : "Enable Drawing"}
+               
               </button>
         
         {selectedShape && (

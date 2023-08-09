@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useState } from "react";
 import { useLoadScript, useJsApiLoader ,GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 export const Context=createContext({})
@@ -13,14 +13,19 @@ function UseContext({children}){
       const [map, setMap] = useState(null)
 
       const [mapLoaded, setMapLoaded] = useState(false);
-      const [drawingMode, setDrawingMode] = useState(false);
+      const [drawingMode, setDrawingMode] = useState(true);
+      const [refresh, setRefresh] = useState(false);
       
-  const toggleDrawingMode = () => {
-    setDrawingMode((prevState) => !prevState);
-  };
-
+//   const toggleDrawingMode = () => {
+//     setDrawingMode((prevState) => !prevState);
+//   };
+// useEffect(()=>{
+//     if(drawingMode==false)
+//     setDrawingMode(!drawingMode)
+// }
+// ,[drawingMode])
         return(
-            <Context.Provider value={{center,options,isLoaded, loadError,mapLoaded, setMapLoaded,drawingMode,toggleDrawingMode,map, setMap }}>
+            <Context.Provider value={{center,options,isLoaded, loadError,mapLoaded, setMapLoaded,drawingMode,map, setMap,drawingMode, setDrawingMode,refresh,setRefresh }}>
                 {children}
             </Context.Provider>
         )

@@ -143,7 +143,7 @@ const [inputSearch,setInputSearh]=useState('')
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
 
-        
+{/*         
         <button className="layer-btn">layer</button>
         <input type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
         <button onClick={()=>{setSearch(inputSearch)}}>search</button>
@@ -157,7 +157,7 @@ const [inputSearch,setInputSearh]=useState('')
                 onClick={toggleDrawingMode}
               >
                
-              </button>
+              </button> */}
         
 
         <button className="layer-btn" onClick={toggleDrawingMode}>

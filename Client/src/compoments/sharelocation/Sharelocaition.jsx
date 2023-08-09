@@ -76,7 +76,7 @@ function Sharelocaition() {
         console.log(data);
         data.map(async(item)=>{
          await axios.post(
-            "http://localhost:3000/marks/add",
+            "https://friends-for-rescue.onrender.com/marks/add",
             item
           )
 

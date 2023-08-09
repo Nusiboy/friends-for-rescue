@@ -7,7 +7,7 @@ const io = require("socket.io")(http, {
     origin: "*",
   },
 });
-const port = 3000;
+const port = 4000;
 io.on("connection", (socket) => {
   console.log("soccet connected");
   io.emit("soccetconnected", `${socket.id}`);

@@ -26,8 +26,31 @@ function UseContext({ children }) {
   const [selectedShape, setSelectedShape] = useState(null);
   const [shapes, setShapes] = useState([]);
   const [renderpage, setRenderpage] = useState(true);
- 
-     
+
+  const [hospitals, setHospitals] = useState([]);
+  const [popup, setPopup] = useState(null);
+  const [userPopup, setUserPopup] = useState(null);
+  const [userMarker, setUserMarker] = useState([]);
+
+  const deleteShape = async () => {
+    if (selectedShape) {
+      // Remove the shape from the map
+      // selectedShape.setMap(null);
+      setSelectedShape(null);
+      setShapes((prevShapes) =>
+        prevShapes.filter((shape) => shape !== selectedShape)
+      );
+  
+      console.log(selectedShape, "selectedShape");
+      axios
+        .delete(`http://localhost:3000/shapes/delete/${selectedShape}`,)
+        .then(() => {
+          setRenderpage((prev)=>!prev)
+          console.log("deleted");
+        });
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -52,7 +75,14 @@ function UseContext({ children }) {
         setShapes,
         renderpage,
         setRenderpage,
-      
+        hospitals,
+        setHospitals,
+        popup,
+        setPopup,
+        userPopup,
+        setUserPopup,
+        userMarker,
+        setUserMarker,deleteShape
       }}
     >
       {children}

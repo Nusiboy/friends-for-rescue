@@ -7,10 +7,10 @@ import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 import DisplayData from "../datalayer/DisplayData";
 
-function Sidebar({deleteShape,selectedShape,toggleDrawingMode,hideShpes}) {
+function Sidebar({toggleDrawingMode,hideShpes}) {
   // const { toggleDrawingMode } = useContext(Context);
    const { currentUser, setCurrentUser } = useContext(RefContext);
-   const{setDrawingMode,drawingMode,refresh,setRefresh,setSearch}=useContext(Context)
+   const{setDrawingMode,drawingMode,refresh,setRefresh,setSearch,setRenderpage,selectedShape, setSelectedShape,setShapes}=useContext(Context)
 const [inputSearch,setInputSearch]=useState("")
 
  const [updateOrigin, setUpdateOrigin] = useState("");
@@ -28,6 +28,26 @@ const [inputSearch,setInputSearch]=useState("")
   const [showPractices, setShowPractices] = useState(false);
 
   console.log(localStorage.getItem("type") == "admin");
+
+  const deleteShape = async () => {
+    if (selectedShape) {
+      // Remove the shape from the map
+      // selectedShape.setMap(null);
+      setSelectedShape(null);
+      setShapes((prevShapes) =>
+        prevShapes.filter((shape) => shape !== selectedShape)
+      );
+  
+      console.log(selectedShape, "selectedShape");
+      axios
+        .delete(`http://localhost:3000/shapes/delete/${selectedShape}`,)
+        .then(() => {
+          setRenderpage((prev)=>!prev)
+          console.log("deleted");
+        });
+    }
+  };
+
 
   function renderWelcomeButton() {
     if (localStorage.getItem("type") == "user") {
@@ -145,7 +165,7 @@ const [inputSearch,setInputSearch]=useState("")
       <div id="sidebar-layers-container">
 
 
-        <button onClick={()=>{setSearch(inputSearch)}}>search</button>
+        {/* <button onClick={()=>{setSearch(inputSearch)}}>search</button>
         <button onClick={()=>{setSearch("")}} >clean</button>
         <button onClick={()=>{
           setDrawingMode(!drawingMode)
@@ -156,7 +176,7 @@ const [inputSearch,setInputSearch]=useState("")
                 onClick={toggleDrawingMode}
               >
                
-              </button> */}
+              </button>  */}
         
 
         <button onClick={()=>{
@@ -167,15 +187,12 @@ const [inputSearch,setInputSearch]=useState("")
         </button>
 
         {selectedShape && (
-          <div>
-            <button className="layer-btn" onClick={deleteShape}>
-              Delete Shape
-            </button>
-          </div>
+          
+          <button onClick={()=>{deleteShape()}} className="layer-btn">
+          <img className="sidebar-icons" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAFF0lEQVR4nO2cS2sVSRTH/4maGxWU+QYafMVEXcx16UZm4UKTTfAjKApxoQu3uhGfmRvzYpjdrAU1qPj+AiI+8phRBEFdKUSNMQtNzHDgNIRLbt3urup69flBQchN31Sf03UedU4XIAiCIAiCIAiCEB/dAIYATAP4DmAOwCSAGn8mFMRaACMAfgFYajAWAAwDaCtqEmUW/kOF4OvHI1GCWUYyCD8ZZKYEA3Q1MTsqc0TXCppczSH8ZAzo/vMy08JRzRsNBUy4vonQ6ABwBMA/AD5oCD4Zs4iQXQAGOfamGPwrgJcALmeMw5MnvB/ANQAfDQi8fswgIioARgEsNnF8AwDaHQm8fjxBRMJ/nOHGb/M1tgW+kgnqRQSM5bj5eQcCX2lQCHsWQCsCtvkqs2NjzBv4jnEAGxEggw4E/hXAAwCnAfzO5mzcwPe+DjE5m7Ig8E/sJ/rZb5DDrqfCkdaCAeUG5RdmCxD4xxQCb8ROABcBPAfwBcBn/pl+tzflSiG/cCYUv/DNscCz0srCTbN/NM5KuwTgBSvUu/qCjgl6Y0Hgjehlc6Pz4HhRX9Bxwn+6nDiAHQD+M7CCndYXunKGoYssANdsNBRBOa0vDAX49Nf7hbM56wrLzZGzELaS0Z7e5Wt8o1czqnNWX/gjg9mpNdiM84UnIdYXbiomNcfb0TVPbH4zZkKrL2xSZJ+TjkJMHXT2lehhs84VxYSOIjymNRRAD5xV1nOqv9JkZvjz0BjWUADlRFY5ppgMpe8hsjtnXrPA+1DWaFFsQ9BkNqNcjV5XfQo9byBs2nl7Ia3w77vIa1Tp+36ETzuvhGZNBoMuhN+hmNhEgKGnih6FAg7CEQOKSVHjVExUFfdKn1lnnSJbDDX0DEoBxxUTorJfbFR9U8BEpKGntwrYzZ5+ivc6Gk3mOuKk6koBaXo9Yws9vVFA1l7PLxG/+FZ1oYDRDMJPxgXESdW2AvL2etI1Ww38/+28xf2Md1pd9+FYV4BOm8moRlq+hsNY397zta4AnYJEshLecvMsta2f4nS+U6Gc1QDuedqHY10BJloN0yrnJCtn2OM+HOsKKKLZtoixYKkP55BiDvTwBNluvmRoDDjejl5kv0dHJRij5oFglxz34WQtyDw22evUbeAlB1tjFv7kQXSNMfI6xR52rGPsaN8W/P7YHMyzRyMPohzKCG0Zj3+5A2BVg++qcAjawyGpSeVMelKQX/4QwqQShpqYIxLgOY7j81AB8LdnfTj/asyHAhjjdHG0McE5AlW9nnLWusVhH84vXlk+tSbSEWlBMupRH858GQ//qGTc/qZxuKC5TJf1+JtKisRn+XhZwGuk2wC8L/sBUN3s/KfYpqpuuM9wp5/OuwHWe0Nt0WdhFVCnx08N4TvpjLZFKwu6iFWwWjPuT8YDrmdES18Bq+A3FpyO4JPe0KiFX8QqIGf7KoWA6W8OcL07OXviG0c7V2K1+XlWwWSGVbCPT19JY1ZolQhMCz+FOquAGod/pBD+X2UwKzZXAW0Unk9p00/kmllJaMmxCjYAuJVC+DOcCwgaq2CJHeULfknwQAZnS45ZMLAK8sTw4mwzctiQ8Ec0ahmlZlhT8OJsNejULGWKs3VwOFQy3omzdVswoWsFTZrVCFSDyo2Cw95VOlZNcNi7GnTN1hdqGgqgLWTBUe9qtDXbUBKxQdeTjom2jL2r0ddsXdCWone1NDVbl3TV9a6WtmYrCIIgCIIgCAK85H8cYs3oJV7O2AAAAABJRU5ErkJggg=="/>
+          </button>
         )}
-        <button onClick={toggleDrawingMode} className="layer-btn">
-        <img className="sidebar-icons" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAFF0lEQVR4nO2cS2sVSRTH/4maGxWU+QYafMVEXcx16UZm4UKTTfAjKApxoQu3uhGfmRvzYpjdrAU1qPj+AiI+8phRBEFdKUSNMQtNzHDgNIRLbt3urup69flBQchN31Sf03UedU4XIAiCIAiCIAiCEB/dAIYATAP4DmAOwCSAGn8mFMRaACMAfgFYajAWAAwDaCtqEmUW/kOF4OvHI1GCWUYyCD8ZZKYEA3Q1MTsqc0TXCppczSH8ZAzo/vMy08JRzRsNBUy4vonQ6ABwBMA/AD5oCD4Zs4iQXQAGOfamGPwrgJcALmeMw5MnvB/ANQAfDQi8fswgIioARgEsNnF8AwDaHQm8fjxBRMJ/nOHGb/M1tgW+kgnqRQSM5bj5eQcCX2lQCHsWQCsCtvkqs2NjzBv4jnEAGxEggw4E/hXAAwCnAfzO5mzcwPe+DjE5m7Ig8E/sJ/rZb5DDrqfCkdaCAeUG5RdmCxD4xxQCb8ROABcBPAfwBcBn/pl+tzflSiG/cCYUv/DNscCz0srCTbN/NM5KuwTgBSvUu/qCjgl6Y0Hgjehlc6Pz4HhRX9Bxwn+6nDiAHQD+M7CCndYXunKGoYssANdsNBRBOa0vDAX49Nf7hbM56wrLzZGzELaS0Z7e5Wt8o1czqnNWX/gjg9mpNdiM84UnIdYXbiomNcfb0TVPbH4zZkKrL2xSZJ+TjkJMHXT2lehhs84VxYSOIjymNRRAD5xV1nOqv9JkZvjz0BjWUADlRFY5ppgMpe8hsjtnXrPA+1DWaFFsQ9BkNqNcjV5XfQo9byBs2nl7Ia3w77vIa1Tp+36ETzuvhGZNBoMuhN+hmNhEgKGnih6FAg7CEQOKSVHjVExUFfdKn1lnnSJbDDX0DEoBxxUTorJfbFR9U8BEpKGntwrYzZ5+ivc6Gk3mOuKk6koBaXo9Yws9vVFA1l7PLxG/+FZ1oYDRDMJPxgXESdW2AvL2etI1Ww38/+28xf2Md1pd9+FYV4BOm8moRlq+hsNY397zta4AnYJEshLecvMsta2f4nS+U6Gc1QDuedqHY10BJloN0yrnJCtn2OM+HOsKKKLZtoixYKkP55BiDvTwBNluvmRoDDjejl5kv0dHJRij5oFglxz34WQtyDw22evUbeAlB1tjFv7kQXSNMfI6xR52rGPsaN8W/P7YHMyzRyMPohzKCG0Zj3+5A2BVg++qcAjawyGpSeVMelKQX/4QwqQShpqYIxLgOY7j81AB8LdnfTj/asyHAhjjdHG0McE5AlW9nnLWusVhH84vXlk+tSbSEWlBMupRH858GQ//qGTc/qZxuKC5TJf1+JtKisRn+XhZwGuk2wC8L/sBUN3s/KfYpqpuuM9wp5/OuwHWe0Nt0WdhFVCnx08N4TvpjLZFKwu6iFWwWjPuT8YDrmdES18Bq+A3FpyO4JPe0KiFX8QqIGf7KoWA6W8OcL07OXviG0c7V2K1+XlWwWSGVbCPT19JY1ZolQhMCz+FOquAGod/pBD+X2UwKzZXAW0Unk9p00/kmllJaMmxCjYAuJVC+DOcCwgaq2CJHeULfknwQAZnS45ZMLAK8sTw4mwzctiQ8Ec0ahmlZlhT8OJsNejULGWKs3VwOFQy3omzdVswoWsFTZrVCFSDyo2Cw95VOlZNcNi7GnTN1hdqGgqgLWTBUe9qtDXbUBKxQdeTjom2jL2r0ddsXdCWone1NDVbl3TV9a6WtmYrCIIgCIIgCAK85H8cYs3oJV7O2AAAAABJRU5ErkJggg=="/>
-        </button>
+        
         <button id="chat-btn" onClick={() => setShowChat((prev) => !prev)}>
         <img className="sidebar-icons" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACF0lEQVR4nO2cS05bURBEaxCyk0iQLJLMGGAcks2ghCUwA1bBiJ8S/hU96Q0yCRLytaobnyPVGHdV3277YV8JAAAAAAAAAADg/3yW9E3SuaRbSd5w3c5eLGdv1saWpO+SngoU7aJ6mj2avBrKB0lHBQp0E/0aHcKiQFFupsNR5n+S9FCgIDfTo6SdEQHsFSjGTXUwIoCTAoW4qc5GBHBRoBA31fWIAH4XKMSNRQAigHgXmhOQN8KMoLwZDmhl/hQowo1FACKAeBeaE5A3woygvBkOiB2g5gHcFegiNxYBiADiXWhOQN4IM4LyZjggdoCaB3BfoIvcWAQgAoh3oTkBeSPMCMqb4YDYAWoeAF9LFAG4wCjhBChvJiNIeUPZAeollrCaB/BYoAg3FgGIAOJdaE5A3ggzgvJmOCB2gJoHwC/jRQAuMEo4AcqbyQhS3lB2gHqJJazmATwX6CI3FgGIAOJdaE5A3ggzgvJmOCB2gJoH8FKgi9xYK3NZoAg31dWIAE4LFOJNvrLsoEAhbqr9EQFM1/HyPwG92fzp2yTbGsSPAt3kZprukh7GdA3vcYGi3EQ/13F/9Mf5JDCO9OrYWa7D/H/5Mv+RacPfFOg2h3Uze7EYdVXxaFYpbjf94t8DmB+Gzg/D2AnDzA/Dwg3Du50wvNUMw/v8MHzICsMn3DA8XgjDs50wPFgLw1PNMF/TLwAAAEAF+QtnSjMv5aIwcwAAAABJRU5ErkJggg=="/>
         </button>

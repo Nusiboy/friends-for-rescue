@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/UseContext";
-import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
+import { useJsApiLoader, GoogleMap, Marker, InfoWindow  } from "@react-google-maps/api";
 import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
+import DisplayData from "../datalayer/DisplayData";
 
 const libraries = ["places", "drawing"];
 
@@ -14,7 +15,14 @@ const DrawingTools = () => {
     toggleDrawingMode,
     setMapLoaded,
     setMap,
-    map,
+    map,hospitals,
+    setHospitals,
+    popup,
+    setPopup,
+    userPopup,
+    setUserPopup,
+    userMarker,
+    setUserMarker,selectedShape, setSelectedShape
   } = useContext(Context);
 
   const { isLoaded, loadError } = useJsApiLoader({
@@ -25,7 +33,7 @@ const DrawingTools = () => {
   const [shapes, setShapes] = useState([]);
   const [renderpage,setRenderpage]=useState(true)
   const [prevshapes, setPrevShapes] = useState([]);
-  const [selectedShape, setSelectedShape] = useState(null);
+  // const [selectedShape, setSelectedShape] = useState(null);
 
   const saveShapeData = async (shape) => {
     console.log(shape);
@@ -194,7 +202,7 @@ const DrawingTools = () => {
                   fillColor: "#FF0000",
                   fillOpacity: 0.35,
                   clickable: true,
-                  editable: true,
+                 
                 });
                 newPolyline.addListener("click", () => {
                   console.log(newPolyline);
@@ -268,34 +276,36 @@ const DrawingTools = () => {
           draggable: true,
         },
         circleOptions: {
-          fillColor: "#ffff00",
-          fillOpacity: 1,
-          strokeWeight: 5,
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
           clickable: true,
-          editable: true,
-          zIndex: 1,
         },
         polygonOptions: {
-          fillColor: "#ffff00",
-          fillOpacity: 0.1,
-          strokeWeight: 5,
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
           clickable: true,
-          editable: true,
-          zIndex: 1,
         },
         polylineOptions: {
-          strokeWeight: 5,
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
           clickable: true,
-          editable: true,
-          zIndex: 1,
         },
         rectangleOptions: {
-          fillColor: "#ffff00",
-          fillOpacity: 1,
-          strokeWeight: 5,
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
           clickable: true,
-          editable: true,
-          zIndex: 1,
         },
       });
 
@@ -327,9 +337,7 @@ const DrawingTools = () => {
       );
     }
   }, [isLoaded, map, center, setMap, setMapLoaded, drawingMode,renderpage]);
-  useEffect(() => {
-    console.log(selectedShape);
-  }, [selectedShape]);
+  
   console.log(selectedShape);
   console.log(drawingMode);
   console.log(isLoaded, "isLoaded");
@@ -362,34 +370,24 @@ const DrawingTools = () => {
     }
   }, [isLoaded, map, shapes]);
 
-  const deleteShape = async () => {
-    if (selectedShape) {
-      // Remove the shape from the map
-      // selectedShape.setMap(null);
-      // setSelectedShape(null);
-
-      // If you also want to remove the shape data from your state, you need to filter it out as well
-      setShapes((prevShapes) =>
-        prevShapes.filter((shape) => shape !== selectedShape)
-      );
-      //       try {
-      //         // Send a request to your backend to delete the shape's data
-      //         await axios.delete("http://localhost:3000/shapes/delete",{
-      //     _id:"64d23173f927231e4e9973da"
-      // });
-      //         console.log("Shape deleted from the database.");
-      //     } catch (error) {
-      //         console.error("Error deleting shape data:", error);
-      //     }
-      console.log(selectedShape, "selectedShape");
-      axios
-        .delete(`http://localhost:3000/shapes/delete/${selectedShape}`,)
-        .then(() => {
-          setRenderpage((prev)=>!prev)
-          console.log("deleted");
-        });
-    }
-  };
+  // const deleteShape = async () => {
+  //   if (selectedShape) {
+  //     // Remove the shape from the map
+  //     // selectedShape.setMap(null);
+  //     setSelectedShape(null);
+  //     setShapes((prevShapes) =>
+  //       prevShapes.filter((shape) => shape !== selectedShape)
+  //     );
+  
+  //     console.log(selectedShape, "selectedShape");
+  //     axios
+  //       .delete(`http://localhost:3000/shapes/delete/${selectedShape}`,)
+  //       .then(() => {
+  //         setRenderpage((prev)=>!prev)
+  //         console.log("deleted");
+  //       });
+  //   }
+  // };
 
   if (loadError) {
     return <div>Error loading Google Maps API</div>;
@@ -399,12 +397,17 @@ const DrawingTools = () => {
     <div style={{ width: "100vw", height: "100vh" }}>
       {isLoaded ? (
         <>
-          {selectedShape && (
-            <div>
-              <button onClick={deleteShape}>Delete Shape</button>
-            </div>
-          )}
+        
+          {/* {selectedShape &&(
+          <div style={{zIndex:"999",display:"flex",justifyContent:"center",width:100,margin:0,position:"fixed"} }>
+              <button style={{zIndex:999,width:100,margin:0}} onClick={deleteShape}>Delete Shape</button>
+              </div>
+          )} */}
           <div id="map" style={{ width: "100vw", height: "100vh" }}></div>
+          {/* <GoogleMap id="map" center={center} zoom={8}  style={{ width: "100vw", height: "100vh" }}>
+            
+          </GoogleMap> */}
+          
         </>
       ) : (
         <div>Loading...</div>

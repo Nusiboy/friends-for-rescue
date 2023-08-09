@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Register.css";
-import Login from "../login/Login";
 function Register() {
   const [registerUserNameValue, setRegisterUserNameValue] = useState("");
   const [registerEmailValue, setRegisterEmailValue] = useState("");

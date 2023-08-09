@@ -31,15 +31,19 @@ exports.addmark = async (req, res) => {
        return res.status(200).json(data)
      } catch(err){
        res.status(500).json(err.message)
-     }
-  };
 
+     }
+  };
 
-  exports.delete = async (req, res) => {
-    try {
-      await Mark.deleteOne({ _id: req.body._id });
-      res.status(200).json("success");
-    } catch (err) {
-      res.status(400).json(err.message);
-    }
-  };
+exports.delete = async (req, res) => {
+  let {_id}=req.body
+  try {
+    console.log(_id);
+    console.log("sdfd");
+    await Mark.deleteOne({ _id: _id });
+    res.status(200).json("success");
+  } catch (err) {
+    res.status(400).json(err.message);
+  }
+};
+

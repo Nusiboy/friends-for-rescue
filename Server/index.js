@@ -5,6 +5,7 @@ const PORT = 3000;
 const cors = require("cors");
 const usersRoutes=require("./routes/usersRoute")
 const markRoutes=require("./routes/markRoute")
+const shapeRoutes=require("./routes/shapeRoutes")
 require("dotenv").config();
 app.use(express.json())
 app.use(
@@ -24,6 +25,7 @@ mongoose
   app.use(cors());
   app.use("/users",usersRoutes)
   app.use("/marks",markRoutes)
+  app.use("/shapes",shapeRoutes)
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });

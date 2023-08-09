@@ -7,17 +7,23 @@ import Chat from "../Chat/Chat";
 import Sharelocaition from "../sharelocation/Sharelocaition";
 import DisplayData from "../datalayer/DisplayData";
 
-function Sidebar({deleteShape,selectedShape,toggleDrawingMode,drawingMode,hideShpes,setSearh}) {
+function Sidebar({deleteShape,selectedShape,toggleDrawingMode,hideShpes,setSearch}) {
   // const { toggleDrawingMode } = useContext(Context);
    const { currentUser, setCurrentUser } = useContext(RefContext);
+   const{setDrawingMode,drawingMode,refresh,setRefresh}=useContext(Context)
 const [inputSearch,setInputSearh]=useState('')
-const [updateOrigin, setUpdateOrigin] = useState("");
+
+ const [updateOrigin, setUpdateOrigin] = useState("");
+
+
+
 
   const [updateMobility, setUpdateMobility] = useState("");
   const [updateMedical, setUpdateMedical] = useState("");
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
   const [showChat, setShowChat] = useState(false);
+
   const [showSearch, setShowSearch] = useState(false);
   const [showPractices, setShowPractices] = useState(false);
 
@@ -29,6 +35,7 @@ const [updateOrigin, setUpdateOrigin] = useState("");
     }
     console.log("open");
   }
+
   async function updateUser() {
     console.log("sendreq");
     try {
@@ -71,7 +78,7 @@ const [updateOrigin, setUpdateOrigin] = useState("");
           onChange={(event) => {
             setUpdateMobility(event.target.value);
           }}
-          value={updateMobility}
+          value={updateMobility}s
         >
           <option className="edit-options" default disabled>
             Mobility
@@ -135,9 +142,28 @@ const [updateOrigin, setUpdateOrigin] = useState("");
   return (
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
+
+        
+        <button className="layer-btn">layer</button>
+        <input type="text" onChange={(e)=>{setInputSearh(e.target.value)}} />
+        <button onClick={()=>{setSearch(inputSearch)}}>search</button>
+        <button onClick={()=>{setSearch("")}} >clean</button>
+        <button onClick={()=>{
+          setDrawingMode(!drawingMode)
+          console.log(drawingMode)
+          setRefresh(!refresh)}} className="layer-btn">  {drawingMode ? "Show" : "Hide"}</button>
+          <button 
+                className="layer-btn"
+                onClick={toggleDrawingMode}
+              >
+               
+              </button>
+        
+
         <button className="layer-btn" onClick={toggleDrawingMode}>
           {drawingMode ? <img className="sidebar-icons" src="data:image/png;base64,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"/> : <img className="sidebar-icons" src="data:image/png;base64,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"/>}
         </button>
+
         {selectedShape && (
           <div>
             <button className="layer-btn" onClick={deleteShape}>

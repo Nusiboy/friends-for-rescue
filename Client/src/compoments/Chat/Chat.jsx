@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import socketIO from "socket.io-client";
 
-const socket = socketIO.connect("https://friends-for-rescue.onrender.com");
+const socket = socketIO.connect("https://friends-for-rescue-soccet.onrender.com");
 
 function Chat() {
   const [name, setName] = useState(localStorage.getItem("username"));
@@ -89,7 +89,7 @@ function Chat() {
   return (
     <>
       <div id="chat-container">
-        <h2>write a message</h2>
+        <h2 >write a message</h2>
         <div id="secondery-chat-container">
           <input
             id="message-input-container"
@@ -105,16 +105,16 @@ function Chat() {
           </button>
         </div>
         <div>
-          <h2>Messages:</h2>
+          <h2 className="header-chat">Messages:</h2>
           {messages.map((messageone, index) => {
             return (
               <div key={index}>
                 <a target="_blank" href={`https://wa.me/+972${messageone?.num}`}>
-                  <h2>{messageone?.info?.name}</h2>
+                  <h3 className="comment-name-sent">{messageone?.info?.name}</h3>
                 </a>
-                <h3>{messageone?.info?.text}</h3>
-                <p>{`${messageone?.time}`}</p>
-                <p>{messageone?.info?.updatedlater}</p>
+                <h4 className="comment">{messageone?.info?.text}</h4>
+                <p className="comment">{`${messageone?.time}`}</p>
+                <p className="comment">{messageone?.info?.updatedlater}</p>
               </div>
             );
           })}

@@ -39,7 +39,7 @@ function DisplayData({showPractices}) {
       </select> */}
 
       {selectedTerrainData && (
-        <div>
+        <div id='information-data-container'>
           <ul>
             {selectedTerrainData.bestPractices.map((practice, index) => (
               <li key={index}>

@@ -20,19 +20,21 @@ function GoogleMaps() {
     map,
     setMap,
     search,
-    setSearch,
+    setSearch,hospitals,
+    setHospitals,
+    popup,
+    setPopup,
+    userPopup,
+    setUserPopup,
+    userMarker,
+    setUserMarker,
   } = useContext(Context);
-  // const [search, setSearch] = useState(null);
-  const [hospitals, setHospitals] = useState([]);
-  const [popup, setPopup] = useState(null);
-  const [userPopup, setUserPopup] = useState(null);
-  const [userMarker, setUserMarker] = useState([]);
-  // const [selected, setSelected] = useState(null);
-  const [drawnPolygons, setDrawnPolygons] = useState([]);
-  const handlePolygonDrawn = (newPolygon) => {
-    setDrawnPolygons([...drawnPolygons, newPolygon]);
-  };
-
+ 
+  // const [hospitals, setHospitals] = useState([]);
+  // const [popup, setPopup] = useState(null);
+  // const [userPopup, setUserPopup] = useState(null);
+  // const [userMarker, setUserMarker] = useState([]);
+  
   useEffect(() => {
     async function TakeMarks() {
       try {
@@ -46,17 +48,7 @@ function GoogleMaps() {
 
     TakeMarks();
   }, []);
-  // async function deleteMark(props){
-  //   console.log(props);
-  //   let x= JSON.parse(props._id)
-  //   console.log(x);
-  //   try {
-  //     await axios.delete("http://localhost:3000/marks/delete",{x});
-  //     console.log("deleted");
-  //   } catch (err) {
-  //     console.log(err.response.data);
-  //   }
-  // }
+  
   async function deleteMark(props) {
     console.log(props);
 
@@ -97,12 +89,6 @@ function GoogleMaps() {
 
   const handleTextSearch = (results, status) => {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-      // console.log(results);
-      // console.log(
-      //   results.map((value, index) => {
-      //     return value.geometry;
-      //   })
-      // );
       setHospitals(results);
     }
   };
@@ -111,12 +97,11 @@ function GoogleMaps() {
     return <div>Loading...</div>;
   }
 
-  // console.log(map);
+
   return (
     <div>
       <div className="map-conteiner">
-        {/* <GoogleMapsPolygon onPolygonDrawn={handlePolygonDrawn}/>  */}
-
+     
         <GoogleMap
           options={options}
           center={center}
@@ -196,7 +181,7 @@ function GoogleMaps() {
                   }}>{userPopup.information}</p>
                 <img
                   height={20}
-                  width={20}
+                  width={20}  
                   src={userPopup.found}
                   alt={userPopup.information}
                 />
@@ -260,7 +245,7 @@ function GoogleMaps() {
                   <h3>Address: </h3>
                   <h4>{popup.vicinity}</h4>{" "}
                 </p>
-                <p
+                {popup.rating!==0&&<p
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -271,7 +256,7 @@ function GoogleMaps() {
                 >
                   <h4>rating:</h4>
                   {<h5>{popup.rating}</h5>}
-                </p>
+                </p>}
                 {popup.photos && (
                   <img
                     style={{ width: 200, height: 150, borderRadius: '4px', boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)", }}

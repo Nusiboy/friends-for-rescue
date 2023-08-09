@@ -147,7 +147,7 @@ const [inputSearch,setInputSearch]=useState("")
       <div id="sidebar-layers-container">
 
 
-        <button onClick={()=>{setSearch(inputSearch)}}>search</button>
+        {/* <button onClick={()=>{setSearch(inputSearch)}}>search</button>
         <button onClick={()=>{setSearch("")}} >clean</button>
         <button onClick={()=>{
           setDrawingMode(!drawingMode)
@@ -158,7 +158,7 @@ const [inputSearch,setInputSearch]=useState("")
                 onClick={toggleDrawingMode}
               >
                
-              </button> */}
+              </button>  */}
         
 
         <button onClick={()=>{

@@ -144,9 +144,7 @@ const [inputSearch,setInputSearch]=useState("")
     <div id="sidebar-container">
       <div id="sidebar-layers-container">
 
-        
-        {/* <button className="layer-btn">layer</button>
-        <input type="text" onChange={(e)=>{setInputSearch(e.target.value)}} />
+
         <button onClick={()=>{setSearch(inputSearch)}}>search</button>
         <button onClick={()=>{setSearch("")}} >clean</button>
         <button onClick={()=>{

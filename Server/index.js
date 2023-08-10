@@ -15,20 +15,23 @@ app.use(
 );
 mongoose
 .connect(process.env.MONGO_CONNECTOR , {})
-  .then(() => {
-    console.log("Successfully connected to MongoDB Atlas");
-  })
-  .catch((err) => {
-    console.log("Unable to connect to MongoDB Atlas");
-    console.error(err.message);
-  });
-  app.use(cors());
-  app.use("/users",usersRoutes)
-  app.use("/marks",markRoutes)
-  app.use("/shapes",shapeRoutes)
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+.then(() => {
+  console.log("Successfully connected to MongoDB Atlas");
+})
+.catch((err) => {
+  console.log("Unable to connect to MongoDB Atlas");
+  console.error(err.message);
+});
+app.use(cors());
+app.use("/users",usersRoutes)
+app.use("/marks",markRoutes)
+app.use("/shapes",shapeRoutes)
+app.get("/",(req,res) => {
+  res.status(200).send("hello world")
+})
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // const express = require("express");
 // const app = express();

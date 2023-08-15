@@ -53,7 +53,7 @@ function GoogleMaps() {
     console.log(props);
 
     try {
-      await axios.delete("http://localhost:3000/marks/delete", { data: props });
+      await axios.delete("http://localhost:3000/marks/delete", { _id: props._id });
       console.log("deleted");
     } catch (err) {
       console.log(err.response.data);

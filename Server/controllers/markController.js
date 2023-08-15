@@ -38,9 +38,9 @@ exports.addmark = async (req, res) => {
 exports.delete = async (req, res) => {
   let {_id}=req.body
   try {
-    console.log(_id);
+    console.log(req.body);
     console.log("sdfd");
-    await Mark.deleteOne({ _id: _id });
+    await Mark.deleteOne({ _id: req.body._id });
     res.status(200).json("success");
   } catch (err) {
     res.status(400).json(err.message);

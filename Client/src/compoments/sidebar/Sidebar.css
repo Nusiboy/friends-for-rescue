@@ -45,8 +45,8 @@
   position: relative;
   border-style: none;
   background-color: unset;
-  width: 4vw;
-  height: 7vh;
+  width: 3vw;
+  height: 6vh;
 }
 
 @media screen and (max-width: 1000px) {

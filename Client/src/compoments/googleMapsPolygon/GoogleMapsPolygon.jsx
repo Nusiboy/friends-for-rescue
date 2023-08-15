@@ -3,7 +3,7 @@ import { Context } from "../../context/UseContext";
 import { useJsApiLoader, GoogleMap, Marker, InfoWindow  } from "@react-google-maps/api";
 import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
-import DisplayData from "../datalayer/DisplayData";
+
 
 const libraries = ["places", "drawing"];
 
@@ -33,7 +33,7 @@ const DrawingTools = () => {
   const [shapes, setShapes] = useState([]);
   const [renderpage,setRenderpage]=useState(true)
   const [prevshapes, setPrevShapes] = useState([]);
-  // const [selectedShape, setSelectedShape] = useState(null);
+ 
 
   const saveShapeData = async (shape) => {
     console.log(shape);
